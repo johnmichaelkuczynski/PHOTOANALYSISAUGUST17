@@ -7,7 +7,10 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN npm run build
+RUN mkdir -p server/public && cp -r dist/public/* server/public/
+RUN mkdir -p src/dist && cp dist/index.js src/dist/index.js
+RUN mkdir -p src/dist/public && cp -r dist/public/* src/dist/public/
 ENV NODE_ENV=production
 ENV PORT=5000
 EXPOSE 5000
-CMD ["npx", "tsx", "server/index.ts"]
+CMD ["node", "src/dist/index.js"]
