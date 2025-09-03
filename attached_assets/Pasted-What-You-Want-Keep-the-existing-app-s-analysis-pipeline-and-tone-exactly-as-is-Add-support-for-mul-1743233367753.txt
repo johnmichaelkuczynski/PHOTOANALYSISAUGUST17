@@ -1,0 +1,96 @@
+What You Want:
+Keep the existing app's analysis pipeline and tone exactly as is
+
+Add support for multi-person analysis in:
+
+✅ Photos (still images)
+
+✅ Short videos (same format currently supported)
+
+Cap the number of people to something reasonable (e.g., 5)
+
+Don’t change anything else about how the analysis is written or interpreted—just scale it to more people per file
+
+🧠 What Replit Needs to Be Told (Plain English)
+Build an app that:
+
+Accepts a photo or short video upload
+
+Detects all visible people (up to 5)
+
+For each person:
+
+Isolates their face, pose, and speech (if available)
+
+Runs the existing analysis logic (the one already in this app)
+
+Outputs a separate analysis for each individual
+
+Keeps the exact same personality analysis style, structure, and insight depth currently being used
+
+Clearly labels each profile (e.g., “Person 1,” “Person 2,” or with physical descriptors if available)
+
+Combines all analyses into a single report for the user
+
+🛠 What This Means Technically (For Replit)
+1. Photos:
+Use Azure Face API (or Google Vision Face Detection if previously used)
+
+For each face:
+
+Extract a crop/region if needed
+
+Pass facial data to the existing LLM prompt engine unchanged
+
+2. Videos:
+Sample 1–3 key frames (or every N seconds)
+
+Use face tracking or recognition per frame
+
+Group frame data by face (Rekognition or OpenCV face_recognition library can track people across frames)
+
+If audio is present, extract per-person audio if spatial data is available (otherwise default to face only)
+
+3. LLM Call:
+No change to the prompt logic
+
+Just run the current get_personality_analysis(data) function once per person
+
+🧾 Final Output:
+A scrollable or downloadable report containing:
+
+Person 1: [Analysis...]
+
+Person 2: [Analysis...]
+
+Etc.
+
+Optionally, a group dynamic summary section (you can add this later)
+
+✅ What You Should Tell Replit (Copy/Paste-Friendly)
+Here’s exactly what to say to Replit:
+
+Build an upgraded version of my current personality analysis app that supports multiple people in a single photo or short video.
+
+The core personality analysis logic, style, and prompt must remain exactly the same as in the current app—it is already excellent.
+
+What you are adding is the ability to:
+
+Detect and analyze up to 5 people in a single photo
+
+Detect and analyze up to 5 people across a short video (either per-frame or per-speaker if possible)
+
+For each detected individual:
+
+Use the existing analysis process
+
+Generate a separate personality profile
+
+Clearly label each profile (e.g., “Person 1”, “Person 2”)
+
+Combine all the outputs into a single report, preserving the exact format, depth, and insight of the existing personality evaluations.
+
+Do not alter the LLM prompt or analysis structure.
+
+Also: If person-level audio can’t be reliably separated in video, default to visual-only analysis for those individuals. That’s fine.
+

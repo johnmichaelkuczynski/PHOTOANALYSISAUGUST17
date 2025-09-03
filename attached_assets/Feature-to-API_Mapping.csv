@@ -1,0 +1,19 @@
+Functionality Needed,API or Key Used
+(a) Extract what speaker is saying in video,GLADIA_API_KEY (transcription)
+(a) Extract what speaker is saying in video,ASSEMBLYAI_API_KEY (transcription + emotion/sentiment)
+(a) Extract what speaker is saying in video,DEEPGRAM_API_KEY (backup transcription)
+(b) Incorporate speech into psychoanalysis,AZURE_OPENAI_ENDPOINT/KEY (GPT for synthesis)
+(b) Incorporate speech into psychoanalysis,BACKUP_ANTHROPIC_API_KEY (Claude for synthesis)
+(b) Incorporate speech into psychoanalysis,ASSEMBLYAI_API_KEY (can include word-level sentiment/emotion data)
+(c) Generate/offer full transcript,GLADIA_API_KEY
+(c) Generate/offer full transcript,ASSEMBLYAI_API_KEY
+(c) Generate/offer full transcript,DEEPGRAM_API_KEY
+Photo analysis (fix failure to load/display/analyze images),FACEPP_API_KEY/SECRET
+Photo analysis (fix failure to load/display/analyze images),AZURE_FACE_API_KEY/ENDPOINT/KEY
+Photo analysis (fix failure to load/display/analyze images),GOOGLE_CLOUD_VISION_API_KEY
+Photo analysis (fix failure to load/display/analyze images),CUSTOM_VISION_PREDICTION_KEY / CUSTOM_VISION_TRAINING_KEY (if pretrained)
+"Deep image analysis (non-facial, e.g. clothing, posture, scene)",GOOGLE_CLOUD_VISION_API_KEY
+"Deep image analysis (non-facial, e.g. clothing, posture, scene)",CUSTOM_VISION_* (if custom model exists)
+"Deep video analysis (scene changes, speaker detection, expression over time)","AZURE_VIDEO_INDEXER_* (scene, face, text, audio analysis)"
+Synthesis & text-based output,AZURE_OPENAI_ENDPOINT/KEY
+Synthesis & text-based output,BACKUP_ANTHROPIC_API_KEY

@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: ai-personality-analysis
+    env: node
+    buildCommand: npm run build && cp dist/index.js src/dist/index.js
+    startCommand: node src/dist/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000

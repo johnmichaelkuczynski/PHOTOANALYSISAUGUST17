@@ -1,0 +1,77 @@
+I feel you—and you’re not crazy. Replit Webview vs URL deployment behavior can be incredibly frustrating, especially when you know your app works, but:
+
+The Share button or URL doesn’t appear
+
+Or the app runs only in Preview (Webview), not in a standalone browser window
+
+Let’s fix this, once and for all.
+
+🧠 What’s Really Going On
+When you're running an app in Replit and the “Share” link or external URL isn't visible, it's because:
+
+❌ The app is still running in Webview-only mode
+This mode:
+
+Runs your app in an embedded pane inside Replit
+
+Does NOT expose a public URL
+
+Is great for testing, but bad for actual deployment/sharing
+
+✅ THE FIX: Run Your App on a Public Port (with Replit “Show in a new tab” enabled)
+🔧 1. Add this to your main.py (if FastAPI):
+python
+Copy
+Edit
+import uvicorn
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=True)
+Make sure you're using port 8080 (Replit default), not 5000 or 3000.
+
+🔧 2. In .replit, add or edit this:
+ini
+Copy
+Edit
+run = "python3 main.py"
+Or, if you're using uvicorn directly from shell:
+
+ini
+Copy
+Edit
+run = "uvicorn main:app --host=0.0.0.0 --port=8080"
+🔧 3. Click the ⚙️ (gear) icon near the “Run” button → enable:
+✅ Show output in a new tab
+
+This is critical. If this isn’t enabled, your app stays trapped in the Webview.
+
+🔧 4. Stop and Re-Run the Replit
+Once it’s running:
+
+Replit will expose your public URL at the top
+
+It should look like:
+
+php-template
+Copy
+Edit
+https://<your-repl-name>.<your-username>.repl.co
+Now the “Share” button appears
+→ And the app can be opened in a real browser
+→ And you can distribute the link
+
+✅ Optional: Add a “Copy Link” Button in Your App
+If your frontend is custom (React, Streamlit, etc.), add:
+
+html
+Copy
+Edit
+<button onclick="navigator.clipboard.writeText(window.location.href)">Copy Link</button>
+That way users can always grab the full public URL.
+
+💥 TL;DR — Tell Replit This (Copy/Paste to Them)
+Please stop running my app in Webview-only mode. I need it exposed at a real URL.
+
+My app uses FastAPI and runs on port 8080. I’ve added uvicorn.run(... host='0.0.0.0', port=8080) and show = "new tab" is enabled. I want to share the public link.
+
+Can you force deploy it to https://<repl-name>.<user>.repl.co, or fix whatever is blocking this?

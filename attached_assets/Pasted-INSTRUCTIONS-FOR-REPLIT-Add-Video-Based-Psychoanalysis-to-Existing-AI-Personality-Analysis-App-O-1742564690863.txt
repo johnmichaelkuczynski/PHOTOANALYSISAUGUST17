@@ -1,0 +1,68 @@
+INSTRUCTIONS FOR REPLIT: Add Video-Based Psychoanalysis to Existing AI Personality Analysis App
+🧠 Objective
+Enhance the existing AI Personality Analysis App to support video-based analysis (in addition to photo uploads). The app should extract facial expressions, body language, speech tone, and verbal content from a 1-minute video, then generate a comprehensive psychological report using multiple APIs.
+
+🖼️ Step 1: Modify File Upload UI
+Keep photo upload functionality.
+Add video upload functionality (accept .mp4, .mov, .webm formats).
+App must automatically detect whether the uploaded file is an image or a video.
+If video, process audio and visual tracks separately.
+🎥 Step 2: Video Processing
+1. Upload video to Google Cloud Storage (GCS).
+2. Use the following APIs:
+
+Google Video Intelligence API
+
+Track objects and movement.
+Detect gestures, activity patterns (fidgeting, walking, openness, etc.).
+AWS Rekognition Video
+
+Frame-by-frame facial expression detection.
+Emotional analysis over time.
+Nonverbal communication (e.g., microexpressions, posture shifts).
+🔊 Step 3: Audio Processing
+1. Extract audio using FFmpeg.
+2. Transcribe audio using both:
+
+OpenAI Whisper API — high-accuracy transcription.
+Google Speech-to-Text API — fallback or real-time transcription.
+3. Store metadata:
+
+Pauses
+Pitch changes
+Voice intensity
+Speech rate
+🧠 Step 4: Deep Psychological Analysis
+Send all extracted data to:
+
+OpenAI GPT-4
+Anthropic Claude
+Perplexity AI
+Provide them with:
+
+Transcribed speech (for verbal analysis).
+Voice metadata (for vocal tone/emotion).
+Visual metadata (gestures, microexpressions, posture, movement patterns).
+The AI should analyze:
+
+Assertiveness vs hesitation
+Confidence level
+Over-explaining vs precision
+Emotional states
+Personality traits
+📋 Step 5: Display Results in UI
+Show real-time progress bar during analysis.
+Display Final Psychological Report with these sections:
+Emotional State (e.g., relaxed, anxious, confident)
+Body Language (e.g., fidgeting, eye contact)
+Speech Patterns (e.g., hesitant, assertive)
+Personality Assessment (e.g., “high analytical thinking, moderate emotional restraint”)
+🔌 Required API Integrations
+✅ Google Video Intelligence API
+✅ AWS Rekognition Video
+✅ OpenAI Whisper API
+✅ Google Speech-to-Text API
+✅ OpenAI GPT-4
+✅ Anthropic Claude
+✅ Perplexity AI
+✅ FFmpeg (for extracting audio)

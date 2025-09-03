@@ -1,0 +1,50 @@
+2025-09-03T00:53:33.397957943Z ==> Build successful 🎉
+2025-09-03T00:53:36.429957298Z ==> Deploying...
+2025-09-03T00:53:45.424557126Z ==> Running 'npm run start'
+2025-09-03T00:53:45.65487238Z 
+2025-09-03T00:53:45.654897191Z > rest-express@1.0.0 start
+2025-09-03T00:53:45.654902111Z > NODE_ENV=production node dist/index.js
+2025-09-03T00:53:45.654904211Z 
+2025-09-03T00:53:45.732985325Z node:internal/modules/cjs/loader:1404
+2025-09-03T00:53:45.733006076Z   throw err;
+2025-09-03T00:53:45.733008776Z   ^
+2025-09-03T00:53:45.733010876Z 
+2025-09-03T00:53:45.733013546Z Error: Cannot find module '/opt/render/project/src/dist/index.js'
+2025-09-03T00:53:45.733015736Z     at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+2025-09-03T00:53:45.733018386Z     at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+2025-09-03T00:53:45.733020786Z     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+2025-09-03T00:53:45.733023506Z     at Function._load (node:internal/modules/cjs/loader:1211:37)
+2025-09-03T00:53:45.733025617Z     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-09-03T00:53:45.733027717Z     at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+2025-09-03T00:53:45.733031727Z     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+2025-09-03T00:53:45.733037317Z     at node:internal/main/run_main_module:36:49 {
+2025-09-03T00:53:45.733041487Z   code: 'MODULE_NOT_FOUND',
+2025-09-03T00:53:45.733045307Z   requireStack: []
+2025-09-03T00:53:45.733048727Z }
+2025-09-03T00:53:45.733051697Z 
+2025-09-03T00:53:45.733055317Z Node.js v22.16.0
+2025-09-03T00:53:47.985682802Z ==> Exited with status 1
+2025-09-03T00:53:48.001354581Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
+2025-09-03T00:53:49.383919935Z ==> Running 'npm run start'
+2025-09-03T00:53:49.605316034Z 
+2025-09-03T00:53:49.605338734Z > rest-express@1.0.0 start
+2025-09-03T00:53:49.605343234Z > NODE_ENV=production node dist/index.js
+2025-09-03T00:53:49.605345264Z 
+2025-09-03T00:53:49.682930096Z node:internal/modules/cjs/loader:1404
+2025-09-03T00:53:49.682952377Z   throw err;
+2025-09-03T00:53:49.682955377Z   ^
+2025-09-03T00:53:49.682957497Z 
+2025-09-03T00:53:49.682960307Z Error: Cannot find module '/opt/render/project/src/dist/index.js'
+2025-09-03T00:53:49.682962597Z     at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+2025-09-03T00:53:49.682964657Z     at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+2025-09-03T00:53:49.682966697Z     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+2025-09-03T00:53:49.682969517Z     at Function._load (node:internal/modules/cjs/loader:1211:37)
+2025-09-03T00:53:49.682971587Z     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-09-03T00:53:49.682973697Z     at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+2025-09-03T00:53:49.682976407Z     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+2025-09-03T00:53:49.682979917Z     at node:internal/main/run_main_module:36:49 {
+2025-09-03T00:53:49.682982737Z   code: 'MODULE_NOT_FOUND',
+2025-09-03T00:53:49.682985478Z   requireStack: []
+2025-09-03T00:53:49.682987658Z }
+2025-09-03T00:53:49.682989678Z 
+2025-09-03T00:53:49.682991748Z Node.js v22.16.0

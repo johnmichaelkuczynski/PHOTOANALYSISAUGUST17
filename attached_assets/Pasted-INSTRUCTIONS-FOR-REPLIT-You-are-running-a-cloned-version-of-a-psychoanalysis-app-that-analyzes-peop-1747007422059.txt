@@ -1,0 +1,99 @@
+INSTRUCTIONS FOR REPLIT
+
+You are running a cloned version of a psychoanalysis app that analyzes people in videos and photos. The current version only analyzes visual appearance. That is no longer acceptable. The app must now be expanded to use all available API keys to provide deep, multimodal analysis. Your job is to wire up the APIs correctly. Below are the features that must be added and which services to use:
+
+🔊 (1) Transcribe What the Person Says in the Video
+Purpose: So the app can analyze not just how someone looks, but what they say.
+
+APIs to use:
+
+GLADIA_API_KEY — main transcription service.
+
+ASSEMBLYAI_API_KEY — fallback or enhancement (adds emotion/sentiment tagging).
+
+DEEPGRAM_API_KEY — backup transcription if others fail.
+
+Instructions:
+
+Use one of the transcription services to extract spoken text from the video.
+
+Save the transcript so it can be quoted and displayed to the user.
+
+🧠 (2) Incorporate Speech Into Psychoanalysis
+Purpose: Make the analysis smarter by including what the person says (not just how they look).
+
+APIs to use:
+
+AZURE_OPENAI_KEY or BACKUP_ANTHROPIC_API_KEY — generate the text-based analysis.
+
+ASSEMBLYAI_API_KEY — extract emotional tone from voice and speech content.
+
+Instructions:
+
+After transcribing the video, send the transcript along with a frame/image of the speaker to Claude/OpenAI.
+
+Ask the model to generate a detailed psychoanalytic report using both appearance and quoted content.
+
+📄 (3) Offer Transcript to User
+Purpose: Allow user to download or view what was said in the video.
+
+Instructions:
+
+After transcription, display the full transcript to the user in the UI.
+
+Allow option to copy or download it.
+
+🖼️ (4) Fix Photo Uploading & Facial Analysis
+Purpose: App is struggling to display/analyze uploaded photos. Fix that.
+
+APIs to use:
+
+FACEPP_API_KEY + FACEPP_API_SECRET — for face detection, emotion, age, etc.
+
+AZURE_FACE_API_KEY, AZURE_FACE_ENDPOINT, AZURE_FACE_URL — backup facial recognition system.
+
+GOOGLE_CLOUD_VISION_API_KEY — backup visual analysis (non-facial).
+
+CUSTOM_VISION_* — if custom classifiers exist (e.g. narcissism detection).
+
+Instructions:
+
+Ensure photos are processed with Face++ first.
+
+If Face++ fails, fall back to Azure Face API.
+
+Add hooks to use Google Vision or Custom Vision for scene and object info (e.g. posture, clothing, background).
+
+🎥 (5) Add Deep Video Analysis
+Purpose: Go beyond facial snapshots — analyze scenes, transitions, emotion over time.
+
+APIs to use:
+
+AZURE_VIDEO_INDEXER_*
+
+Instructions:
+
+Use Azure Video Indexer to extract faces, emotions, scene shifts, spoken keywords, and more.
+
+Combine this data with transcript and facial info in the final report.
+
+✍️ (6) Generate Text-Based Psychoanalytic Report
+Purpose: Create a unified written analysis that uses all the info: what the person looks like, what they say, and how they behave.
+
+APIs to use:
+
+AZURE_OPENAI_ENDPOINT or BACKUP_ANTHROPIC_API_KEY
+
+Instructions:
+
+Send all gathered information (appearance, speech, video context) to Claude/OpenAI with a prompt like:
+
+“Analyze this person in as much psychological depth as possible, based on their appearance, behavior, and what they say. Quote the transcript. Make the tone clinical but rich.”
+
+Final Notes:
+
+You are not doing the analysis — the LLMs are.
+
+You are not interpreting anything — just collecting and passing the right data.
+
+You must use the APIs only for their designated role. No guessing.
