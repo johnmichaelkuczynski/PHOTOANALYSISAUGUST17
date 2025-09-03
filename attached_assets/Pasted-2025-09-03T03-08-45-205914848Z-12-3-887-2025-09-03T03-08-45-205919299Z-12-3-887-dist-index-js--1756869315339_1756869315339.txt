@@ -1,0 +1,55 @@
+2025-09-03T03:08:45.205914848Z #12 3.887 
+2025-09-03T03:08:45.205919299Z #12 3.887   dist/index.js  217.1kb
+2025-09-03T03:08:45.205923479Z #12 3.887 
+2025-09-03T03:08:45.205927569Z #12 3.887 ⚡ Done in 12ms
+2025-09-03T03:08:45.356219991Z #12 DONE 4.0s
+2025-09-03T03:08:45.356240273Z 
+2025-09-03T03:08:45.356245683Z #13 exporting to docker image format
+2025-09-03T03:08:45.356251723Z #13 exporting layers
+2025-09-03T03:09:08.365016651Z #13 exporting layers 23.1s done
+2025-09-03T03:09:08.515921206Z #13 exporting manifest sha256:fb077db9484fa1c2f6fdb0b24b398b71f80c5e8b55ec0aa84cf9fdae5a7239f5
+2025-09-03T03:09:09.267689947Z #13 exporting manifest sha256:fb077db9484fa1c2f6fdb0b24b398b71f80c5e8b55ec0aa84cf9fdae5a7239f5 0.8s done
+2025-09-03T03:09:09.331619324Z #13 exporting config sha256:516d5c53d90c3de66f0af74c2204b95ef1ec0623bcfce3b7a8c6ab5ed956b6f2
+2025-09-03T03:09:09.743707221Z #13 exporting config sha256:516d5c53d90c3de66f0af74c2204b95ef1ec0623bcfce3b7a8c6ab5ed956b6f2 0.5s done
+2025-09-03T03:09:16.994074374Z #13 DONE 31.6s
+2025-09-03T03:09:16.994100496Z 
+2025-09-03T03:09:16.994106627Z #14 exporting cache to client directory
+2025-09-03T03:09:16.994111137Z #14 preparing build cache for export
+2025-09-03T03:09:45.650857151Z #14 writing cache manifest sha256:a84a0f0fe23546c8626b989344e54a1d4df61d15bb72d073dcc00519f207d728
+2025-09-03T03:09:46.095491497Z #14 writing cache manifest sha256:a84a0f0fe23546c8626b989344e54a1d4df61d15bb72d073dcc00519f207d728 0.5s done
+2025-09-03T03:09:46.095522969Z #14 DONE 29.2s
+2025-09-03T03:10:16.869492168Z Pushing image to registry...
+2025-09-03T03:10:36.072891314Z Upload succeeded
+2025-09-03T03:12:20.515807147Z ==> Deploying...
+2025-09-03T03:13:24.078074083Z ==> No open ports detected, continuing to scan...
+2025-09-03T03:13:24.171796363Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+2025-09-03T03:13:26.604906118Z Warning: SENDGRID_API_KEY environment variable is not set. Email functionality will be disabled.
+2025-09-03T03:13:26.604953049Z Warning: SENDGRID_VERIFIED_SENDER environment variable is not set. Using default sender.
+2025-09-03T03:13:26.60497158Z SendGrid configured with sender email: notifications@personality-insights.app
+2025-09-03T03:13:26.805268149Z Gladia transcription API available
+2025-09-03T03:13:26.80528897Z AssemblyAI transcription API available
+2025-09-03T03:13:26.80529221Z Deepgram transcription API available
+2025-09-03T03:13:26.80529488Z Face++ API available for face analysis
+2025-09-03T03:13:26.80529743Z Azure Face API available for face analysis
+2025-09-03T03:13:26.80530823Z Google Cloud Vision API available for image analysis
+2025-09-03T03:13:26.806295605Z Azure OpenAI client initialized successfully
+2025-09-03T03:13:26.806390418Z DeepSeek client initialized successfully
+2025-09-03T03:13:26.806465719Z OpenAI client initialized successfully
+2025-09-03T03:13:26.806837249Z Anthropic client initialized successfully
+2025-09-03T03:13:27.20590341Z /app/server/vite.ts:77
+2025-09-03T03:13:27.205933791Z     throw new Error(
+2025-09-03T03:13:27.205936901Z           ^
+2025-09-03T03:13:27.205939421Z 
+2025-09-03T03:13:27.205941651Z 
+2025-09-03T03:13:27.205945001Z Error: Could not find the build directory: /app/server/public, make sure to build the client first
+2025-09-03T03:13:27.205948161Z     at serveStatic (/app/server/vite.ts:77:11)
+2025-09-03T03:13:27.205950491Z     at <anonymous> (/app/server/index.ts:68:5)
+2025-09-03T03:13:27.205952711Z 
+2025-09-03T03:13:27.205954882Z Node.js v22.19.0
+2025-09-03T03:13:30.565199927Z ==> Exited with status 1
+2025-09-03T03:13:30.582596406Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
+2025-09-03T03:13:46.67064676Z npm error path /app
+2025-09-03T03:13:46.758086691Z npm error command failed
+2025-09-03T03:13:46.758110422Z npm error signal SIGTERM
+2025-09-03T03:13:46.758204684Z npm error command sh -c tsx server/index.ts
+2025-09-03T03:13:46.759659261Z npm error A complete log of this run can be found in: /root/.npm/_logs/2025-09-03T03_13_30_862Z-debug-0.log
