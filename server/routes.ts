@@ -637,17 +637,25 @@ const bucketName = 'ai-personality-videos';
  */
 async function getVideoDuration(videoPath: string): Promise<number> {
   return new Promise<number>((resolve, reject) => {
-    ffmpeg.ffprobe(videoPath, (err: Error | null, metadata: any) => {
-      if (err) {
-        console.error('Error getting video duration:', err);
-        // Default to 5 seconds if we can't determine duration
-        return resolve(5);
-      }
-      
-      // Get duration in seconds
-      const durationSec = metadata.format.duration || 5;
-      resolve(durationSec);
-    });
+    try {
+      ffmpeg.ffprobe(videoPath, (err: Error | null, metadata: any) => {
+        if (err) {
+          console.error('Error getting video duration:', err);
+          console.error('ffprobe error details:', err.message);
+          // Default to 5 seconds if we can't determine duration
+          return resolve(5);
+        }
+        
+        // Get duration in seconds
+        const durationSec = metadata.format.duration || 5;
+        console.log(`Video duration detected: ${durationSec}s`);
+        resolve(durationSec);
+      });
+    } catch (error) {
+      console.error('ffprobe not available or failed:', error);
+      // Fallback to default duration if ffmpeg is not available
+      resolve(5);
+    }
   });
 }
 

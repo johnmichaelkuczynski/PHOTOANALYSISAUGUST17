@@ -58,8 +58,20 @@ app.use((req, res, next) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
 
-    res.status(status).json({ message });
-    console.error('Server error:', err);
+    // Add detailed error logging for debugging deployment issues
+    console.error('=== SERVER ERROR ===');
+    console.error('Status:', status);
+    console.error('Message:', message);
+    console.error('Stack:', err.stack);
+    console.error('URL:', _req.url);
+    console.error('Method:', _req.method);
+    console.error('Headers:', JSON.stringify(_req.headers, null, 2));
+    console.error('==================');
+
+    res.status(status).json({ 
+      message,
+      error: process.env.NODE_ENV === 'development' ? err.stack : undefined
+    });
   });
 
   if (app.get("env") === "development") {

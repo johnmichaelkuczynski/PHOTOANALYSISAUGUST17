@@ -1,8 +1,13 @@
 FROM node:22-bullseye
+
+# Install system dependencies including ffmpeg
 RUN apt-get update && apt-get install -y \
     tesseract-ocr tesseract-ocr-eng libtesseract-dev \
     ffmpeg \
     && rm -rf /var/lib/apt/lists/*
+
+# Verify ffmpeg installation
+RUN ffmpeg -version
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
