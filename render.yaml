@@ -2,12 +2,7 @@ services:
   - type: web
     name: ai-personality-analysis
     env: node
-    buildCommand: |
-      apt-get update && apt-get install -y ffmpeg
-      npm run build
-      mkdir -p server/public && cp -r dist/public/* server/public/
-      mkdir -p src/dist && cp dist/index.js src/dist/index.js
-      mkdir -p src/dist/public && cp -r dist/public/* src/dist/public/
+    buildCommand: npm run build && mkdir -p server/public && cp -r dist/public/* server/public/ && mkdir -p src/dist && cp dist/index.js src/dist/index.js && mkdir -p src/dist/public && cp -r dist/public/* src/dist/public/
     startCommand: node src/dist/index.js
     envVars:
       - key: NODE_ENV
