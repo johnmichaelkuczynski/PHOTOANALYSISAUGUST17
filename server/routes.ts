@@ -1437,12 +1437,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const textAnalysisPrompt = `
 You are an expert psychologist and personality analyst. Analyze the following text to provide comprehensive personality insights about the author.
 
-CRITICAL REQUIREMENTS:
+CRITICAL REQUIREMENTS - FAILURE TO COMPLY WILL RESULT IN REJECTED ANALYSIS:
 - NO MARKDOWN FORMATTING: Do not use # ### ** or any markdown in your response
 - INCLUDE 8-12 DIRECT QUOTES from the text that reveal personality traits
 - PROVIDE COMPREHENSIVE 3-4 PARAGRAPH SECTIONS for each analysis area
 - EXTRACT SPECIFIC EVIDENCE from word choice, topics discussed, and communication style
-- ANSWER ALL 20 CORE PSYCHOLOGICAL QUESTIONS with specific evidence
+- YOU MUST ANSWER ALL 20 CORE PSYCHOLOGICAL QUESTIONS WITH EXPLICIT, SUBSTANTIVE ANSWERS
+- ABSOLUTELY NO PLACEHOLDER TEXT, GENERIC STATEMENTS, OR "NOT ASSESSED" RESPONSES
+- EVERY SINGLE QUESTION MUST HAVE A DETAILED, SPECIFIC ANSWER WITH EVIDENCE
+- IF DATA IS LIMITED, MAKE REASONABLE PSYCHOLOGICAL INFERENCES BASED ON AVAILABLE EVIDENCE
 
 TEXT TO ANALYZE:
 ${content}
@@ -1651,6 +1654,9 @@ Respond with clean JSON (no markdown formatting anywhere):
         }
       }
       
+      // VALIDATE: Ensure all 20 core psychological questions are answered
+      validateCoreAssessment(analysisResult, "Text Analysis Subject");
+      
       // Create personality insights in expected format
       personalityInsights = {
         peopleCount: 1,
@@ -1675,45 +1681,45 @@ ${analysisResult.summary || "Analysis summary not available"}
 
 Core Psychological Assessment
 
-What drives this person: ${coreAssessment?.core_motivation || "Not assessed"}
+What drives this person: ${coreAssessment?.core_motivation || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Confidence level: ${coreAssessment?.confidence_level || "Not assessed"}
+Confidence level: ${coreAssessment?.confidence_level || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Self-acceptance: ${coreAssessment?.self_acceptance || "Not assessed"}
+Self-acceptance: ${coreAssessment?.self_acceptance || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Intelligence level: ${coreAssessment?.intelligence_level || "Not assessed"}
+Intelligence level: ${coreAssessment?.intelligence_level || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Creativity: ${coreAssessment?.creativity_assessment || "Not assessed"}
+Creativity: ${coreAssessment?.creativity_assessment || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Stress handling: ${coreAssessment?.stress_handling || "Not assessed"}
+Stress handling: ${coreAssessment?.stress_handling || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Trustworthiness: ${coreAssessment?.trustworthiness || "Not assessed"}
+Trustworthiness: ${coreAssessment?.trustworthiness || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Authenticity: ${coreAssessment?.authenticity || "Not assessed"}
+Authenticity: ${coreAssessment?.authenticity || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Ambition level: ${coreAssessment?.ambition_level || "Not assessed"}
+Ambition level: ${coreAssessment?.ambition_level || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Insecurities: ${coreAssessment?.insecurities || "Not assessed"}
+Insecurities: ${coreAssessment?.insecurities || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Social validation needs: ${coreAssessment?.social_validation || "Not assessed"}
+Social validation needs: ${coreAssessment?.social_validation || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Independence: ${coreAssessment?.independence || "Not assessed"}
+Independence: ${coreAssessment?.independence || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Communication style: ${coreAssessment?.communication_style || "Not assessed"}
+Communication style: ${coreAssessment?.communication_style || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Response to criticism: ${coreAssessment?.criticism_response || "Not assessed"}
+Response to criticism: ${coreAssessment?.criticism_response || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Outlook: ${coreAssessment?.outlook || "Not assessed"}
+Outlook: ${coreAssessment?.outlook || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Sense of humor: ${coreAssessment?.humor_sense || "Not assessed"}
+Sense of humor: ${coreAssessment?.humor_sense || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Treatment of others: ${coreAssessment?.treatment_of_others || "Not assessed"}
+Treatment of others: ${coreAssessment?.treatment_of_others || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Consistency: ${coreAssessment?.consistency || "Not assessed"}
+Consistency: ${coreAssessment?.consistency || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Hidden strengths: ${coreAssessment?.hidden_strengths || "Not assessed"}
+Hidden strengths: ${coreAssessment?.hidden_strengths || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
-Hidden weaknesses: ${coreAssessment?.hidden_weaknesses || "Not assessed"}
+Hidden weaknesses: ${coreAssessment?.hidden_weaknesses || "[ERROR: AI model failed to provide answer - please regenerate analysis]"}
 
 Speech Analysis & Quotes
 ${analysisResult.detailed_analysis?.speech_analysis ? 
@@ -2592,26 +2598,26 @@ Provide detailed, comprehensive psychological insights based on the analysis. Al
           const coreAssessment = detailedAnalysis.core_psychological_assessment || {};
           
           formattedContent += `Core Psychological Assessment:\n\n`;
-          formattedContent += `What drives this person: ${coreAssessment.core_motivation || 'Not assessed'}\n`;
-          formattedContent += `Confidence level: ${coreAssessment.confidence_level || 'Not assessed'}\n`;
-          formattedContent += `Self-acceptance: ${coreAssessment.self_acceptance || 'Not assessed'}\n`;
-          formattedContent += `Intelligence level: ${coreAssessment.intelligence_level || 'Not assessed'}\n`;
-          formattedContent += `Creativity: ${coreAssessment.creativity_assessment || 'Not assessed'}\n`;
-          formattedContent += `Stress handling: ${coreAssessment.stress_handling || 'Not assessed'}\n`;
-          formattedContent += `Trustworthiness: ${coreAssessment.trustworthiness || 'Not assessed'}\n`;
-          formattedContent += `Authenticity: ${coreAssessment.authenticity || 'Not assessed'}\n`;
-          formattedContent += `Ambition level: ${coreAssessment.ambition_level || 'Not assessed'}\n`;
-          formattedContent += `Insecurities: ${coreAssessment.insecurities || 'Not assessed'}\n`;
-          formattedContent += `Social validation needs: ${coreAssessment.social_validation || 'Not assessed'}\n`;
-          formattedContent += `Independence: ${coreAssessment.independence || 'Not assessed'}\n`;
-          formattedContent += `Communication style: ${coreAssessment.communication_style || 'Not assessed'}\n`;
-          formattedContent += `Response to criticism: ${coreAssessment.criticism_response || 'Not assessed'}\n`;
-          formattedContent += `Outlook: ${coreAssessment.outlook || 'Not assessed'}\n`;
-          formattedContent += `Sense of humor: ${coreAssessment.humor_sense || 'Not assessed'}\n`;
-          formattedContent += `Treatment of others: ${coreAssessment.treatment_of_others || 'Not assessed'}\n`;
-          formattedContent += `Consistency: ${coreAssessment.consistency || 'Not assessed'}\n`;
-          formattedContent += `Hidden strengths: ${coreAssessment.hidden_strengths || 'Not assessed'}\n`;
-          formattedContent += `Hidden weaknesses: ${coreAssessment.hidden_weaknesses || 'Not assessed'}\n\n`;
+          formattedContent += `What drives this person: ${coreAssessment.core_motivation || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Confidence level: ${coreAssessment.confidence_level || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Self-acceptance: ${coreAssessment.self_acceptance || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Intelligence level: ${coreAssessment.intelligence_level || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Creativity: ${coreAssessment.creativity_assessment || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Stress handling: ${coreAssessment.stress_handling || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Trustworthiness: ${coreAssessment.trustworthness || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Authenticity: ${coreAssessment.authenticity || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Ambition level: ${coreAssessment.ambition_level || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Insecurities: ${coreAssessment.insecurities || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Social validation needs: ${coreAssessment.social_validation || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Independence: ${coreAssessment.independence || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Communication style: ${coreAssessment.communication_style || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Response to criticism: ${coreAssessment.criticism_response || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Outlook: ${coreAssessment.outlook || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Sense of humor: ${coreAssessment.humor_sense || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Treatment of others: ${coreAssessment.treatment_of_others || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Consistency: ${coreAssessment.consistency || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Hidden strengths: ${coreAssessment.hidden_strengths || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n`;
+          formattedContent += `Hidden weaknesses: ${coreAssessment.hidden_weaknesses || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
           
           if (detailedAnalysis.professional_insights) {
             formattedContent += `Professional Insights:\n${detailedAnalysis.professional_insights}\n\n`;
@@ -2694,26 +2700,26 @@ Provide detailed, comprehensive psychological insights based on the analysis. Al
         // Display the 20 Core Psychological Questions
         formattedContent += `Core Psychological Assessment\n\n`;
         
-        formattedContent += `What drives this person: ${coreAssessment.core_motivation || 'Not assessed'}\n\n`;
-        formattedContent += `Confidence level: ${coreAssessment.confidence_level || 'Not assessed'}\n\n`;
-        formattedContent += `Self-acceptance: ${coreAssessment.self_acceptance || 'Not assessed'}\n\n`;
-        formattedContent += `Intelligence level: ${coreAssessment.intelligence_level || 'Not assessed'}\n\n`;
-        formattedContent += `Creativity: ${coreAssessment.creativity_assessment || 'Not assessed'}\n\n`;
-        formattedContent += `Stress handling: ${coreAssessment.stress_handling || 'Not assessed'}\n\n`;
-        formattedContent += `Trustworthiness: ${coreAssessment.trustworthiness || 'Not assessed'}\n\n`;
-        formattedContent += `Authenticity: ${coreAssessment.authenticity || 'Not assessed'}\n\n`;
-        formattedContent += `Ambition level: ${coreAssessment.ambition_level || 'Not assessed'}\n\n`;
-        formattedContent += `Insecurities: ${coreAssessment.insecurities || 'Not assessed'}\n\n`;
-        formattedContent += `Social validation needs: ${coreAssessment.social_validation || 'Not assessed'}\n\n`;
-        formattedContent += `Independence: ${coreAssessment.independence || 'Not assessed'}\n\n`;
-        formattedContent += `Communication style: ${coreAssessment.communication_style || 'Not assessed'}\n\n`;
-        formattedContent += `Response to criticism: ${coreAssessment.criticism_response || 'Not assessed'}\n\n`;
-        formattedContent += `Outlook: ${coreAssessment.outlook || 'Not assessed'}\n\n`;
-        formattedContent += `Sense of humor: ${coreAssessment.humor_sense || 'Not assessed'}\n\n`;
-        formattedContent += `Treatment of others: ${coreAssessment.treatment_of_others || 'Not assessed'}\n\n`;
-        formattedContent += `Consistency: ${coreAssessment.consistency || 'Not assessed'}\n\n`;
-        formattedContent += `Hidden strengths: ${coreAssessment.hidden_strengths || 'Not assessed'}\n\n`;
-        formattedContent += `Hidden weaknesses: ${coreAssessment.hidden_weaknesses || 'Not assessed'}\n\n`;
+        formattedContent += `What drives this person: ${coreAssessment.core_motivation || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Confidence level: ${coreAssessment.confidence_level || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Self-acceptance: ${coreAssessment.self_acceptance || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Intelligence level: ${coreAssessment.intelligence_level || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Creativity: ${coreAssessment.creativity_assessment || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Stress handling: ${coreAssessment.stress_handling || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Trustworthiness: ${coreAssessment.trustworthiness || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Authenticity: ${coreAssessment.authenticity || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Ambition level: ${coreAssessment.ambition_level || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Insecurities: ${coreAssessment.insecurities || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Social validation needs: ${coreAssessment.social_validation || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Independence: ${coreAssessment.independence || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Communication style: ${coreAssessment.communication_style || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Response to criticism: ${coreAssessment.criticism_response || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Outlook: ${coreAssessment.outlook || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Sense of humor: ${coreAssessment.humor_sense || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Treatment of others: ${coreAssessment.treatment_of_others || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Consistency: ${coreAssessment.consistency || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Hidden strengths: ${coreAssessment.hidden_strengths || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        formattedContent += `Hidden weaknesses: ${coreAssessment.hidden_weaknesses || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
         
         // Speech Analysis section if available
         if (detailedAnalysis.speech_analysis) {
@@ -3710,6 +3716,41 @@ async function analyzeFaceWithRekognition(imageBuffer: Buffer, maxPeople: number
 
 
 
+/**
+ * Validates that all 20 core psychological questions are answered with substantive content
+ * Throws error if validation fails to force regeneration
+ */
+function validateCoreAssessment(analysisResult: any, personLabel: string = "Subject") {
+  const coreQuestions = [
+    'core_motivation', 'confidence_level', 'self_acceptance', 'intelligence_level',
+    'creativity_assessment', 'stress_handling', 'trustworthiness', 'authenticity',
+    'ambition_level', 'insecurities', 'social_validation', 'independence',
+    'communication_style', 'criticism_response', 'outlook', 'humor_sense',
+    'treatment_of_others', 'consistency', 'hidden_strengths', 'hidden_weaknesses'
+  ];
+  
+  const coreAssessment = analysisResult.detailed_analysis?.core_psychological_assessment;
+  
+  if (!coreAssessment) {
+    throw new Error(`AI model failed to provide core psychological assessment for ${personLabel}. Please regenerate the analysis.`);
+  }
+  
+  const missingFields = [];
+  for (const question of coreQuestions) {
+    if (!coreAssessment[question] || coreAssessment[question].trim().length < 10) {
+      missingFields.push(question);
+    }
+  }
+  
+  if (missingFields.length > 0) {
+    console.error(`Validation failed for ${personLabel}! Missing or incomplete answers for: ${missingFields.join(', ')}`);
+    throw new Error(`AI model provided incomplete analysis for ${personLabel}. Missing substantive answers for: ${missingFields.join(', ')}. Please regenerate the analysis with a different model or try again.`);
+  }
+  
+  console.log(`✅ Validation passed for ${personLabel} - all 20 core questions answered`);
+  return true;
+}
+
 async function getEnhancedPersonalityInsights(faceAnalysis: any, videoAnalysis: any = null, audioTranscription: any = null, selectedModel: string = "deepseek", analysisDepth: string = "short") {
   // Check if any API clients are available, display warning if not
   if (!deepseek && !openai && !anthropic && !process.env.PERPLEXITY_API_KEY) {
@@ -3807,7 +3848,17 @@ MANDATORY ANALYSIS STRUCTURE:
 6. EXTENSIVE CONTENT ANALYSIS: Thoroughly discuss the actual topics, ideas, and perspectives shared in speech/text and provide deep insights into what these reveal about character, values, intelligence, emotional landscape, and psychological makeup
 7. ENHANCED DEPTH: Go beyond surface-level observations to provide profound insights into the person's psychological landscape, emotional patterns, cognitive style, relationship dynamics, and personal growth potential
 
-You must answer these 20 core psychological questions based on available evidence from speech, visual cues, and behavioral observations. CRITICAL: You must provide answers to ALL questions - "Not assessed" is NOT acceptable. Make reasonable inferences based on available data:
+YOU MUST ANSWER ALL 20 CORE PSYCHOLOGICAL QUESTIONS - ABSOLUTELY MANDATORY - NO EXCEPTIONS:
+
+STRICT REQUIREMENTS:
+- EVERY question below MUST have an explicit, detailed answer
+- NO "Not assessed", NO placeholders, NO generic responses
+- If visual/audio data is limited, make REASONABLE PSYCHOLOGICAL INFERENCES
+- Base answers on: speech patterns, word choice, body language, facial expressions, tone, topics discussed
+- Provide SPECIFIC EVIDENCE for each conclusion
+- "Not assessed" or similar evasive responses are COMPLETELY UNACCEPTABLE
+
+Answer these 20 questions with substantive, evidence-based responses:
 
 1. What drives this person (their core motivation)?
 2. How confident are they really?
@@ -3931,8 +3982,12 @@ ABSOLUTE REQUIREMENTS FOR EXTREME DEPTH - FAILURE TO MEET THESE STANDARDS IS UNA
             response_format: { type: "json_object" },
           });
           
-          // Parse and add person identifier
+          // Parse and validate results
           const analysisResult = JSON.parse(response.choices[0]?.message.content || "{}");
+          
+          // Validate that all 20 core questions are answered
+          validateCoreAssessment(analysisResult, personFaceData.personLabel);
+          
           return {
             ...analysisResult,
             personLabel: personFaceData.personLabel,
@@ -4326,6 +4381,9 @@ ABSOLUTE REQUIREMENTS FOR EXTREME DEPTH - FAILURE TO MEET THESE STANDARDS IS UNA
           }
         };
       }
+      
+      // VALIDATE: Ensure all 20 core psychological questions are answered
+      validateCoreAssessment(finalInsights, "Subject");
       
       // Enhance with combined insights if we have multiple services working
       if (openaiResult.status === 'fulfilled' && (anthropicResult.status === 'fulfilled' || perplexityResult.status === 'fulfilled')) {
