@@ -298,65 +298,125 @@ const VIDEO_ANALYSIS_QUESTIONS = [
 ];
 
 const TEXT_ANALYSIS_QUESTIONS = [
-  // I. Language & Style (10)
-  "What is the dominant sentence rhythm — clipped, flowing, erratic — and what personality trait does it reveal?",
-  "Which adjectives recur, and what emotional bias do they show?",
-  "How does pronoun use ('I,' 'you,' 'we,' 'they') shift across the text, and what identity stance does that reflect?",
-  "What level of abstraction vs. concreteness dominates the writing?",
-  "Identify one passage where diction becomes suddenly elevated or deflated — what triggers it?",
-  "Are there unfinished or fragmentary sentences, and what might that signal psychologically?",
-  "How consistent is the tense? Does the writer slip between past and present, and why?",
-  "What metaphors or analogies recur, and what unconscious associations do they expose?",
-  "Is the author's tone self-assured, tentative, ironic, or performative? Cite phrasing.",
-  "What linguistic register (formal, colloquial, technical) dominates, and how does it align with self-image?",
+  // I. Information Processing Style (10)
+  "Does the text show an active mind organizing information, or a passive mind reciting it?",
+  "Is information digested and restructured, or merely repeated?",
+  "Does the writer analyze causes, or just describe effects?",
+  "Are distinctions drawn sharply or blurred lazily?",
+  "Is the reasoning linear, branching, or circular?",
+  "Does the writer generalize prematurely or hold data until patterns emerge?",
+  "Are claims proportioned to evidence?",
+  "Does the mind shown seem inductive (pattern-seeking) or deductive (rule-enforcing)?",
+  "Does the prose reveal curiosity, or intellectual fatigue?",
+  "When the text confronts complexity, does it simplify or engage it?",
   
-  // II. Emotional Indicators (10)
-  "What emotion seems primary (anger, melancholy, pride, longing), and where is it linguistically concentrated?",
-  "Which emotions appear repressed or displaced — hinted at but never named?",
-  "Does emotional intensity rise or fall as the text progresses?",
-  "Identify one sentence where affect 'leaks through' despite apparent control.",
-  "Are there moments of sentimental overstatement or cold detachment?",
-  "What bodily or sensory words appear, and what do they suggest about embodiment or repression?",
-  "Is there ambivalence toward the subject matter? Cite a line where tone wavers.",
-  "Does humor appear, and if so, is it self-directed, aggressive, or defensive?",
-  "What words betray anxiety or guilt?",
-  "How is desire represented — directly, symbolically, or through avoidance?",
+  // II. Emotional Processing Style (10)
+  "Are emotions named, implied, or avoided altogether?",
+  "When emotion appears, is it integrated or intrusive?",
+  "Does the author intellectualize feelings or experience them?",
+  "Does the tone show restraint, volatility, or emotional flatness?",
+  "Are emotional reactions linked to meaning, or detached from it?",
+  "Does the text show empathy, contempt, or indifference toward others?",
+  "Does emotion drive understanding or distort it?",
+  "When faced with threat or contradiction, does the writer show defensiveness or reflection?",
+  "Does the writing reveal warmth anywhere, or only analysis?",
+  "Is there emotional growth within the text, or the same affect from start to finish?",
   
-  // III. Cognitive & Structural Patterns (10)
-  "How logically coherent are transitions between ideas?",
-  "Does the writer prefer enumeration, narrative, or digression? What does that indicate about thought style?",
-  "What syntactic habits dominate (parallelism, repetition, parenthesis), and what mental rhythms do they mirror?",
-  "Are there contradictions the author fails to notice? Quote one.",
-  "How does the author handle uncertainty — through hedging, assertion, or silence?",
-  "Does the argument or story circle back on itself?",
-  "Are there abrupt topic shifts, and what emotional events coincide with them?",
-  "What elements of the text seem compulsive or ritualistic in repetition?",
-  "Where does the writer show real insight versus mechanical reasoning?",
-  "How does closure occur (resolution, withdrawal, collapse), and what does it signify psychologically?",
+  // III. Agency & Activity Level (10)
+  "Does the prose suggest a person who acts on the world or merely comments on it?",
+  "Are verbs mostly active or passive?",
+  "Does the writer assume control of argument flow or let it meander?",
+  "Does the voice take responsibility for claims (\"I think,\" \"I argue\") or hide behind impersonal phrasing?",
+  "Does the argument attempt to change the reader's mind or simply display intellect?",
+  "Is there initiative — new frameworks, redefinitions — or only reaction?",
+  "When obstacles appear, does the author adapt or stall?",
+  "Does the text reveal willpower or resignation?",
+  "Is the overall energy rising, steady, or depleted?",
+  "Does the mind seem confident in shaping reality or resentful of being shaped by it?",
   
-  // IV. Self-Representation & Identity (10)
-  "How does the writer portray the self — victim, hero, observer, analyst?",
-  "Is there a split between narrating voice and lived experience?",
-  "What form of authority or validation does the author seek (moral, intellectual, emotional)?",
-  "How consistent is the self-image across paragraphs?",
-  "Identify one phrase that reveals unconscious self-evaluation (admiration, contempt, shame).",
-  "Does the author reveal dependency on external approval or autonomy from it?",
-  "What form of vulnerability does the writer allow?",
-  "How does the author talk about others — with empathy, rivalry, indifference?",
-  "What implicit audience is being addressed?",
-  "Does the writer's stance shift from confession to performance? Cite turning point.",
+  // IV. Focus: Interpersonal vs. Ideational (10)
+  "Is attention directed toward people or toward abstractions?",
+  "When others are mentioned, are they treated as minds or as examples?",
+  "Does the prose imply social awareness or social detachment?",
+  "Is there sensitivity to audience, or indifference to communication?",
+  "Does persuasion matter, or only demonstration?",
+  "Does the text reveal an interest in relationships, systems, or self-display?",
+  "When using \"we,\" is it inclusive or manipulative?",
+  "Does the writer ever show vulnerability to others' judgment?",
+  "Are ideas personified (showing emotional engagement) or sterilized?",
+  "Does the author seek understanding or dominance over interlocutors?",
   
-  // V. Symbolic & Unconscious Material (10)
-  "Which images or motifs recur (light/dark, ascent/descent, enclosure, mirrors), and what do they symbolize?",
-  "Are there dream-like or surreal elements?",
-  "What oppositions structure the text (order/chaos, love/power, mind/body)?",
-  "What wish or fear seems to animate the text beneath the surface argument?",
-  "Identify one metaphor that reads like a disguised confession.",
-  "How does the author relate to time — nostalgic, future-oriented, frozen?",
-  "Does the text express conflict between intellect and emotion?",
-  "What shadow aspect of personality is hinted at through hostile or taboo imagery?",
-  "Is there evidence of projection — attributing inner states to others or to abstractions?",
-  "What central psychological drama (loss, control, recognition, transformation) structures the entire piece?"
+  // V. Motivation, Value System, and Reality Testing (10)
+  "What is the writer trying to achieve — truth, recognition, safety, superiority?",
+  "Is success defined internally (clarity) or externally (approval)?",
+  "Does the writer trust reason, intuition, authority, or instinct most?",
+  "When evidence contradicts belief, does belief bend or resist?",
+  "Is the worldview optimistic, tragic, cynical, or dispassionate?",
+  "Does the author see the self as agent or as spectator?",
+  "Does the text treat reality as negotiable (conceptualist) or binding (realist)?",
+  "Does the writer seek understanding or vindication?",
+  "Are problems treated as puzzles to solve or evils to condemn?",
+  "Is there any visible hunger for truth — or only hunger for being right?",
+  
+  // VI. Intelligence & Conceptual Control (10)
+  "Does the writing show genuine intelligence — deep structure, inference, precision — or rote mimicry?",
+  "Does the argument actually advance, or does it spin in circles?",
+  "Does the author handle abstraction cleanly, or get lost in vagueness?",
+  "Does reasoning depend on concrete evidence or empty jargon?",
+  "When the author defines something, is it sharp and economical or padded and evasive?",
+  "Are terms used consistently, or redefined to dodge difficulty?",
+  "Is the prose intellectually ambitious in a disciplined way, or pretentious for show?",
+  "Does the text reveal mastery of the material, or merely second-hand familiarity?",
+  "Does the writer tolerate internal tension, or hide contradictions with style?",
+  "Does the argument show genuine insight — a new relation between ideas — or rehearse clichés?",
+  
+  // VII. Honesty & Sincerity of Mind (10)
+  "Is the writer being straightforward, or manipulating phrasing to sound profound?",
+  "Does the text ever admit uncertainty or limitation?",
+  "When challenged (implicitly or explicitly), does the writer concede or double down?",
+  "Is there visible willingness to change one's mind if the reasoning fails?",
+  "Does the author ever say \"I don't know,\" or is omniscience performed throughout?",
+  "Are doubts faced or buried under abstraction?",
+  "Does confidence come from understanding or bluster?",
+  "Are counterarguments represented fairly, or caricatured for easy defeat?",
+  "Does the writer seem to care about truth, or about appearing intelligent?",
+  "Is there moral or intellectual humility anywhere in the text?",
+  
+  // VIII. Structure, Organization, and Focus (10)
+  "Is the argument linearly constructed or chaotic?",
+  "Does every paragraph push the reasoning forward?",
+  "Are transitions real or cosmetic?",
+  "Does the conclusion actually follow from the premises?",
+  "Are examples used to clarify or to disguise weakness?",
+  "Does the text maintain topic discipline or wander aimlessly?",
+  "Is there redundancy that signals insecurity?",
+  "How coherent is paragraph sequencing — cumulative or random?",
+  "Does the text have a visible beginning, middle, and end?",
+  "Does the closing section resolve something or merely stop?",
+  
+  // IX. Psychological Profile in Style (10)
+  "Does the tone suggest calm confidence or anxious control?",
+  "Is the style dry, combative, ingratiating, or sermonizing?",
+  "Does the writer hide behind abstraction to avoid personal exposure?",
+  "Is there contempt for opposing views or curiosity about them?",
+  "What emotion drives the prose — irritation, pride, fear, wonder?",
+  "Is the rhythm clenched (defensive) or open (exploratory)?",
+  "Does the diction reveal class anxiety, moral superiority, or insecurity?",
+  "Is humor used to clarify or to deflect?",
+  "Does the writer need to dominate the reader intellectually?",
+  "Does the language show obsession with control, symmetry, or perfection?",
+  
+  // X. Substance, Depth, and Cognitive Flexibility (10)
+  "Does the writer ever integrate a new idea mid-stream?",
+  "Is there evidence of learning in motion — development within the text?",
+  "Are insights layered, or all at the same conceptual level?",
+  "When describing others' ideas, does the writer paraphrase accurately?",
+  "Does the prose reveal real curiosity, or mere performance of curiosity?",
+  "Does the author show capacity for self-correction?",
+  "Is there flexibility of perspective, or rigid monologue?",
+  "Does the argument invite dialogue, or shut it down?",
+  "Is there intellectual empathy — ability to inhabit another view sincerely?",
+  "After reading, do we feel we've encountered a mind in motion or a mask of erudition?"
 ];
 
 // Helper function to clean markdown formatting from analysis text
@@ -1550,7 +1610,7 @@ CRITICAL REQUIREMENTS - FAILURE TO COMPLY WILL RESULT IN REJECTED ANALYSIS:
 - INCLUDE 8-12 DIRECT QUOTES from the text that reveal personality traits
 - PROVIDE COMPREHENSIVE 3-4 PARAGRAPH SECTIONS for each analysis area
 - EXTRACT SPECIFIC EVIDENCE from word choice, topics discussed, and communication style
-- YOU MUST ANSWER ALL 50 PSYCHOLOGICAL QUESTIONS WITH EXPLICIT, SUBSTANTIVE ANSWERS
+- YOU MUST ANSWER ALL 100 PSYCHOLOGICAL QUESTIONS WITH EXPLICIT, SUBSTANTIVE ANSWERS
 - ABSOLUTELY NO PLACEHOLDER TEXT, GENERIC STATEMENTS, OR "NOT ASSESSED" RESPONSES
 - EVERY SINGLE QUESTION MUST HAVE A DETAILED, SPECIFIC ANSWER WITH EVIDENCE
 - IF DATA IS LIMITED, MAKE REASONABLE PSYCHOLOGICAL INFERENCES BASED ON AVAILABLE EVIDENCE
@@ -1558,67 +1618,127 @@ CRITICAL REQUIREMENTS - FAILURE TO COMPLY WILL RESULT IN REJECTED ANALYSIS:
 TEXT TO ANALYZE:
 ${content}
 
-You must provide detailed answers to these 50 fundamental psychological questions based on the text analysis:
+You must provide detailed answers to these 100 fundamental psychological questions based on the text analysis:
 
-I. Language & Style (10):
-1. What is the dominant sentence rhythm — clipped, flowing, erratic — and what personality trait does it reveal?
-2. Which adjectives recur, and what emotional bias do they show?
-3. How does pronoun use ('I,' 'you,' 'we,' 'they') shift across the text, and what identity stance does that reflect?
-4. What level of abstraction vs. concreteness dominates the writing?
-5. Identify one passage where diction becomes suddenly elevated or deflated — what triggers it?
-6. Are there unfinished or fragmentary sentences, and what might that signal psychologically?
-7. How consistent is the tense? Does the writer slip between past and present, and why?
-8. What metaphors or analogies recur, and what unconscious associations do they expose?
-9. Is the author's tone self-assured, tentative, ironic, or performative? Cite phrasing.
-10. What linguistic register (formal, colloquial, technical) dominates, and how does it align with self-image?
+I. Information Processing Style (10):
+1. Does the text show an active mind organizing information, or a passive mind reciting it?
+2. Is information digested and restructured, or merely repeated?
+3. Does the writer analyze causes, or just describe effects?
+4. Are distinctions drawn sharply or blurred lazily?
+5. Is the reasoning linear, branching, or circular?
+6. Does the writer generalize prematurely or hold data until patterns emerge?
+7. Are claims proportioned to evidence?
+8. Does the mind shown seem inductive (pattern-seeking) or deductive (rule-enforcing)?
+9. Does the prose reveal curiosity, or intellectual fatigue?
+10. When the text confronts complexity, does it simplify or engage it?
 
-II. Emotional Indicators (10):
-11. What emotion seems primary (anger, melancholy, pride, longing), and where is it linguistically concentrated?
-12. Which emotions appear repressed or displaced — hinted at but never named?
-13. Does emotional intensity rise or fall as the text progresses?
-14. Identify one sentence where affect 'leaks through' despite apparent control.
-15. Are there moments of sentimental overstatement or cold detachment?
-16. What bodily or sensory words appear, and what do they suggest about embodiment or repression?
-17. Is there ambivalence toward the subject matter? Cite a line where tone wavers.
-18. Does humor appear, and if so, is it self-directed, aggressive, or defensive?
-19. What words betray anxiety or guilt?
-20. How is desire represented — directly, symbolically, or through avoidance?
+II. Emotional Processing Style (10):
+11. Are emotions named, implied, or avoided altogether?
+12. When emotion appears, is it integrated or intrusive?
+13. Does the author intellectualize feelings or experience them?
+14. Does the tone show restraint, volatility, or emotional flatness?
+15. Are emotional reactions linked to meaning, or detached from it?
+16. Does the text show empathy, contempt, or indifference toward others?
+17. Does emotion drive understanding or distort it?
+18. When faced with threat or contradiction, does the writer show defensiveness or reflection?
+19. Does the writing reveal warmth anywhere, or only analysis?
+20. Is there emotional growth within the text, or the same affect from start to finish?
 
-III. Cognitive & Structural Patterns (10):
-21. How logically coherent are transitions between ideas?
-22. Does the writer prefer enumeration, narrative, or digression? What does that indicate about thought style?
-23. What syntactic habits dominate (parallelism, repetition, parenthesis), and what mental rhythms do they mirror?
-24. Are there contradictions the author fails to notice? Quote one.
-25. How does the author handle uncertainty — through hedging, assertion, or silence?
-26. Does the argument or story circle back on itself?
-27. Are there abrupt topic shifts, and what emotional events coincide with them?
-28. What elements of the text seem compulsive or ritualistic in repetition?
-29. Where does the writer show real insight versus mechanical reasoning?
-30. How does closure occur (resolution, withdrawal, collapse), and what does it signify psychologically?
+III. Agency & Activity Level (10):
+21. Does the prose suggest a person who acts on the world or merely comments on it?
+22. Are verbs mostly active or passive?
+23. Does the writer assume control of argument flow or let it meander?
+24. Does the voice take responsibility for claims ("I think," "I argue") or hide behind impersonal phrasing?
+25. Does the argument attempt to change the reader's mind or simply display intellect?
+26. Is there initiative — new frameworks, redefinitions — or only reaction?
+27. When obstacles appear, does the author adapt or stall?
+28. Does the text reveal willpower or resignation?
+29. Is the overall energy rising, steady, or depleted?
+30. Does the mind seem confident in shaping reality or resentful of being shaped by it?
 
-IV. Self-Representation & Identity (10):
-31. How does the writer portray the self — victim, hero, observer, analyst?
-32. Is there a split between narrating voice and lived experience?
-33. What form of authority or validation does the author seek (moral, intellectual, emotional)?
-34. How consistent is the self-image across paragraphs?
-35. Identify one phrase that reveals unconscious self-evaluation (admiration, contempt, shame).
-36. Does the author reveal dependency on external approval or autonomy from it?
-37. What form of vulnerability does the writer allow?
-38. How does the author talk about others — with empathy, rivalry, indifference?
-39. What implicit audience is being addressed?
-40. Does the writer's stance shift from confession to performance? Cite turning point.
+IV. Focus: Interpersonal vs. Ideational (10):
+31. Is attention directed toward people or toward abstractions?
+32. When others are mentioned, are they treated as minds or as examples?
+33. Does the prose imply social awareness or social detachment?
+34. Is there sensitivity to audience, or indifference to communication?
+35. Does persuasion matter, or only demonstration?
+36. Does the text reveal an interest in relationships, systems, or self-display?
+37. When using "we," is it inclusive or manipulative?
+38. Does the writer ever show vulnerability to others' judgment?
+39. Are ideas personified (showing emotional engagement) or sterilized?
+40. Does the author seek understanding or dominance over interlocutors?
 
-V. Symbolic & Unconscious Material (10):
-41. Which images or motifs recur (light/dark, ascent/descent, enclosure, mirrors), and what do they symbolize?
-42. Are there dream-like or surreal elements?
-43. What oppositions structure the text (order/chaos, love/power, mind/body)?
-44. What wish or fear seems to animate the text beneath the surface argument?
-45. Identify one metaphor that reads like a disguised confession.
-46. How does the author relate to time — nostalgic, future-oriented, frozen?
-47. Does the text express conflict between intellect and emotion?
-48. What shadow aspect of personality is hinted at through hostile or taboo imagery?
-49. Is there evidence of projection — attributing inner states to others or to abstractions?
-50. What central psychological drama (loss, control, recognition, transformation) structures the entire piece?
+V. Motivation, Value System, and Reality Testing (10):
+41. What is the writer trying to achieve — truth, recognition, safety, superiority?
+42. Is success defined internally (clarity) or externally (approval)?
+43. Does the writer trust reason, intuition, authority, or instinct most?
+44. When evidence contradicts belief, does belief bend or resist?
+45. Is the worldview optimistic, tragic, cynical, or dispassionate?
+46. Does the author see the self as agent or as spectator?
+47. Does the text treat reality as negotiable (conceptualist) or binding (realist)?
+48. Does the writer seek understanding or vindication?
+49. Are problems treated as puzzles to solve or evils to condemn?
+50. Is there any visible hunger for truth — or only hunger for being right?
+
+VI. Intelligence & Conceptual Control (10):
+51. Does the writing show genuine intelligence — deep structure, inference, precision — or rote mimicry?
+52. Does the argument actually advance, or does it spin in circles?
+53. Does the author handle abstraction cleanly, or get lost in vagueness?
+54. Does reasoning depend on concrete evidence or empty jargon?
+55. When the author defines something, is it sharp and economical or padded and evasive?
+56. Are terms used consistently, or redefined to dodge difficulty?
+57. Is the prose intellectually ambitious in a disciplined way, or pretentious for show?
+58. Does the text reveal mastery of the material, or merely second-hand familiarity?
+59. Does the writer tolerate internal tension, or hide contradictions with style?
+60. Does the argument show genuine insight — a new relation between ideas — or rehearse clichés?
+
+VII. Honesty & Sincerity of Mind (10):
+61. Is the writer being straightforward, or manipulating phrasing to sound profound?
+62. Does the text ever admit uncertainty or limitation?
+63. When challenged (implicitly or explicitly), does the writer concede or double down?
+64. Is there visible willingness to change one's mind if the reasoning fails?
+65. Does the author ever say "I don't know," or is omniscience performed throughout?
+66. Are doubts faced or buried under abstraction?
+67. Does confidence come from understanding or bluster?
+68. Are counterarguments represented fairly, or caricatured for easy defeat?
+69. Does the writer seem to care about truth, or about appearing intelligent?
+70. Is there moral or intellectual humility anywhere in the text?
+
+VIII. Structure, Organization, and Focus (10):
+71. Is the argument linearly constructed or chaotic?
+72. Does every paragraph push the reasoning forward?
+73. Are transitions real or cosmetic?
+74. Does the conclusion actually follow from the premises?
+75. Are examples used to clarify or to disguise weakness?
+76. Does the text maintain topic discipline or wander aimlessly?
+77. Is there redundancy that signals insecurity?
+78. How coherent is paragraph sequencing — cumulative or random?
+79. Does the text have a visible beginning, middle, and end?
+80. Does the closing section resolve something or merely stop?
+
+IX. Psychological Profile in Style (10):
+81. Does the tone suggest calm confidence or anxious control?
+82. Is the style dry, combative, ingratiating, or sermonizing?
+83. Does the writer hide behind abstraction to avoid personal exposure?
+84. Is there contempt for opposing views or curiosity about them?
+85. What emotion drives the prose — irritation, pride, fear, wonder?
+86. Is the rhythm clenched (defensive) or open (exploratory)?
+87. Does the diction reveal class anxiety, moral superiority, or insecurity?
+88. Is humor used to clarify or to deflect?
+89. Does the writer need to dominate the reader intellectually?
+90. Does the language show obsession with control, symmetry, or perfection?
+
+X. Substance, Depth, and Cognitive Flexibility (10):
+91. Does the writer ever integrate a new idea mid-stream?
+92. Is there evidence of learning in motion — development within the text?
+93. Are insights layered, or all at the same conceptual level?
+94. When describing others' ideas, does the writer paraphrase accurately?
+95. Does the prose reveal real curiosity, or mere performance of curiosity?
+96. Does the author show capacity for self-correction?
+97. Is there flexibility of perspective, or rigid monologue?
+98. Does the argument invite dialogue, or shut it down?
+99. Is there intellectual empathy — ability to inhabit another view sincerely?
+100. After reading, do we feel we've encountered a mind in motion or a mask of erudition?
 
 Respond with clean JSON (no markdown formatting anywhere):
 {
@@ -1969,69 +2089,129 @@ CRITICAL REQUIREMENTS:
 - NO MARKDOWN FORMATTING: Do not use # ### ** or any markdown in your response
 - PROVIDE COMPREHENSIVE 3-4 PARAGRAPH SECTIONS for each analysis area
 - EXTRACT SPECIFIC EVIDENCE from writing style, content, and communication patterns
-- ANSWER ALL 50 PSYCHOLOGICAL QUESTIONS with specific evidence
+- ANSWER ALL 100 PSYCHOLOGICAL QUESTIONS with specific evidence
 
-You must provide detailed answers to these 50 fundamental psychological questions based on the document analysis:
+You must provide detailed answers to these 100 fundamental psychological questions based on the document analysis:
 
-I. Language & Style (10):
-1. What is the dominant sentence rhythm — clipped, flowing, erratic — and what personality trait does it reveal?
-2. Which adjectives recur, and what emotional bias do they show?
-3. How does pronoun use ('I,' 'you,' 'we,' 'they') shift across the text, and what identity stance does that reflect?
-4. What level of abstraction vs. concreteness dominates the writing?
-5. Identify one passage where diction becomes suddenly elevated or deflated — what triggers it?
-6. Are there unfinished or fragmentary sentences, and what might that signal psychologically?
-7. How consistent is the tense? Does the writer slip between past and present, and why?
-8. What metaphors or analogies recur, and what unconscious associations do they expose?
-9. Is the author's tone self-assured, tentative, ironic, or performative? Cite phrasing.
-10. What linguistic register (formal, colloquial, technical) dominates, and how does it align with self-image?
+I. Information Processing Style (10):
+1. Does the text show an active mind organizing information, or a passive mind reciting it?
+2. Is information digested and restructured, or merely repeated?
+3. Does the writer analyze causes, or just describe effects?
+4. Are distinctions drawn sharply or blurred lazily?
+5. Is the reasoning linear, branching, or circular?
+6. Does the writer generalize prematurely or hold data until patterns emerge?
+7. Are claims proportioned to evidence?
+8. Does the mind shown seem inductive (pattern-seeking) or deductive (rule-enforcing)?
+9. Does the prose reveal curiosity, or intellectual fatigue?
+10. When the text confronts complexity, does it simplify or engage it?
 
-II. Emotional Indicators (10):
-11. What emotion seems primary (anger, melancholy, pride, longing), and where is it linguistically concentrated?
-12. Which emotions appear repressed or displaced — hinted at but never named?
-13. Does emotional intensity rise or fall as the text progresses?
-14. Identify one sentence where affect 'leaks through' despite apparent control.
-15. Are there moments of sentimental overstatement or cold detachment?
-16. What bodily or sensory words appear, and what do they suggest about embodiment or repression?
-17. Is there ambivalence toward the subject matter? Cite a line where tone wavers.
-18. Does humor appear, and if so, is it self-directed, aggressive, or defensive?
-19. What words betray anxiety or guilt?
-20. How is desire represented — directly, symbolically, or through avoidance?
+II. Emotional Processing Style (10):
+11. Are emotions named, implied, or avoided altogether?
+12. When emotion appears, is it integrated or intrusive?
+13. Does the author intellectualize feelings or experience them?
+14. Does the tone show restraint, volatility, or emotional flatness?
+15. Are emotional reactions linked to meaning, or detached from it?
+16. Does the text show empathy, contempt, or indifference toward others?
+17. Does emotion drive understanding or distort it?
+18. When faced with threat or contradiction, does the writer show defensiveness or reflection?
+19. Does the writing reveal warmth anywhere, or only analysis?
+20. Is there emotional growth within the text, or the same affect from start to finish?
 
-III. Cognitive & Structural Patterns (10):
-21. How logically coherent are transitions between ideas?
-22. Does the writer prefer enumeration, narrative, or digression? What does that indicate about thought style?
-23. What syntactic habits dominate (parallelism, repetition, parenthesis), and what mental rhythms do they mirror?
-24. Are there contradictions the author fails to notice? Quote one.
-25. How does the author handle uncertainty — through hedging, assertion, or silence?
-26. Does the argument or story circle back on itself?
-27. Are there abrupt topic shifts, and what emotional events coincide with them?
-28. What elements of the text seem compulsive or ritualistic in repetition?
-29. Where does the writer show real insight versus mechanical reasoning?
-30. How does closure occur (resolution, withdrawal, collapse), and what does it signify psychologically?
+III. Agency & Activity Level (10):
+21. Does the prose suggest a person who acts on the world or merely comments on it?
+22. Are verbs mostly active or passive?
+23. Does the writer assume control of argument flow or let it meander?
+24. Does the voice take responsibility for claims ("I think," "I argue") or hide behind impersonal phrasing?
+25. Does the argument attempt to change the reader's mind or simply display intellect?
+26. Is there initiative — new frameworks, redefinitions — or only reaction?
+27. When obstacles appear, does the author adapt or stall?
+28. Does the text reveal willpower or resignation?
+29. Is the overall energy rising, steady, or depleted?
+30. Does the mind seem confident in shaping reality or resentful of being shaped by it?
 
-IV. Self-Representation & Identity (10):
-31. How does the writer portray the self — victim, hero, observer, analyst?
-32. Is there a split between narrating voice and lived experience?
-33. What form of authority or validation does the author seek (moral, intellectual, emotional)?
-34. How consistent is the self-image across paragraphs?
-35. Identify one phrase that reveals unconscious self-evaluation (admiration, contempt, shame).
-36. Does the author reveal dependency on external approval or autonomy from it?
-37. What form of vulnerability does the writer allow?
-38. How does the author talk about others — with empathy, rivalry, indifference?
-39. What implicit audience is being addressed?
-40. Does the writer's stance shift from confession to performance? Cite turning point.
+IV. Focus: Interpersonal vs. Ideational (10):
+31. Is attention directed toward people or toward abstractions?
+32. When others are mentioned, are they treated as minds or as examples?
+33. Does the prose imply social awareness or social detachment?
+34. Is there sensitivity to audience, or indifference to communication?
+35. Does persuasion matter, or only demonstration?
+36. Does the text reveal an interest in relationships, systems, or self-display?
+37. When using "we," is it inclusive or manipulative?
+38. Does the writer ever show vulnerability to others' judgment?
+39. Are ideas personified (showing emotional engagement) or sterilized?
+40. Does the author seek understanding or dominance over interlocutors?
 
-V. Symbolic & Unconscious Material (10):
-41. Which images or motifs recur (light/dark, ascent/descent, enclosure, mirrors), and what do they symbolize?
-42. Are there dream-like or surreal elements?
-43. What oppositions structure the text (order/chaos, love/power, mind/body)?
-44. What wish or fear seems to animate the text beneath the surface argument?
-45. Identify one metaphor that reads like a disguised confession.
-46. How does the author relate to time — nostalgic, future-oriented, frozen?
-47. Does the text express conflict between intellect and emotion?
-48. What shadow aspect of personality is hinted at through hostile or taboo imagery?
-49. Is there evidence of projection — attributing inner states to others or to abstractions?
-50. What central psychological drama (loss, control, recognition, transformation) structures the entire piece?
+V. Motivation, Value System, and Reality Testing (10):
+41. What is the writer trying to achieve — truth, recognition, safety, superiority?
+42. Is success defined internally (clarity) or externally (approval)?
+43. Does the writer trust reason, intuition, authority, or instinct most?
+44. When evidence contradicts belief, does belief bend or resist?
+45. Is the worldview optimistic, tragic, cynical, or dispassionate?
+46. Does the author see the self as agent or as spectator?
+47. Does the text treat reality as negotiable (conceptualist) or binding (realist)?
+48. Does the writer seek understanding or vindication?
+49. Are problems treated as puzzles to solve or evils to condemn?
+50. Is there any visible hunger for truth — or only hunger for being right?
+
+VI. Intelligence & Conceptual Control (10):
+51. Does the writing show genuine intelligence — deep structure, inference, precision — or rote mimicry?
+52. Does the argument actually advance, or does it spin in circles?
+53. Does the author handle abstraction cleanly, or get lost in vagueness?
+54. Does reasoning depend on concrete evidence or empty jargon?
+55. When the author defines something, is it sharp and economical or padded and evasive?
+56. Are terms used consistently, or redefined to dodge difficulty?
+57. Is the prose intellectually ambitious in a disciplined way, or pretentious for show?
+58. Does the text reveal mastery of the material, or merely second-hand familiarity?
+59. Does the writer tolerate internal tension, or hide contradictions with style?
+60. Does the argument show genuine insight — a new relation between ideas — or rehearse clichés?
+
+VII. Honesty & Sincerity of Mind (10):
+61. Is the writer being straightforward, or manipulating phrasing to sound profound?
+62. Does the text ever admit uncertainty or limitation?
+63. When challenged (implicitly or explicitly), does the writer concede or double down?
+64. Is there visible willingness to change one's mind if the reasoning fails?
+65. Does the author ever say "I don't know," or is omniscience performed throughout?
+66. Are doubts faced or buried under abstraction?
+67. Does confidence come from understanding or bluster?
+68. Are counterarguments represented fairly, or caricatured for easy defeat?
+69. Does the writer seem to care about truth, or about appearing intelligent?
+70. Is there moral or intellectual humility anywhere in the text?
+
+VIII. Structure, Organization, and Focus (10):
+71. Is the argument linearly constructed or chaotic?
+72. Does every paragraph push the reasoning forward?
+73. Are transitions real or cosmetic?
+74. Does the conclusion actually follow from the premises?
+75. Are examples used to clarify or to disguise weakness?
+76. Does the text maintain topic discipline or wander aimlessly?
+77. Is there redundancy that signals insecurity?
+78. How coherent is paragraph sequencing — cumulative or random?
+79. Does the text have a visible beginning, middle, and end?
+80. Does the closing section resolve something or merely stop?
+
+IX. Psychological Profile in Style (10):
+81. Does the tone suggest calm confidence or anxious control?
+82. Is the style dry, combative, ingratiating, or sermonizing?
+83. Does the writer hide behind abstraction to avoid personal exposure?
+84. Is there contempt for opposing views or curiosity about them?
+85. What emotion drives the prose — irritation, pride, fear, wonder?
+86. Is the rhythm clenched (defensive) or open (exploratory)?
+87. Does the diction reveal class anxiety, moral superiority, or insecurity?
+88. Is humor used to clarify or to deflect?
+89. Does the writer need to dominate the reader intellectually?
+90. Does the language show obsession with control, symmetry, or perfection?
+
+X. Substance, Depth, and Cognitive Flexibility (10):
+91. Does the writer ever integrate a new idea mid-stream?
+92. Is there evidence of learning in motion — development within the text?
+93. Are insights layered, or all at the same conceptual level?
+94. When describing others' ideas, does the writer paraphrase accurately?
+95. Does the prose reveal real curiosity, or mere performance of curiosity?
+96. Does the author show capacity for self-correction?
+97. Is there flexibility of perspective, or rigid monologue?
+98. Does the argument invite dialogue, or shut it down?
+99. Is there intellectual empathy — ability to inhabit another view sincerely?
+100. After reading, do we feel we've encountered a mind in motion or a mask of erudition?
 
 Respond with clean JSON (no markdown formatting anywhere):
 {

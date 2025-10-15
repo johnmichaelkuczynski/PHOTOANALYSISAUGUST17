@@ -24,16 +24,16 @@ An advanced AI-powered personality insights platform that combines cutting-edge 
 
 ## Recent Changes
 
-### Fixed 50-Question Framework Implementation (October 15, 2025)
-✓ COMPLETELY REPLACED DEFUNCT 20/40/60 QUESTION SYSTEM WITH DEDICATED 50-QUESTION FRAMEWORKS
-✓ Implemented three specialized 50-question frameworks, one for each analysis type:
+### Fixed Question Framework Implementation (October 15, 2025)
+✓ COMPLETELY REPLACED DEFUNCT 20/40/60 QUESTION SYSTEM WITH DEDICATED QUESTION FRAMEWORKS
+✓ Implemented specialized question frameworks for each analysis type:
   - **Photo Analysis**: 50 questions covering Physical Cues, Expression & Emotion, Composition & Context, Personality & Psychological Inference, Symbolic & Metapsychological Analysis
   - **Video Analysis**: 50 questions covering Physical & Behavioral Cues, Expression & Emotion Over Time, Speech/Voice/Timing, Context/Environment/Interaction, Personality & Psychological Inference
-  - **Text Analysis**: 50 questions covering Language & Style, Emotional Indicators, Cognitive & Structural Patterns, Self-Representation & Identity, Symbolic & Unconscious Material
+  - **Text/Document Analysis**: 100 questions covering Information Processing Style, Emotional Processing Style, Agency & Activity Level, Focus: Interpersonal vs. Ideational, Motivation & Value System, Intelligence & Conceptual Control, Honesty & Sincerity of Mind, Structure & Organization, Psychological Profile in Style, Substance & Cognitive Flexibility
 ✓ Removed analysisDepth parameter from all backend routes, schemas, and frontend components
 ✓ Removed Analysis Depth Selector UI component, updated step numbering (Step 3 → Step 2)
 ✓ Updated validation system to check for substantive content rather than specific field names
-✓ All analyses now use fixed 50-question framework - no depth selection required
+✓ All analyses now use fixed question frameworks - no depth selection required
 ✓ Prompts dynamically select photo vs video questions based on media type
 ✓ Build successful with no errors, system fully operational with new framework
 
