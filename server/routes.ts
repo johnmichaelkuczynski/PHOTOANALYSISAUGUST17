@@ -1550,7 +1550,7 @@ CRITICAL REQUIREMENTS - FAILURE TO COMPLY WILL RESULT IN REJECTED ANALYSIS:
 - INCLUDE 8-12 DIRECT QUOTES from the text that reveal personality traits
 - PROVIDE COMPREHENSIVE 3-4 PARAGRAPH SECTIONS for each analysis area
 - EXTRACT SPECIFIC EVIDENCE from word choice, topics discussed, and communication style
-- YOU MUST ANSWER ALL 20 CORE PSYCHOLOGICAL QUESTIONS WITH EXPLICIT, SUBSTANTIVE ANSWERS
+- YOU MUST ANSWER ALL 50 PSYCHOLOGICAL QUESTIONS WITH EXPLICIT, SUBSTANTIVE ANSWERS
 - ABSOLUTELY NO PLACEHOLDER TEXT, GENERIC STATEMENTS, OR "NOT ASSESSED" RESPONSES
 - EVERY SINGLE QUESTION MUST HAVE A DETAILED, SPECIFIC ANSWER WITH EVIDENCE
 - IF DATA IS LIMITED, MAKE REASONABLE PSYCHOLOGICAL INFERENCES BASED ON AVAILABLE EVIDENCE
@@ -1558,28 +1558,67 @@ CRITICAL REQUIREMENTS - FAILURE TO COMPLY WILL RESULT IN REJECTED ANALYSIS:
 TEXT TO ANALYZE:
 ${content}
 
-You must provide detailed answers to these 20 fundamental psychological questions based on the text analysis:
+You must provide detailed answers to these 50 fundamental psychological questions based on the text analysis:
 
-1. What drives this person (their core motivation)?
-2. How confident are they really?
-3. Do they genuinely like themselves?
-4. How smart are they?
-5. How creative are they?
-6. How do they handle stress or setbacks?
-7. Are they trustworthy?
-8. Do they exaggerate or fake things about themselves?
-9. How ambitious are they?
-10. What are they insecure about?
-11. How much do they care what others think?
-12. Are they independent-minded, or do they follow the crowd?
-13. Do they tend to dominate conversations or listen more?
-14. How do they deal with criticism?
-15. Are they more optimistic or pessimistic?
-16. Do they have a strong sense of humor?
-17. How do they treat people "beneath" them?
-18. Are they consistent, or do they contradict themselves?
-19. What hidden strengths do they have?
-20. What hidden weaknesses do they have?
+I. Language & Style (10):
+1. What is the dominant sentence rhythm — clipped, flowing, erratic — and what personality trait does it reveal?
+2. Which adjectives recur, and what emotional bias do they show?
+3. How does pronoun use ('I,' 'you,' 'we,' 'they') shift across the text, and what identity stance does that reflect?
+4. What level of abstraction vs. concreteness dominates the writing?
+5. Identify one passage where diction becomes suddenly elevated or deflated — what triggers it?
+6. Are there unfinished or fragmentary sentences, and what might that signal psychologically?
+7. How consistent is the tense? Does the writer slip between past and present, and why?
+8. What metaphors or analogies recur, and what unconscious associations do they expose?
+9. Is the author's tone self-assured, tentative, ironic, or performative? Cite phrasing.
+10. What linguistic register (formal, colloquial, technical) dominates, and how does it align with self-image?
+
+II. Emotional Indicators (10):
+11. What emotion seems primary (anger, melancholy, pride, longing), and where is it linguistically concentrated?
+12. Which emotions appear repressed or displaced — hinted at but never named?
+13. Does emotional intensity rise or fall as the text progresses?
+14. Identify one sentence where affect 'leaks through' despite apparent control.
+15. Are there moments of sentimental overstatement or cold detachment?
+16. What bodily or sensory words appear, and what do they suggest about embodiment or repression?
+17. Is there ambivalence toward the subject matter? Cite a line where tone wavers.
+18. Does humor appear, and if so, is it self-directed, aggressive, or defensive?
+19. What words betray anxiety or guilt?
+20. How is desire represented — directly, symbolically, or through avoidance?
+
+III. Cognitive & Structural Patterns (10):
+21. How logically coherent are transitions between ideas?
+22. Does the writer prefer enumeration, narrative, or digression? What does that indicate about thought style?
+23. What syntactic habits dominate (parallelism, repetition, parenthesis), and what mental rhythms do they mirror?
+24. Are there contradictions the author fails to notice? Quote one.
+25. How does the author handle uncertainty — through hedging, assertion, or silence?
+26. Does the argument or story circle back on itself?
+27. Are there abrupt topic shifts, and what emotional events coincide with them?
+28. What elements of the text seem compulsive or ritualistic in repetition?
+29. Where does the writer show real insight versus mechanical reasoning?
+30. How does closure occur (resolution, withdrawal, collapse), and what does it signify psychologically?
+
+IV. Self-Representation & Identity (10):
+31. How does the writer portray the self — victim, hero, observer, analyst?
+32. Is there a split between narrating voice and lived experience?
+33. What form of authority or validation does the author seek (moral, intellectual, emotional)?
+34. How consistent is the self-image across paragraphs?
+35. Identify one phrase that reveals unconscious self-evaluation (admiration, contempt, shame).
+36. Does the author reveal dependency on external approval or autonomy from it?
+37. What form of vulnerability does the writer allow?
+38. How does the author talk about others — with empathy, rivalry, indifference?
+39. What implicit audience is being addressed?
+40. Does the writer's stance shift from confession to performance? Cite turning point.
+
+V. Symbolic & Unconscious Material (10):
+41. Which images or motifs recur (light/dark, ascent/descent, enclosure, mirrors), and what do they symbolize?
+42. Are there dream-like or surreal elements?
+43. What oppositions structure the text (order/chaos, love/power, mind/body)?
+44. What wish or fear seems to animate the text beneath the surface argument?
+45. Identify one metaphor that reads like a disguised confession.
+46. How does the author relate to time — nostalgic, future-oriented, frozen?
+47. Does the text express conflict between intellect and emotion?
+48. What shadow aspect of personality is hinted at through hostile or taboo imagery?
+49. Is there evidence of projection — attributing inner states to others or to abstractions?
+50. What central psychological drama (loss, control, recognition, transformation) structures the entire piece?
 
 Respond with clean JSON (no markdown formatting anywhere):
 {
@@ -1930,30 +1969,69 @@ CRITICAL REQUIREMENTS:
 - NO MARKDOWN FORMATTING: Do not use # ### ** or any markdown in your response
 - PROVIDE COMPREHENSIVE 3-4 PARAGRAPH SECTIONS for each analysis area
 - EXTRACT SPECIFIC EVIDENCE from writing style, content, and communication patterns
-- ANSWER ALL 20 CORE PSYCHOLOGICAL QUESTIONS with specific evidence
+- ANSWER ALL 50 PSYCHOLOGICAL QUESTIONS with specific evidence
 
-You must provide detailed answers to these 20 fundamental psychological questions based on the document analysis:
+You must provide detailed answers to these 50 fundamental psychological questions based on the document analysis:
 
-1. What drives this person (their core motivation)?
-2. How confident are they really?
-3. Do they genuinely like themselves?
-4. How smart are they?
-5. How creative are they?
-6. How do they handle stress or setbacks?
-7. Are they trustworthy?
-8. Do they exaggerate or fake things about themselves?
-9. How ambitious are they?
-10. What are they insecure about?
-11. How much do they care what others think?
-12. Are they independent-minded, or do they follow the crowd?
-13. Do they tend to dominate conversations or listen more?
-14. How do they deal with criticism?
-15. Are they more optimistic or pessimistic?
-16. Do they have a strong sense of humor?
-17. How do they treat people "beneath" them?
-18. Are they consistent, or do they contradict themselves?
-19. What hidden strengths do they have?
-20. What hidden weaknesses do they have?
+I. Language & Style (10):
+1. What is the dominant sentence rhythm — clipped, flowing, erratic — and what personality trait does it reveal?
+2. Which adjectives recur, and what emotional bias do they show?
+3. How does pronoun use ('I,' 'you,' 'we,' 'they') shift across the text, and what identity stance does that reflect?
+4. What level of abstraction vs. concreteness dominates the writing?
+5. Identify one passage where diction becomes suddenly elevated or deflated — what triggers it?
+6. Are there unfinished or fragmentary sentences, and what might that signal psychologically?
+7. How consistent is the tense? Does the writer slip between past and present, and why?
+8. What metaphors or analogies recur, and what unconscious associations do they expose?
+9. Is the author's tone self-assured, tentative, ironic, or performative? Cite phrasing.
+10. What linguistic register (formal, colloquial, technical) dominates, and how does it align with self-image?
+
+II. Emotional Indicators (10):
+11. What emotion seems primary (anger, melancholy, pride, longing), and where is it linguistically concentrated?
+12. Which emotions appear repressed or displaced — hinted at but never named?
+13. Does emotional intensity rise or fall as the text progresses?
+14. Identify one sentence where affect 'leaks through' despite apparent control.
+15. Are there moments of sentimental overstatement or cold detachment?
+16. What bodily or sensory words appear, and what do they suggest about embodiment or repression?
+17. Is there ambivalence toward the subject matter? Cite a line where tone wavers.
+18. Does humor appear, and if so, is it self-directed, aggressive, or defensive?
+19. What words betray anxiety or guilt?
+20. How is desire represented — directly, symbolically, or through avoidance?
+
+III. Cognitive & Structural Patterns (10):
+21. How logically coherent are transitions between ideas?
+22. Does the writer prefer enumeration, narrative, or digression? What does that indicate about thought style?
+23. What syntactic habits dominate (parallelism, repetition, parenthesis), and what mental rhythms do they mirror?
+24. Are there contradictions the author fails to notice? Quote one.
+25. How does the author handle uncertainty — through hedging, assertion, or silence?
+26. Does the argument or story circle back on itself?
+27. Are there abrupt topic shifts, and what emotional events coincide with them?
+28. What elements of the text seem compulsive or ritualistic in repetition?
+29. Where does the writer show real insight versus mechanical reasoning?
+30. How does closure occur (resolution, withdrawal, collapse), and what does it signify psychologically?
+
+IV. Self-Representation & Identity (10):
+31. How does the writer portray the self — victim, hero, observer, analyst?
+32. Is there a split between narrating voice and lived experience?
+33. What form of authority or validation does the author seek (moral, intellectual, emotional)?
+34. How consistent is the self-image across paragraphs?
+35. Identify one phrase that reveals unconscious self-evaluation (admiration, contempt, shame).
+36. Does the author reveal dependency on external approval or autonomy from it?
+37. What form of vulnerability does the writer allow?
+38. How does the author talk about others — with empathy, rivalry, indifference?
+39. What implicit audience is being addressed?
+40. Does the writer's stance shift from confession to performance? Cite turning point.
+
+V. Symbolic & Unconscious Material (10):
+41. Which images or motifs recur (light/dark, ascent/descent, enclosure, mirrors), and what do they symbolize?
+42. Are there dream-like or surreal elements?
+43. What oppositions structure the text (order/chaos, love/power, mind/body)?
+44. What wish or fear seems to animate the text beneath the surface argument?
+45. Identify one metaphor that reads like a disguised confession.
+46. How does the author relate to time — nostalgic, future-oriented, frozen?
+47. Does the text express conflict between intellect and emotion?
+48. What shadow aspect of personality is hinted at through hostile or taboo imagery?
+49. Is there evidence of projection — attributing inner states to others or to abstractions?
+50. What central psychological drama (loss, control, recognition, transformation) structures the entire piece?
 
 Respond with clean JSON (no markdown formatting anywhere):
 {
@@ -3957,7 +4035,7 @@ MANDATORY ANALYSIS STRUCTURE:
 6. EXTENSIVE CONTENT ANALYSIS: Thoroughly discuss the actual topics, ideas, and perspectives shared in speech/text and provide deep insights into what these reveal about character, values, intelligence, emotional landscape, and psychological makeup
 7. ENHANCED DEPTH: Go beyond surface-level observations to provide profound insights into the person's psychological landscape, emotional patterns, cognitive style, relationship dynamics, and personal growth potential
 
-YOU MUST ANSWER ALL 20 CORE PSYCHOLOGICAL QUESTIONS - ABSOLUTELY MANDATORY - NO EXCEPTIONS:
+YOU MUST ANSWER ALL 50 PSYCHOLOGICAL QUESTIONS - ABSOLUTELY MANDATORY - NO EXCEPTIONS:
 
 STRICT REQUIREMENTS:
 - EVERY question below MUST have an explicit, detailed answer
@@ -3967,28 +4045,131 @@ STRICT REQUIREMENTS:
 - Provide SPECIFIC EVIDENCE for each conclusion
 - "Not assessed" or similar evasive responses are COMPLETELY UNACCEPTABLE
 
-Answer these 20 questions with substantive, evidence-based responses:
+${videoAnalysis ? `
+Answer these 50 VIDEO ANALYSIS questions with substantive, evidence-based responses:
 
-1. What drives this person (their core motivation)?
-2. How confident are they really?
-3. Do they genuinely like themselves?
-4. How smart are they?
-5. How creative are they?
-6. How do they handle stress or setbacks?
-7. Are they trustworthy?
-8. Do they exaggerate or fake things about themselves?
-9. How ambitious are they?
-10. What are they insecure about?
-11. How much do they care what others think?
-12. Are they independent-minded, or do they follow the crowd?
-13. Do they tend to dominate conversations or listen more?
-14. How do they deal with criticism?
-15. Are they more optimistic or pessimistic?
-16. Do they have a strong sense of humor?
-17. How do they treat people "beneath" them?
-18. Are they consistent, or do they contradict themselves?
-19. What hidden strengths do they have?
-20. What hidden weaknesses do they have?
+I. Physical & Behavioral Cues (10):
+1. How does the person's gait or movement rhythm change across the clip?
+2. Which recurring gesture seems habitual rather than situational?
+3. Describe one moment where muscle tension releases or spikes — what triggers it?
+4. How does posture vary when the person speaks vs. listens?
+5. Identify one micro-adjustment (e.g., hair touch, collar fix) and explain its likely emotional cause.
+6. What is the person doing with their hands during silent intervals?
+7. How consistent is eye-contact across frames? Give timestamps showing breaks or sustained gazes.
+8. At which point does breathing rate visibly change, and what precedes it?
+9. Describe the physical energy level throughout — rising, falling, or cyclical?
+10. What body part seems most expressive (eyes, shoulders, mouth), and how is that used?
+
+II. Expression & Emotion Over Time (10):
+11. Track micro-expressions that flicker and vanish. At what timestamps do they appear?
+12. When does the dominant emotion shift, and how abruptly?
+13. Does the person's smile fade naturally or snap off?
+14. Which emotion seems performed vs. spontaneous? Cite frames.
+15. How does blink rate change when discussing specific topics?
+16. Identify one involuntary facial tic and interpret its significance.
+17. Are there moments of incongruence between facial expression and vocal tone?
+18. When does the person's face 'freeze' — i.e., hold still unnaturally — and what triggers that?
+19. What subtle expression signals discomfort before any verbal cue?
+20. How does lighting or camera angle amplify or mute visible emotions?
+
+III. Speech, Voice & Timing (10):
+21. Describe baseline vocal timbre — breathy, clipped, resonant — and what personality trait it implies.
+22. At which timestamp does pitch spike or flatten dramatically? Why?
+23. How does speaking rate change when emotionally charged content arises?
+24. Identify one pause longer than 1.5 seconds and interpret it psychologically.
+25. What filler words or vocal tics recur, and what function do they serve?
+26. How synchronized are gestures with speech rhythm?
+27. Does the voice carry underlying fatigue, tension, or confidence? Provide audible markers.
+28. Compare early vs. late segments: does articulation become more or less precise?
+29. What is the emotional contour of the voice across the clip (anxious → calm, etc.)?
+30. When does volume drop below baseline, and what coincides with it visually?
+
+IV. Context, Environment & Interaction (10):
+31. What environmental cues (background noise, lighting shifts) change mid-video?
+32. How does the camera distance or angle influence perceived dominance or submission?
+33. If others are present, how does the subject's behavior shift in their presence vs. alone?
+34. What objects does the person interact with, and what do those choices reveal?
+35. Is the setting staged or spontaneous, and what does that say about self-presentation?
+36. How does background (clean, cluttered, symbolic) reflect personality or mood?
+37. Are there off-screen events the person reacts to? What do those reactions reveal?
+38. What non-verbal cues suggest comfort or discomfort with being recorded?
+39. How does spatial positioning (centered, off-center, close, distant) communicate self-concept?
+40. If there's editing or cuts, what moments are emphasized or omitted, and why might that matter?
+
+V. Personality & Psychological Inference (10):
+41. What core emotional need appears to drive the person's on-camera behavior?
+42. How does the person manage vulnerability — reveal it, suppress it, perform it?
+43. What does the rhythm of the video (slow, frenetic, erratic) suggest about internal state?
+44. Identify one moment that feels unguarded vs. one that feels calculated. What's the difference?
+45. How does the person relate to the camera — as ally, enemy, mirror, or audience?
+46. What psychological defense mechanism is most visible (deflection, projection, rationalization)?
+47. Does the person seek approval, assert dominance, withdraw, or connect? How do you know?
+48. What childhood or formative pattern might explain a recurring behavioral motif?
+49. If this person had a recurring dream, what would it be, based on visible themes?
+50. What single frame or moment best encapsulates the subject's psychological essence?
+` : `
+Answer these 50 PHOTO ANALYSIS questions with substantive, evidence-based responses:
+
+I. Physical Cues (10):
+1. What is the person's approximate age range, and what visual evidence supports this?
+2. What is their likely dominant hand, based on body posture or hand use?
+3. What kind of lighting was used (natural, fluorescent, LED), and how does it shape facial tone or mood?
+4. How symmetrical is the person's face, and what asymmetries are visible?
+5. Describe the color and apparent texture of the person's skin in objective terms.
+6. Identify one visible physical trait (scar, mole, wrinkle pattern) and infer its probable significance (age, stress, lifestyle).
+7. What can be inferred about the person's sleep habits from the eyes and skin tone?
+8. Describe the person's hair (color, grooming, direction, style) and what it indicates about self-presentation.
+9. What kind of lighting shadow falls across the eyes or nose, and what mood does that lighting convey?
+10. Is there evidence of cosmetic enhancement (makeup, filters, retouching), and how does it alter authenticity?
+
+II. Expression & Emotion (10):
+11. Describe the dominant facial expression in granular terms (eyebrow position, lip tension, gaze angle).
+12. Does the expression look posed or spontaneous? Why?
+13. Identify micro-expressions suggesting secondary emotions (e.g., contempt, anxiety, curiosity).
+14. Does the smile (if any) engage the eyes? What does that reveal psychologically?
+15. Compare upper-face emotion vs. lower-face emotion; do they match?
+16. What emotional tone is conveyed by the person's gaze direction (camera, away, downward)?
+17. Does the person appear guarded, open, or performative? Cite visible evidence.
+18. Are there tension points in the jaw or neck suggesting repressed emotion?
+19. Estimate how long the expression was held for the photo.
+20. Does the emotion appear congruent with the setting or mismatched? What does that mismatch suggest?
+
+III. Composition & Context (10):
+21. Describe the setting (indoor/outdoor, professional/personal) and how it relates to self-presentation.
+22. What objects or background details signal aspects of lifestyle or occupation?
+23. How does clothing color palette interact with lighting to create an emotional tone?
+24. What focal length or camera distance was likely used, and how does it affect psychological intimacy?
+25. Is there visible clutter or minimalism, and what does that suggest about personality?
+26. Are there reflections, windows, or mirrors in frame? What might they symbolize?
+27. How does body posture interact with spatial framing (e.g., leaning toward/away from camera)?
+28. What portion of the frame the subject occupies, and what does that say about ego strength or humility?
+29. Does the color grading lean warm, cool, or neutral, and what psychological effect does that create?
+30. Is the photo cropped tightly or spaciously? What does that suggest about boundaries or openness?
+
+IV. Personality & Psychological Inference (10):
+31. What does the chosen pose (formal, casual, confrontational, withdrawn) reveal about how the person wants to be seen?
+32. Is there an attempt to project power, warmth, mystery, or vulnerability? How?
+33. Does the person seem comfortable being photographed, or is there visible self-consciousness?
+34. What emotional archetype does the image evoke (hero, victim, artist, authority figure)?
+35. How does the balance between concealment and revelation define their self-presentation?
+36. What does the image omit or hide, and what might that suggest about shame or insecurity?
+37. If you had to name one psychological conflict visible in the photo, what would it be?
+38. Does the image suggest introversion or extraversion? Support with visual evidence.
+39. What story is the person trying to tell about themselves through this image?
+40. How does this image relate to social identity (professional, personal, aspirational)?
+
+V. Symbolic & Metapsychological Analysis (10):
+41. What does the image say about the subject's relationship with time (past, present, future)?
+42. Are there symbolic elements (books, tech, nature) that suggest values or worldview?
+43. How does the interplay of light and shadow mirror internal psychological contrasts?
+44. What existential theme (freedom, constraint, connection, isolation) does the composition suggest?
+45. If this were a still from a film, what genre would it be, and what does that reveal?
+46. What emotional temperature (warm, cold, neutral) dominates, and what does it imply about inner life?
+47. Does the image feel static or dynamic? What does that suggest about psychological momentum?
+48. What is the implied relationship between the photographer and subject (trust, tension, dominance)?
+49. If this image were part of a sequence, what emotional narrative would it tell?
+50. What single object or feature in the photo best symbolizes the person's life stance?
+`}
 
 Return a JSON object with the following structure:
 {
