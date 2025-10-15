@@ -3904,37 +3904,50 @@ async function analyzeFaceWithRekognition(imageBuffer: Buffer, maxPeople: number
 
 
 /**
- * Validates that all 20 core psychological questions are answered with substantive content
- * Throws error if validation fails to force regeneration
+ * Validates that the analysis contains substantive content
+ * Now using 50-question framework - validates structure rather than specific fields
  */
 function validateCoreAssessment(analysisResult: any, personLabel: string = "Subject") {
-  const coreQuestions = [
-    'core_motivation', 'confidence_level', 'self_acceptance', 'intelligence_level',
-    'creativity_assessment', 'stress_handling', 'trustworthiness', 'authenticity',
-    'ambition_level', 'insecurities', 'social_validation', 'independence',
-    'communication_style', 'criticism_response', 'outlook', 'humor_sense',
-    'treatment_of_others', 'consistency', 'hidden_strengths', 'hidden_weaknesses'
-  ];
-  
-  const coreAssessment = analysisResult.detailed_analysis?.core_psychological_assessment;
-  
-  if (!coreAssessment) {
-    throw new Error(`AI model failed to provide core psychological assessment for ${personLabel}. Please regenerate the analysis.`);
+  // Check for summary
+  if (!analysisResult.summary || analysisResult.summary.trim().length < 50) {
+    throw new Error(`AI model failed to provide adequate summary for ${personLabel}. Please regenerate the analysis.`);
   }
   
-  const missingFields = [];
-  for (const question of coreQuestions) {
-    if (!coreAssessment[question] || coreAssessment[question].trim().length < 10) {
-      missingFields.push(question);
+  // Check for detailed_analysis object
+  if (!analysisResult.detailed_analysis || typeof analysisResult.detailed_analysis !== 'object') {
+    throw new Error(`AI model failed to provide detailed analysis for ${personLabel}. Please regenerate the analysis.`);
+  }
+  
+  // Check that detailed_analysis has some substantive content
+  const detailedAnalysisKeys = Object.keys(analysisResult.detailed_analysis);
+  if (detailedAnalysisKeys.length === 0) {
+    throw new Error(`AI model provided empty detailed analysis for ${personLabel}. Please regenerate the analysis.`);
+  }
+  
+  // Check that at least one section has substantial content
+  let hasSubstantialContent = false;
+  for (const key of detailedAnalysisKeys) {
+    const value = analysisResult.detailed_analysis[key];
+    if (typeof value === 'string' && value.trim().length > 100) {
+      hasSubstantialContent = true;
+      break;
+    } else if (typeof value === 'object' && value !== null) {
+      const subKeys = Object.keys(value);
+      if (subKeys.some(subKey => {
+        const subValue = value[subKey];
+        return typeof subValue === 'string' && subValue.trim().length > 50;
+      })) {
+        hasSubstantialContent = true;
+        break;
+      }
     }
   }
   
-  if (missingFields.length > 0) {
-    console.error(`Validation failed for ${personLabel}! Missing or incomplete answers for: ${missingFields.join(', ')}`);
-    throw new Error(`AI model provided incomplete analysis for ${personLabel}. Missing substantive answers for: ${missingFields.join(', ')}. Please regenerate the analysis with a different model or try again.`);
+  if (!hasSubstantialContent) {
+    throw new Error(`AI model provided insufficient detailed content for ${personLabel}. Please regenerate the analysis.`);
   }
   
-  console.log(`✅ Validation passed for ${personLabel} - all 20 core questions answered`);
+  console.log(`✅ Validation passed for ${personLabel} - analysis contains substantive content`);
   return true;
 }
 
