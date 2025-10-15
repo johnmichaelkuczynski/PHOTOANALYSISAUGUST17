@@ -171,85 +171,193 @@ const tempDir = os.tmpdir();
 const writeFileAsync = promisify(fs.writeFile);
 const unlinkAsync = promisify(fs.unlink);
 
-// Analysis depth questions mapping
-function getAnalysisQuestions(depth: string) {
-  const shortQuestions = [
-    "What drives this person (their core motivation)?",
-    "How confident are they really?", 
-    "Do they genuinely like themselves?",
-    "How smart are they?",
-    "How creative are they?",
-    "How do they handle stress or setbacks?",
-    "Are they trustworthy?",
-    "Do they exaggerate or fake things about themselves?",
-    "How ambitious are they?",
-    "What are they insecure about?",
-    "How much do they care what others think?",
-    "Are they independent-minded, or do they follow the crowd?",
-    "Do they tend to dominate conversations or listen more?",
-    "How do they deal with criticism?",
-    "Are they more optimistic or pessimistic?",
-    "Do they have a strong sense of humor?",
-    "How do they treat people \"beneath\" them?",
-    "Are they consistent, or do they contradict themselves?",
-    "What hidden strengths do they have?",
-    "What hidden weaknesses do they have?"
-  ];
+// 50-QUESTION FRAMEWORKS FOR EACH ANALYSIS TYPE
 
-  const mediumQuestions = [
-    ...shortQuestions,
-    "What do they crave most — attention, respect, control, affection, or freedom?",
-    "Do they secretly feel superior or inferior to others?",
-    "How emotionally stable are they?",
-    "Do they take responsibility for mistakes or deflect blame?",
-    "How competitive are they?",
-    "Do they hold grudges or let things go?",
-    "Are they more genuine in private or in public?",
-    "How self-aware do they seem?",
-    "Do they tend to exaggerate their successes or downplay them?",
-    "Are they more driven by logic or by emotion?",
-    "Do they thrive on routine or novelty?",
-    "Are they better at starting things or finishing them?",
-    "Do they inspire others, drain others, or blend into the background?",
-    "Are they risk-takers or risk-avoiders?",
-    "Do they tend to manipulate people, charm them, or stay straightforward?",
-    "How consistent is their image of themselves compared to reality?",
-    "Do they prefer to lead, to follow, or to go it alone?",
-    "Are they generous with others, or more self-serving?",
-    "Do they seek depth in relationships, or keep things shallow?",
-    "What do they most want to hide from others?"
-  ];
+const PHOTO_ANALYSIS_QUESTIONS = [
+  // I. Physical Cues (10)
+  "What is the person's approximate age range, and what visual evidence supports this?",
+  "What is their likely dominant hand, based on body posture or hand use?",
+  "What kind of lighting was used (natural, fluorescent, LED), and how does it shape facial tone or mood?",
+  "How symmetrical is the person's face, and what asymmetries are visible?",
+  "Describe the color and apparent texture of the person's skin in objective terms.",
+  "Identify one visible physical trait (scar, mole, wrinkle pattern) and infer its probable significance (age, stress, lifestyle).",
+  "What can be inferred about the person's sleep habits from the eyes and skin tone?",
+  "Describe the person's hair (color, grooming, direction, style) and what it indicates about self-presentation.",
+  "What kind of lighting shadow falls across the eyes or nose, and what mood does that lighting convey?",
+  "Is there evidence of cosmetic enhancement (makeup, filters, retouching), and how does it alter authenticity?",
+  
+  // II. Expression & Emotion (10)
+  "Describe the dominant facial expression in granular terms (eyebrow position, lip tension, gaze angle).",
+  "Does the expression look posed or spontaneous? Why?",
+  "Identify micro-expressions suggesting secondary emotions (e.g., contempt, anxiety, curiosity).",
+  "Does the smile (if any) engage the eyes? What does that reveal psychologically?",
+  "Compare upper-face emotion vs. lower-face emotion; do they match?",
+  "What emotional tone is conveyed by the person's gaze direction (camera, away, downward)?",
+  "Does the person appear guarded, open, or performative? Cite visible evidence.",
+  "Are there tension points in the jaw or neck suggesting repressed emotion?",
+  "Estimate how long the expression was held for the photo.",
+  "Does the emotion appear congruent with the setting or mismatched? What does that mismatch suggest?",
+  
+  // III. Composition & Context (10)
+  "Describe the setting (indoor/outdoor, professional/personal) and how it relates to self-presentation.",
+  "What objects or background details signal aspects of lifestyle or occupation?",
+  "How does clothing color palette interact with lighting to create an emotional tone?",
+  "What focal length or camera distance was likely used, and how does it affect psychological intimacy?",
+  "Is there visible clutter or minimalism, and what does that suggest about personality?",
+  "Are there reflections, windows, or mirrors in frame? What might they symbolize?",
+  "How does body posture interact with spatial framing (e.g., leaning toward/away from camera)?",
+  "What portion of the frame the subject occupies, and what does that say about ego strength or humility?",
+  "Is there visible symmetry or imbalance in composition, and what does it communicate?",
+  "Identify one hidden or easily overlooked element that subtly changes the psychological reading.",
+  
+  // IV. Personality & Psychological Inference (10)
+  "Based on facial micro-cues, what is the person's baseline affect (calm, anxious, irritable, contemplative)?",
+  "What defense mechanism seems most active (projection, reaction formation, displacement, denial)?",
+  "Describe the likely self-image being projected—how do posture, expression, and clothing support it?",
+  "What aspects of the photo seem unconsciously revealing versus deliberately controlled?",
+  "How would the person handle confrontation, judging by visible muscular tension or gaze stability?",
+  "Does the person exhibit signs of narcissism or self-doubt? Identify visible indicators.",
+  "What cognitive style is implied (systematic, intuitive, chaotic)?",
+  "What is the person's apparent relationship to vulnerability? Cite visual evidence.",
+  "Does the photo suggest recent emotional hardship or resilience?",
+  "How does the person seem to want to be seen—and what discrepancy exists between that and how they actually appear?",
+  
+  // V. Symbolic & Metapsychological Analysis (10)
+  "What emotional temperature (warm/cool) dominates the photo's color space, and what archetype does it evoke?",
+  "If the photo were a dream image, what would each major element (pose, setting, color) symbolize?",
+  "What mythic or cinematic archetype does the person most resemble, and why?",
+  "Which aspect of the psyche (persona, shadow, anima/animus, self) is most visible?",
+  "What unconscious conflict seems dramatized in the composition?",
+  "How does the person's clothing or accessories function as psychological armor?",
+  "What is the implied relationship between the photographer and subject (trust, tension, dominance)?",
+  "If this image were part of a sequence, what emotional narrative would it tell?",
+  "What single object or feature in the photo best symbolizes the person's life stance?",
+  "What inner contradiction or paradox defines the subject, as revealed through visible cues?"
+];
 
-  const longQuestions = [
-    ...mediumQuestions,
-    "Do they adapt quickly, or resist change?",
-    "How much do they exaggerate their life story?",
-    "Are they more focused on short-term pleasure or long-term goals?",
-    "Do they secretly feel underappreciated?",
-    "How much control do they need in relationships?",
-    "Do they have hidden anger or resentment?",
-    "Are they better at giving advice or taking it?",
-    "Do they come across as more authentic or performative?",
-    "How curious are they about the world and other people?",
-    "Do they stick to their principles, or bend them when convenient?",
-    "How good are they at reading others?",
-    "Do they act the same across different social groups, or change their persona?",
-    "Do they seek excitement or avoid it?",
-    "Do they like being the center of attention, or prefer staying in the background?",
-    "Do they overshare, undershare, or strike a balance?",
-    "Are they more forgiving or judgmental?",
-    "Do they use humor as connection, or as defense?",
-    "Are they decisive, or do they hesitate a lot?",
-    "Do they need constant validation, or are they self-sustaining?",
-    "What's the gap between how they want to be seen and how they actually appear?"
-  ];
+const VIDEO_ANALYSIS_QUESTIONS = [
+  // I. Physical & Behavioral Cues (10)
+  "How does the person's gait or movement rhythm change across the clip?",
+  "Which recurring gesture seems habitual rather than situational?",
+  "Describe one moment where muscle tension releases or spikes — what triggers it?",
+  "How does posture vary when the person speaks vs. listens?",
+  "Identify one micro-adjustment (e.g., hair touch, collar fix) and explain its likely emotional cause.",
+  "What is the person doing with their hands during silent intervals?",
+  "How consistent is eye-contact across frames? Give timestamps showing breaks or sustained gazes.",
+  "At which point does breathing rate visibly change, and what precedes it?",
+  "Describe the physical energy level throughout — rising, falling, or cyclical?",
+  "What body part seems most expressive (eyes, shoulders, mouth), and how is that used?",
+  
+  // II. Expression & Emotion Over Time (10)
+  "Track micro-expressions that flicker and vanish. At what timestamps do they appear?",
+  "When does the dominant emotion shift, and how abruptly?",
+  "Does the person's smile fade naturally or snap off?",
+  "Which emotion seems performed vs. spontaneous? Cite frames.",
+  "How does blink rate change when discussing specific topics?",
+  "Identify one involuntary facial tic and interpret its significance.",
+  "Are there moments of incongruence between facial expression and vocal tone?",
+  "When does the person's face 'freeze' — i.e., hold still unnaturally — and what triggers that?",
+  "What subtle expression signals discomfort before any verbal cue?",
+  "How does lighting or camera angle amplify or mute visible emotions?",
+  
+  // III. Speech, Voice & Timing (10)
+  "Describe baseline vocal timbre — breathy, clipped, resonant — and what personality trait it implies.",
+  "At which timestamp does pitch spike or flatten dramatically? Why?",
+  "How does speaking rate change when emotionally charged content arises?",
+  "Identify one pause longer than 1.5 seconds and interpret it psychologically.",
+  "What filler words or vocal tics recur, and what function do they serve?",
+  "How synchronized are gestures with speech rhythm?",
+  "Does the voice carry underlying fatigue, tension, or confidence? Provide audible markers.",
+  "Compare early vs. late segments: does articulation become more or less precise?",
+  "What is the emotional contour of the voice across the clip (anxious → calm, etc.)?",
+  "When does volume drop below baseline, and what coincides with it visually?",
+  
+  // IV. Context, Environment & Interaction (10)
+  "What environmental cues (background noise, lighting shifts) change mid-video?",
+  "How does the camera distance or angle influence perceived dominance or submission?",
+  "Are there off-screen sounds or glances suggesting another presence?",
+  "When the person looks away, where do they look, and what might they be avoiding?",
+  "How do objects in the frame get used or ignored (cup, pen, phone)?",
+  "Does the person adapt posture or tone in response to environmental change (light flicker, sound)?",
+  "What part of the environment most reflects personality (book titles, wall art, tidiness)?",
+  "How does background color palette influence mood perception?",
+  "Is there evidence of editing cuts or jump transitions that alter authenticity?",
+  "What temporal pacing (camera motion, cut frequency) matches or mismatches the emotional tempo?",
+  
+  // V. Personality & Psychological Inference (10)
+  "Based on kinetic patterns, what baseline temperament (introvert/extrovert, restrained/expressive) emerges?",
+  "What defense mechanism manifests dynamically (e.g., laughter after stress cue)?",
+  "When does self-presentation collapse momentarily into candor?",
+  "What behavioral marker suggests anxiety management (fidgeting, throat clearing, leg bounce)?",
+  "How does the person handle silence — restless, composed, avoidant?",
+  "Identify one moment that feels genuinely unguarded; what detail proves it?",
+  "What relational stance is enacted toward the viewer (teacher, confessor, performer)?",
+  "Does the body ever contradict the words? Provide timestamps.",
+  "What sustained pattern (voice-tone loop, repeated motion) indicates underlying psychological theme?",
+  "What overall transformation occurs from first to last frame — and what emotional or existential story does that evolution tell?"
+];
 
-  switch (depth) {
-    case "medium": return mediumQuestions;
-    case "long": return longQuestions;
-    default: return shortQuestions;
-  }
-}
+const TEXT_ANALYSIS_QUESTIONS = [
+  // I. Language & Style (10)
+  "What is the dominant sentence rhythm — clipped, flowing, erratic — and what personality trait does it reveal?",
+  "Which adjectives recur, and what emotional bias do they show?",
+  "How does pronoun use ('I,' 'you,' 'we,' 'they') shift across the text, and what identity stance does that reflect?",
+  "What level of abstraction vs. concreteness dominates the writing?",
+  "Identify one passage where diction becomes suddenly elevated or deflated — what triggers it?",
+  "Are there unfinished or fragmentary sentences, and what might that signal psychologically?",
+  "How consistent is the tense? Does the writer slip between past and present, and why?",
+  "What metaphors or analogies recur, and what unconscious associations do they expose?",
+  "Is the author's tone self-assured, tentative, ironic, or performative? Cite phrasing.",
+  "What linguistic register (formal, colloquial, technical) dominates, and how does it align with self-image?",
+  
+  // II. Emotional Indicators (10)
+  "What emotion seems primary (anger, melancholy, pride, longing), and where is it linguistically concentrated?",
+  "Which emotions appear repressed or displaced — hinted at but never named?",
+  "Does emotional intensity rise or fall as the text progresses?",
+  "Identify one sentence where affect 'leaks through' despite apparent control.",
+  "Are there moments of sentimental overstatement or cold detachment?",
+  "What bodily or sensory words appear, and what do they suggest about embodiment or repression?",
+  "Is there ambivalence toward the subject matter? Cite a line where tone wavers.",
+  "Does humor appear, and if so, is it self-directed, aggressive, or defensive?",
+  "What words betray anxiety or guilt?",
+  "How is desire represented — directly, symbolically, or through avoidance?",
+  
+  // III. Cognitive & Structural Patterns (10)
+  "How logically coherent are transitions between ideas?",
+  "Does the writer prefer enumeration, narrative, or digression? What does that indicate about thought style?",
+  "What syntactic habits dominate (parallelism, repetition, parenthesis), and what mental rhythms do they mirror?",
+  "Are there contradictions the author fails to notice? Quote one.",
+  "How does the author handle uncertainty — through hedging, assertion, or silence?",
+  "Does the argument or story circle back on itself?",
+  "Are there abrupt topic shifts, and what emotional events coincide with them?",
+  "What elements of the text seem compulsive or ritualistic in repetition?",
+  "Where does the writer show real insight versus mechanical reasoning?",
+  "How does closure occur (resolution, withdrawal, collapse), and what does it signify psychologically?",
+  
+  // IV. Self-Representation & Identity (10)
+  "How does the writer portray the self — victim, hero, observer, analyst?",
+  "Is there a split between narrating voice and lived experience?",
+  "What form of authority or validation does the author seek (moral, intellectual, emotional)?",
+  "How consistent is the self-image across paragraphs?",
+  "Identify one phrase that reveals unconscious self-evaluation (admiration, contempt, shame).",
+  "Does the author reveal dependency on external approval or autonomy from it?",
+  "What form of vulnerability does the writer allow?",
+  "How does the author talk about others — with empathy, rivalry, indifference?",
+  "What implicit audience is being addressed?",
+  "Does the writer's stance shift from confession to performance? Cite turning point.",
+  
+  // V. Symbolic & Unconscious Material (10)
+  "Which images or motifs recur (light/dark, ascent/descent, enclosure, mirrors), and what do they symbolize?",
+  "Are there dream-like or surreal elements?",
+  "What oppositions structure the text (order/chaos, love/power, mind/body)?",
+  "What wish or fear seems to animate the text beneath the surface argument?",
+  "Identify one metaphor that reads like a disguised confession.",
+  "How does the author relate to time — nostalgic, future-oriented, frozen?",
+  "Does the text express conflict between intellect and emotion?",
+  "What shadow aspect of personality is hinted at through hostile or taboo imagery?",
+  "Is there evidence of projection — attributing inner states to others or to abstractions?",
+  "What central psychological drama (loss, control, recognition, transformation) structures the entire piece?"
+];
 
 // Helper function to clean markdown formatting from analysis text
 function cleanMarkdownFromAnalysis(obj: any): any {
@@ -1773,7 +1881,7 @@ You can ask follow-up questions about this analysis.
   // Document analysis endpoint
   app.post("/api/analyze/document", async (req, res) => {
     try {
-      const { fileData, fileName, fileType, sessionId, selectedModel = "openai", title, analysisDepth = "short" } = req.body;
+      const { fileData, fileName, fileType, sessionId, selectedModel = "openai", title } = req.body;
       
       if (!fileData || typeof fileData !== 'string') {
         return res.status(400).json({ error: "Document data is required" });
@@ -2005,7 +2113,7 @@ You can ask follow-up questions about this analysis.
   // Text analysis endpoint
   app.post("/api/analyze/text", async (req, res) => {
     try {
-      const { content, sessionId, selectedModel = "openai", title, analysisDepth = "short" } = req.body;
+      const { content, sessionId, selectedModel = "openai", title } = req.body;
       
       if (!content || typeof content !== 'string') {
         return res.status(400).json({ error: "Text content is required" });
@@ -2015,15 +2123,17 @@ You can ask follow-up questions about this analysis.
         return res.status(400).json({ error: "Session ID is required" });
       }
       
-      console.log(`Processing text analysis with model: ${selectedModel}, depth: ${analysisDepth}`);
+      console.log(`Processing text analysis with model: ${selectedModel}`);
       
-      // Get the appropriate questions based on analysis depth
-      const questions = getAnalysisQuestions(analysisDepth);
+      // Use the 50-question text analysis framework
+      const questions = TEXT_ANALYSIS_QUESTIONS;
       const questionCount = questions.length;
       
       // Get personality insights based on text content
       const textAnalysisPrompt = `
-Please analyze the following text to provide comprehensive personality insights about the author:
+Please analyze the following text to provide comprehensive personality insights about the author.
+
+YOU MUST ANSWER ALL ${questionCount} QUESTIONS BELOW:
 
 TEXT:
 ${content}
@@ -2125,7 +2235,7 @@ FORMAT: Answer each question thoroughly with specific evidence. Include direct q
   // Document analysis endpoint
   app.post("/api/analyze/document", async (req, res) => {
     try {
-      const { fileData, fileName, fileType, sessionId, selectedModel = "openai", title, analysisDepth = "short" } = req.body;
+      const { fileData, fileName, fileType, sessionId, selectedModel = "openai", title } = req.body;
       
       if (!fileData || typeof fileData !== 'string') {
         return res.status(400).json({ error: "Document data is required" });
@@ -2135,10 +2245,10 @@ FORMAT: Answer each question thoroughly with specific evidence. Include direct q
         return res.status(400).json({ error: "Session ID is required" });
       }
       
-      console.log(`Processing document analysis with model: ${selectedModel}, file: ${fileName}, depth: ${analysisDepth}`);
+      console.log(`Processing document analysis with model: ${selectedModel}, file: ${fileName}`);
       
-      // Get the appropriate questions based on analysis depth
-      const questions = getAnalysisQuestions(analysisDepth);
+      // Use the 50-question text analysis framework (documents are analyzed as text)
+      const questions = TEXT_ANALYSIS_QUESTIONS;
       const questionCount = questions.length;
       
       // Extract base64 content from data URL
@@ -2421,7 +2531,7 @@ Provide detailed, comprehensive psychological insights based on the analysis. Al
   app.post("/api/analyze", async (req, res) => {
     try {
       // Use the new schema that supports both image and video with optional maxPeople
-      const { mediaData, mediaType, sessionId, maxPeople = 5, selectedModel = "deepseek", videoSegmentStart = 0, videoSegmentDuration = 3, analysisDepth = "short" } = uploadMediaSchema.parse(req.body);
+      const { mediaData, mediaType, sessionId, maxPeople = 5, selectedModel = "deepseek", videoSegmentStart = 0, videoSegmentDuration = 3 } = uploadMediaSchema.parse(req.body);
 
       // Extract base64 data
       const base64Data = mediaData.replace(/^data:(image|video)\/\w+;base64,/, "");
@@ -2551,8 +2661,7 @@ Provide detailed, comprehensive psychological insights based on the analysis. Al
         faceAnalysis, 
         videoAnalysis, 
         audioTranscription,
-        selectedModel,
-        analysisDepth
+        selectedModel
       );
 
       // Determine how many people were detected
@@ -3751,7 +3860,7 @@ function validateCoreAssessment(analysisResult: any, personLabel: string = "Subj
   return true;
 }
 
-async function getEnhancedPersonalityInsights(faceAnalysis: any, videoAnalysis: any = null, audioTranscription: any = null, selectedModel: string = "deepseek", analysisDepth: string = "short") {
+async function getEnhancedPersonalityInsights(faceAnalysis: any, videoAnalysis: any = null, audioTranscription: any = null, selectedModel: string = "deepseek") {
   // Check if any API clients are available, display warning if not
   if (!deepseek && !openai && !anthropic && !process.env.PERPLEXITY_API_KEY) {
     console.warn("No AI model API clients are available. Using fallback analysis.");
@@ -4087,12 +4196,13 @@ compatibilities or conflicts, and how these different personalities might comple
       ...(audioTranscription && { audioTranscription })
     };
     
-    // Get the appropriate questions based on analysis depth
-    const questions = getAnalysisQuestions(analysisDepth);
+    // Use PHOTO or VIDEO questions depending on whether we have video/audio
+    const questions = (videoAnalysis || audioTranscription) ? VIDEO_ANALYSIS_QUESTIONS : PHOTO_ANALYSIS_QUESTIONS;
     const questionCount = questions.length;
+    const mediaType = (videoAnalysis || audioTranscription) ? "VIDEO" : "PHOTO";
     
     const analysisPrompt = `
-You are the world's most elite psychological profiler conducting a comprehensive forensic-level personality assessment. You must answer ALL ${questionCount} CORE PSYCHOLOGICAL QUESTIONS with specific visual and/or audio evidence.
+You are the world's most elite psychological profiler conducting a comprehensive forensic-level ${mediaType} personality assessment. You must answer ALL ${questionCount} QUESTIONS with specific visual and/or audio evidence.
 
 CRITICAL REQUIREMENT: YOU MUST START WITH DETAILED VISUAL DESCRIPTION. Begin your analysis by describing what you actually see in the image/video:
 - Gender (male/female)

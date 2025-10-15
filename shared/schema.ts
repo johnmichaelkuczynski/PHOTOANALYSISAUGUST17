@@ -107,7 +107,6 @@ export const uploadMediaSchema = z.object({
   title: z.string().optional(), // For naming the analysis in history
   videoSegmentStart: z.number().min(0).optional().default(0), // For video segment selection (start time in seconds)
   videoSegmentDuration: z.number().min(1).max(3).optional().default(3), // For video segment selection (duration in seconds)
-  analysisDepth: z.enum(["short", "medium", "long"]).optional().default("short"), // Analysis depth selection
 });
 
 // Schema for getting shared analysis
@@ -121,7 +120,6 @@ export const textInputSchema = z.object({
   sessionId: z.string(),
   selectedModel: z.enum(["deepseek", "openai", "anthropic", "perplexity"]).optional().default("anthropic"),
   title: z.string().optional(),
-  analysisDepth: z.enum(["short", "medium", "long"]).optional().default("short"),
 });
 
 // Schema for validating document analysis
@@ -132,7 +130,6 @@ export const documentAnalysisSchema = z.object({
   sessionId: z.string(),
   selectedModel: z.enum(["deepseek", "openai", "anthropic", "perplexity"]).optional().default("anthropic"),
   title: z.string().optional(),
-  analysisDepth: z.enum(["short", "medium", "long"]).optional().default("short"),
 });
 
 // Schema for session-related operations

@@ -3,7 +3,6 @@ import { apiRequest } from "./queryClient";
 // Type definitions for enhanced API functionality
 export type ModelType = "deepseek" | "openai" | "anthropic" | "perplexity";
 export type MediaType = "image" | "video" | "document" | "text";
-export type AnalysisDepth = "short" | "medium" | "long";
 
 export async function uploadMedia(
   mediaData: string, 
@@ -16,7 +15,6 @@ export async function uploadMedia(
     documentType?: "pdf" | "docx" | "other";
     videoSegmentStart?: number;
     videoSegmentDuration?: number;
-    analysisDepth?: AnalysisDepth;
   } = {}
 ) {
   const { 
@@ -25,8 +23,7 @@ export async function uploadMedia(
     title,
     documentType,
     videoSegmentStart = 0,
-    videoSegmentDuration = 3,
-    analysisDepth = "short"
+    videoSegmentDuration = 3
   } = options;
   
   console.log(`Uploading ${mediaType} for analysis with model: ${selectedModel}, sessionId: ${sessionId}`);
@@ -40,8 +37,7 @@ export async function uploadMedia(
     title,
     documentType,
     videoSegmentStart,
-    videoSegmentDuration,
-    analysisDepth
+    videoSegmentDuration
   });
   
   const data = await res.json();
@@ -105,17 +101,15 @@ export async function analyzeText(
   content: string, 
   sessionId: string, 
   selectedModel: ModelType = "deepseek",
-  title?: string,
-  analysisDepth: AnalysisDepth = "short"
+  title?: string
 ) {
-  console.log(`Analyzing text with model: ${selectedModel}, depth: ${analysisDepth}, sessionId: ${sessionId}`);
+  console.log(`Analyzing text with model: ${selectedModel}, sessionId: ${sessionId}`);
   
   const res = await apiRequest("POST", "/api/analyze/text", { 
     content, 
     sessionId,
     selectedModel,
-    title,
-    analysisDepth
+    title
   });
   
   const data = await res.json();
@@ -156,10 +150,9 @@ export async function analyzeDocument(
   fileType: "pdf" | "docx",
   sessionId: string,
   selectedModel: ModelType = "deepseek",
-  title?: string,
-  analysisDepth: AnalysisDepth = "short"
+  title?: string
 ) {
-  console.log(`Analyzing document "${fileName}" with model: ${selectedModel}, depth: ${analysisDepth}, sessionId: ${sessionId}`);
+  console.log(`Analyzing document "${fileName}" with model: ${selectedModel}, sessionId: ${sessionId}`);
   
   const res = await apiRequest("POST", "/api/analyze/document", { 
     fileData, 
@@ -167,8 +160,7 @@ export async function analyzeDocument(
     fileType,
     sessionId,
     selectedModel,
-    title,
-    analysisDepth
+    title
   });
   
   const data = await res.json();

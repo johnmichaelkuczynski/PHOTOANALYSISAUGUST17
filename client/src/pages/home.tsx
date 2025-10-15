@@ -112,7 +112,6 @@ export default function Home({ isShareMode = false, shareId }: { isShareMode?: b
   const [analysisProgress, setAnalysisProgress] = useState(0);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [selectedModel, setSelectedModel] = useState<ModelType>("anthropic");
-  const [analysisDepth, setAnalysisDepth] = useState<AnalysisDepth>("short");
   const [documentName, setDocumentName] = useState<string>("");
   
   // Video segment states
@@ -256,7 +255,7 @@ export default function Home({ isShareMode = false, shareId }: { isShareMode?: b
         setAnalysisProgress(10);
         setMessages([]);
         
-        const response = await analyzeText(text, sessionId, selectedModel, undefined, analysisDepth);
+        const response = await analyzeText(text, sessionId, selectedModel, undefined);
         
         setAnalysisProgress(80);
         setAnalysisId(response.analysisId);
@@ -333,8 +332,7 @@ export default function Home({ isShareMode = false, shareId }: { isShareMode?: b
           fileType,
           sessionId,
           selectedModel,
-          undefined,
-          analysisDepth
+          undefined
         );
         
         setAnalysisProgress(80);
@@ -448,7 +446,6 @@ export default function Home({ isShareMode = false, shareId }: { isShareMode?: b
         const options = { 
           selectedModel, 
           maxPeople,
-          analysisDepth,
           ...(isVideo && { videoSegmentStart, videoSegmentDuration })
         };
         
@@ -802,34 +799,9 @@ export default function Home({ isShareMode = false, shareId }: { isShareMode?: b
             </div>
           </Card>
           
-          {/* Analysis Depth Selector */}
-          <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">Step 2: Select Analysis Depth</h2>
-            <Select
-              value={analysisDepth}
-              onValueChange={(value) => setAnalysisDepth(value as AnalysisDepth)}
-              disabled={isAnalyzing}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select Analysis Depth" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="short">SHORT (20 Questions)</SelectItem>
-                <SelectItem value="medium">MEDIUM (40 Questions)</SelectItem>
-                <SelectItem value="long">LONG (60 Questions)</SelectItem>
-              </SelectContent>
-            </Select>
-            
-            <div className="mt-3 text-sm text-muted-foreground">
-              {analysisDepth === "short" && "Covers core motivation, confidence, authenticity, intelligence, creativity, and essential personality traits"}
-              {analysisDepth === "medium" && "Includes all SHORT questions plus emotional stability, competitiveness, self-awareness, and leadership style"}
-              {analysisDepth === "long" && "Comprehensive analysis covering all 60 psychological questions including adaptability, decision-making, and hidden motivations"}
-            </div>
-          </Card>
-          
           {/* Upload Options */}
           <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">Step 3: Choose Input Type</h2>
+            <h2 className="text-xl font-semibold mb-4">Step 2: Choose Input Type</h2>
             <div className="grid grid-cols-3 gap-4">
               <Button 
                 variant="outline" 
