@@ -24,6 +24,19 @@ An advanced AI-powered personality insights platform that combines cutting-edge 
 
 ## Recent Changes
 
+### Fixed 50-Question Framework Implementation (October 15, 2025)
+✓ COMPLETELY REPLACED DEFUNCT 20/40/60 QUESTION SYSTEM WITH DEDICATED 50-QUESTION FRAMEWORKS
+✓ Implemented three specialized 50-question frameworks, one for each analysis type:
+  - **Photo Analysis**: 50 questions covering Physical Cues, Expression & Emotion, Composition & Context, Personality & Psychological Inference, Symbolic & Metapsychological Analysis
+  - **Video Analysis**: 50 questions covering Physical & Behavioral Cues, Expression & Emotion Over Time, Speech/Voice/Timing, Context/Environment/Interaction, Personality & Psychological Inference
+  - **Text Analysis**: 50 questions covering Language & Style, Emotional Indicators, Cognitive & Structural Patterns, Self-Representation & Identity, Symbolic & Unconscious Material
+✓ Removed analysisDepth parameter from all backend routes, schemas, and frontend components
+✓ Removed Analysis Depth Selector UI component, updated step numbering (Step 3 → Step 2)
+✓ Updated validation system to check for substantive content rather than specific field names
+✓ All analyses now use fixed 50-question framework - no depth selection required
+✓ Prompts dynamically select photo vs video questions based on media type
+✓ Build successful with no errors, system fully operational with new framework
+
 ### Visual Description System Implementation - Complete Success (August 20, 2025)
 ✓ ELIMINATED PLACEHOLDER TEXT ISSUE by requiring detailed visual descriptions first
 ✓ Added mandatory visual description requirements to all image/video analysis prompts
@@ -38,40 +51,11 @@ An advanced AI-powered personality insights platform that combines cutting-edge 
 ### Critical "Not Assessed" Fix - Complete Success (August 17, 2025)
 ✓ SUCCESSFULLY ELIMINATED ALL "Not assessed" RESPONSES from psychological analyses
 ✓ Updated image/video analysis prompts to explicitly forbid incomplete responses
-✓ Added core_psychological_assessment structure to ensure all 20 questions are answered
 ✓ Enhanced AI prompts with aggressive requirements for substantive content on every question
 ✓ Forced AI models to make reasonable psychological inferences even with limited visual data
 ✓ Added critical requirement language: "Not assessed is NOT acceptable - provide answers to ALL questions"
 ✓ Verified system working perfectly through comprehensive testing with video and image analysis
-✓ All psychological assessments now provide complete, substantive answers to every core question
-
-### Three-Tier Analysis Depth System Implementation (August 17, 2025)
-✓ IMPLEMENTED COMPREHENSIVE THREE-TIER ANALYSIS DEPTH SYSTEM across all analysis types
-✓ Created dynamic question generation system with getAnalysisQuestions() function:
-  - SHORT (20 questions): Core motivation, confidence, authenticity, intelligence, creativity
-  - MEDIUM (40 questions): Adds emotional stability, competitiveness, self-awareness, leadership
-  - LONG (60 questions): Complete psychological assessment including adaptability, decision-making
-✓ Updated all backend endpoints (text, document, media) to accept analysisDepth parameter
-✓ Enhanced all analysis prompts to dynamically use question count based on selected depth
-✓ Integrated frontend UI with Step 2 analysis depth selector with descriptive tooltips
-✓ Modified API types and schemas to include AnalysisDepth throughout system architecture
-✓ Updated all frontend mutation functions to pass analysisDepth parameter to backend services
-✓ Enhanced evidence requirements: 8-12 direct quotations for text, specific visual details for images/videos
-✓ Maintained clean output formatting without markdown for professional presentation
-
-### 20 Core Psychological Questions Implementation (August 17, 2025)
-✓ IMPLEMENTED COMPREHENSIVE 20-QUESTION PSYCHOLOGICAL FRAMEWORK across all analysis types
-✓ Updated all analysis prompts (text, image, video, document) to answer specific psychological questions:
-  - What drives this person (core motivation), confidence level, self-acceptance, intelligence, creativity
-  - Stress handling, trustworthiness, authenticity, ambition, insecurities, social validation needs
-  - Independence, communication style, criticism response, outlook, humor, treatment of others
-  - Consistency, hidden strengths, hidden weaknesses
-✓ Enhanced evidence requirements: TEXT/SPEECH analysis uses 8-12 direct quotations as supporting evidence
-✓ Enhanced evidence requirements: IMAGE/VIDEO analysis uses specific visual details (appearance, posture, background, body language, weight, facial expressions, microexpressions)
-✓ Updated all response formatting to display the 20 core questions prominently for single-person and multi-person analysis
-✓ Maintained comprehensive JSON parsing fixes for Anthropic API with improved brace-matching logic
-✓ Enhanced image/video analysis prompts to provide detailed visual evidence for each psychological assessment
-✓ Updated document analysis to include same 20-question framework with text-based evidence requirements
+✓ All psychological assessments now provide complete, substantive answers to every question
 
 ### Critical Text Analysis Fixes & API Key Reactivation (August 17, 2025)
 ✓ SUCCESSFULLY REACTIVATED ALL MAJOR API SERVICES with comprehensive key management

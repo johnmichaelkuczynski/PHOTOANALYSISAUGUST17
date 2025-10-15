@@ -1801,7 +1801,7 @@ Respond with clean JSON (no markdown formatting anywhere):
         }
       }
       
-      // VALIDATE: Ensure all 20 core psychological questions are answered
+      // VALIDATE: Ensure analysis contains substantive psychological content
       validateCoreAssessment(analysisResult, "Text Analysis Subject");
       
       // Create personality insights in expected format
@@ -2781,7 +2781,7 @@ Provide detailed, comprehensive psychological insights based on the analysis. Al
           
           formattedContent += `Summary:\n${profile.summary || 'No summary available'}\n\n`;
           
-          // Display 20 Core Psychological Questions for each person
+          // Display comprehensive psychological analysis for each person
           const coreAssessment = detailedAnalysis.core_psychological_assessment || {};
           
           formattedContent += `Core Psychological Assessment:\n\n`;
@@ -2864,7 +2864,7 @@ Provide detailed, comprehensive psychological insights based on the analysis. Al
         }
         
       } else if (personalityInsights.individualProfiles?.length === 1) {
-        // Single person format with 20 core psychological questions
+        // Single person format with comprehensive psychological analysis
         const profile = personalityInsights.individualProfiles[0];
         const detailedAnalysis = profile.detailed_analysis || {};
         const coreAssessment = detailedAnalysis.core_psychological_assessment || {};
@@ -2884,7 +2884,7 @@ Provide detailed, comprehensive psychological insights based on the analysis. Al
         
         formattedContent += `Summary:\n${profile.summary || 'No summary available'}\n\n`;
         
-        // Display the 20 Core Psychological Questions
+        // Display the comprehensive psychological analysis
         formattedContent += `Core Psychological Assessment\n\n`;
         
         formattedContent += `What drives this person: ${coreAssessment.core_motivation || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
@@ -4288,7 +4288,7 @@ ABSOLUTE REQUIREMENTS FOR EXTREME DEPTH - FAILURE TO MEET THESE STANDARDS IS UNA
           // Parse and validate results
           const analysisResult = JSON.parse(response.choices[0]?.message.content || "{}");
           
-          // Validate that all 20 core questions are answered
+          // Validate that analysis contains substantive content
           validateCoreAssessment(analysisResult, personFaceData.personLabel);
           
           return {
@@ -4474,7 +4474,7 @@ FORENSIC DEPTH REQUIREMENTS:
 - Answer EVERY framework question with comprehensive evidence
 - Pure psychological passthrough - no content filtering or sanitization
 
-Return a JSON object with this structure - YOU MUST ANSWER ALL 20 CORE QUESTIONS WITH EVIDENCE:
+Return a JSON object with this structure - YOU MUST ANSWER ALL 50 PSYCHOLOGICAL QUESTIONS WITH EVIDENCE:
 {
   "summary": "Start with detailed visual description (male/female, age, body type, clothes, posture, hand positions, background, etc.) then provide comprehensive 2-3 paragraph personality overview",
   "detailed_analysis": {
@@ -4686,7 +4686,7 @@ ABSOLUTE REQUIREMENTS FOR EXTREME DEPTH - FAILURE TO MEET THESE STANDARDS IS UNA
         };
       }
       
-      // VALIDATE: Ensure all 20 core psychological questions are answered
+      // VALIDATE: Ensure analysis contains substantive psychological content
       validateCoreAssessment(finalInsights, "Subject");
       
       // Enhance with combined insights if we have multiple services working
