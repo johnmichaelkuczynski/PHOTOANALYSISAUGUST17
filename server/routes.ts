@@ -4052,9 +4052,10 @@ async function getEnhancedPersonalityInsights(faceAnalysis: any, videoAnalysis: 
   }
   
   // Check if faceAnalysis is an array (multiple people) or single object
-  const isMultiplePeople = Array.isArray(faceAnalysis);
+  // CRITICAL: Even if it's an array, if it only has 1 person, use single-person analysis path
+  const isMultiplePeople = Array.isArray(faceAnalysis) && faceAnalysis.length > 1;
   
-  // If we have multiple people, analyze each one separately
+  // If we have multiple people (2+), analyze each one separately
   if (isMultiplePeople) {
     console.log(`Analyzing ${faceAnalysis.length} people...`);
     
