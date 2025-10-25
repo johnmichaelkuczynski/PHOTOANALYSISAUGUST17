@@ -24,17 +24,18 @@ An advanced AI-powered personality insights platform that combines cutting-edge 
 
 ## Recent Changes
 
-### Fixed Question Framework Implementation (October 15, 2025)
-✓ COMPLETELY REPLACED DEFUNCT 20/40/60 QUESTION SYSTEM WITH DEDICATED QUESTION FRAMEWORKS
-✓ Implemented specialized question frameworks for each analysis type:
-  - **Photo Analysis**: 50 questions covering Physical Cues, Expression & Emotion, Composition & Context, Personality & Psychological Inference, Symbolic & Metapsychological Analysis
+### Assessment-Based Analysis Framework Implementation (October 15, 2025)
+✓ COMPLETELY REPLACED OLD QUESTION FRAMEWORKS WITH ASSESSMENT-BASED PROTOCOLS
+✓ Implemented specialized analysis approaches for each media type:
+  - **Photo Analysis**: Assessment-based protocol using 45 established psychological tests including MBTI, Big Five/OCEAN, HEXACO, Enneagram, DISC, 16PF, MMPI, DSM-5, WAIS, Rorschach, EQ-i, Dark Triad, and others
   - **Video Analysis**: 50 questions covering Physical & Behavioral Cues, Expression & Emotion Over Time, Speech/Voice/Timing, Context/Environment/Interaction, Personality & Psychological Inference
   - **Text/Document Analysis**: 100 questions covering Information Processing Style, Emotional Processing Style, Agency & Activity Level, Focus: Interpersonal vs. Ideational, Motivation & Value System, Intelligence & Conceptual Control, Honesty & Sincerity of Mind, Structure & Organization, Psychological Profile in Style, Substance & Cognitive Flexibility
+✓ Photo analysis now generates how person would score on each psychological assessment with visual evidence justification
+✓ Removed all "insufficient data" and ethical refusal pathways from photo analysis
+✓ Each assessment result must include specific test classification and visual evidence
 ✓ Removed analysisDepth parameter from all backend routes, schemas, and frontend components
 ✓ Removed Analysis Depth Selector UI component, updated step numbering (Step 3 → Step 2)
 ✓ Updated validation system to check for substantive content rather than specific field names
-✓ All analyses now use fixed question frameworks - no depth selection required
-✓ Prompts dynamically select photo vs video questions based on media type
 ✓ Build successful with no errors, system fully operational with new framework
 
 ### Visual Description System Implementation - Complete Success (August 20, 2025)
