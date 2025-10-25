@@ -1293,6 +1293,61 @@ export default function Home({ isShareMode = false, shareId }: { isShareMode?: b
               
               {messages.length > 0 && (
                 <div className="flex gap-2">
+                  {/* Copy and Delete buttons - always visible when messages exist */}
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="flex items-center gap-2"
+                    onClick={() => {
+                      const analysisText = messages
+                        .filter(m => m.role === "assistant")
+                        .map(m => m.content)
+                        .join('\n\n');
+                      navigator.clipboard.writeText(analysisText);
+                      toast({
+                        title: "Copied!",
+                        description: "Analysis copied to clipboard"
+                      });
+                    }}
+                  >
+                    <FileText className="h-4 w-4" />
+                    <span>Copy</span>
+                  </Button>
+                  
+                  <Button 
+                    variant="destructive" 
+                    size="sm" 
+                    className="flex items-center gap-2"
+                    onClick={async () => {
+                      try {
+                        await clearSession(sessionId);
+                        const newSessionId = nanoid();
+                        window.location.href = `/?session=${newSessionId}`;
+                        setMessages([]);
+                        setUploadedMedia(null);
+                        setMediaData(null);
+                        setDocumentName("");
+                        setTextInput("");
+                        setAnalysisId(null);
+                        setAnalysisProgress(0);
+                        toast({
+                          title: "Deleted",
+                          description: "Analysis deleted successfully"
+                        });
+                      } catch (error) {
+                        console.error("Error deleting analysis:", error);
+                        toast({
+                          variant: "destructive",
+                          title: "Error",
+                          description: "Failed to delete analysis"
+                        });
+                      }
+                    }}
+                  >
+                    <AlertCircle className="h-4 w-4" />
+                    <span>Delete</span>
+                  </Button>
+                  
                   {/* Download buttons */}
                   {analysisId && (
                     <>

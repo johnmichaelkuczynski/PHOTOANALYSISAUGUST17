@@ -3043,6 +3043,7 @@ Provide detailed, comprehensive psychological insights based on the analysis. Al
         // Single person format with comprehensive psychological analysis
         const profile = personalityInsights.individualProfiles[0];
         const detailedAnalysis = profile.detailed_analysis || {};
+        const assessments = profile.assessments || null;
         const coreAssessment = detailedAnalysis.core_psychological_assessment || {};
         
         const gender = profile.personLabel?.includes('Male') ? 'Male' : 
@@ -3060,29 +3061,124 @@ Provide detailed, comprehensive psychological insights based on the analysis. Al
         
         formattedContent += `Summary:\n${profile.summary || 'No summary available'}\n\n`;
         
-        // Display the comprehensive psychological analysis
-        formattedContent += `Core Psychological Assessment\n\n`;
-        
-        formattedContent += `What drives this person: ${coreAssessment.core_motivation || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Confidence level: ${coreAssessment.confidence_level || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Self-acceptance: ${coreAssessment.self_acceptance || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Intelligence level: ${coreAssessment.intelligence_level || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Creativity: ${coreAssessment.creativity_assessment || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Stress handling: ${coreAssessment.stress_handling || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Trustworthiness: ${coreAssessment.trustworthiness || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Authenticity: ${coreAssessment.authenticity || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Ambition level: ${coreAssessment.ambition_level || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Insecurities: ${coreAssessment.insecurities || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Social validation needs: ${coreAssessment.social_validation || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Independence: ${coreAssessment.independence || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Communication style: ${coreAssessment.communication_style || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Response to criticism: ${coreAssessment.criticism_response || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Outlook: ${coreAssessment.outlook || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Sense of humor: ${coreAssessment.humor_sense || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Treatment of others: ${coreAssessment.treatment_of_others || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Consistency: ${coreAssessment.consistency || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Hidden strengths: ${coreAssessment.hidden_strengths || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
-        formattedContent += `Hidden weaknesses: ${coreAssessment.hidden_weaknesses || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        // Check if this is the NEW assessment-based format (for photos) or OLD format (for videos)
+        if (assessments) {
+          // NEW ASSESSMENT-BASED FORMAT FOR PHOTO ANALYSIS
+          formattedContent += `PSYCHOLOGICAL ASSESSMENT RESULTS\n`;
+          formattedContent += `${' ='.repeat(40)}\n\n`;
+          
+          // Trait & Type Assessments
+          if (assessments.trait_type_assessments) {
+            formattedContent += `TRAIT & TYPE ASSESSMENTS:\n\n`;
+            const t = assessments.trait_type_assessments;
+            if (t.mbti) formattedContent += `MBTI: ${t.mbti}\n\n`;
+            if (t.big_five_ocean) formattedContent += `Big Five (OCEAN): ${t.big_five_ocean}\n\n`;
+            if (t.hexaco) formattedContent += `HEXACO: ${t.hexaco}\n\n`;
+            if (t.enneagram) formattedContent += `Enneagram: ${t.enneagram}\n\n`;
+            if (t.disc) formattedContent += `DISC: ${t.disc}\n\n`;
+            if (t["16pf"]) formattedContent += `16PF: ${t["16pf"]}\n\n`;
+            if (t.keirsey_temperament) formattedContent += `Keirsey Temperament: ${t.keirsey_temperament}\n\n`;
+            if (t.socionics) formattedContent += `Socionics: ${t.socionics}\n\n`;
+            if (t.hogan_personality) formattedContent += `Hogan Personality: ${t.hogan_personality}\n\n`;
+          }
+          
+          // Clinical & Mental Health
+          if (assessments.clinical_mental_health) {
+            formattedContent += `CLINICAL & MENTAL HEALTH ASSESSMENTS:\n\n`;
+            const c = assessments.clinical_mental_health;
+            if (c.mmpi) formattedContent += `MMPI: ${c.mmpi}\n\n`;
+            if (c.mcmi) formattedContent += `MCMI: ${c.mcmi}\n\n`;
+            if (c.dsm5) formattedContent += `DSM-5: ${c.dsm5}\n\n`;
+            if (c.beck_depression) formattedContent += `Beck Depression: ${c.beck_depression}\n\n`;
+            if (c.hamilton_depression) formattedContent += `Hamilton Depression: ${c.hamilton_depression}\n\n`;
+            if (c.beck_anxiety) formattedContent += `Beck Anxiety: ${c.beck_anxiety}\n\n`;
+            if (c.gad7) formattedContent += `GAD-7: ${c.gad7}\n\n`;
+            if (c.phq9) formattedContent += `PHQ-9: ${c.phq9}\n\n`;
+          }
+          
+          // Cognitive & Intelligence
+          if (assessments.cognitive_intelligence) {
+            formattedContent += `COGNITIVE & INTELLIGENCE ASSESSMENTS:\n\n`;
+            const cog = assessments.cognitive_intelligence;
+            if (cog.wais) formattedContent += `WAIS: ${cog.wais}\n\n`;
+            if (cog.wisc) formattedContent += `WISC: ${cog.wisc}\n\n`;
+            if (cog.stanford_binet) formattedContent += `Stanford-Binet: ${cog.stanford_binet}\n\n`;
+            if (cog.ravens_progressive) formattedContent += `Raven's Progressive Matrices: ${cog.ravens_progressive}\n\n`;
+            if (cog.woodcock_johnson) formattedContent += `Woodcock-Johnson: ${cog.woodcock_johnson}\n\n`;
+          }
+          
+          // Projective Tests
+          if (assessments.projective_tests) {
+            formattedContent += `PROJECTIVE TESTS:\n\n`;
+            const p = assessments.projective_tests;
+            if (p.rorschach) formattedContent += `Rorschach: ${p.rorschach}\n\n`;
+            if (p.tat) formattedContent += `TAT: ${p.tat}\n\n`;
+            if (p.draw_a_person) formattedContent += `Draw-a-Person: ${p.draw_a_person}\n\n`;
+            if (p.sentence_completion) formattedContent += `Sentence Completion: ${p.sentence_completion}\n\n`;
+          }
+          
+          // Emotional & Social
+          if (assessments.emotional_social) {
+            formattedContent += `EMOTIONAL & SOCIAL FUNCTIONING:\n\n`;
+            const e = assessments.emotional_social;
+            if (e.eqi) formattedContent += `EQ-i: ${e.eqi}\n\n`;
+            if (e.msceit) formattedContent += `MSCEIT: ${e.msceit}\n\n`;
+            if (e.baron_emotional) formattedContent += `Bar-On Emotional Intelligence: ${e.baron_emotional}\n\n`;
+            if (e.social_responsiveness) formattedContent += `Social Responsiveness: ${e.social_responsiveness}\n\n`;
+          }
+          
+          // Behavioral & Attention
+          if (assessments.behavioral_attention) {
+            formattedContent += `BEHAVIORAL & ATTENTION ASSESSMENTS:\n\n`;
+            const b = assessments.behavioral_attention;
+            if (b.adhd_rating) formattedContent += `ADHD Rating Scale: ${b.adhd_rating}\n\n`;
+            if (b.conners) formattedContent += `Conners': ${b.conners}\n\n`;
+            if (b.brief) formattedContent += `BRIEF: ${b.brief}\n\n`;
+          }
+          
+          // Vocational & Motivation
+          if (assessments.vocational_motivation) {
+            formattedContent += `VOCATIONAL & MOTIVATION ASSESSMENTS:\n\n`;
+            const v = assessments.vocational_motivation;
+            if (v.strong_interest) formattedContent += `Strong Interest Inventory: ${v.strong_interest}\n\n`;
+            if (v.riasec_holland) formattedContent += `RIASEC/Holland Codes: ${v.riasec_holland}\n\n`;
+            if (v.via_character) formattedContent += `VIA Character Strengths: ${v.via_character}\n\n`;
+            if (v.schwartz_values) formattedContent += `Schwartz Values: ${v.schwartz_values}\n\n`;
+          }
+          
+          // Personality Pathology
+          if (assessments.personality_pathology) {
+            formattedContent += `PERSONALITY PATHOLOGY & DARK TRAITS:\n\n`;
+            const path = assessments.personality_pathology;
+            if (path.pclr) formattedContent += `PCL-R: ${path.pclr}\n\n`;
+            if (path.dark_triad) formattedContent += `Dark Triad: ${path.dark_triad}\n\n`;
+            if (path.pid5) formattedContent += `PID-5: ${path.pid5}\n\n`;
+          }
+        } else {
+          // OLD FORMAT FOR VIDEO ANALYSIS
+          formattedContent += `Core Psychological Assessment\n\n`;
+          
+          formattedContent += `What drives this person: ${coreAssessment.core_motivation || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Confidence level: ${coreAssessment.confidence_level || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Self-acceptance: ${coreAssessment.self_acceptance || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Intelligence level: ${coreAssessment.intelligence_level || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Creativity: ${coreAssessment.creativity_assessment || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Stress handling: ${coreAssessment.stress_handling || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Trustworthiness: ${coreAssessment.trustworthiness || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Authenticity: ${coreAssessment.authenticity || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Ambition level: ${coreAssessment.ambition_level || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Insecurities: ${coreAssessment.insecurities || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Social validation needs: ${coreAssessment.social_validation || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Independence: ${coreAssessment.independence || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Communication style: ${coreAssessment.communication_style || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Response to criticism: ${coreAssessment.criticism_response || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Outlook: ${coreAssessment.outlook || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Sense of humor: ${coreAssessment.humor_sense || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Treatment of others: ${coreAssessment.treatment_of_others || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Consistency: ${coreAssessment.consistency || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Hidden strengths: ${coreAssessment.hidden_strengths || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+          formattedContent += `Hidden weaknesses: ${coreAssessment.hidden_weaknesses || '[ERROR: AI model failed to provide answer - please regenerate analysis]'}\n\n`;
+        }
         
         // Speech Analysis section if available
         if (detailedAnalysis.speech_analysis) {
@@ -4614,45 +4710,63 @@ MULTI-SOURCE DATA INTEGRATION: This analysis integrates comprehensive data from 
 
 Return a JSON object with this structure - YOU MUST PROVIDE ASSESSMENT RESULTS FOR ALL ${PHOTO_ANALYSIS_ASSESSMENTS.length} PSYCHOLOGICAL TESTS:
 {
-  "summary": "Start with detailed visual description (male/female, age, body type, clothes, posture, hand positions, background, etc.) then provide comprehensive 2-3 paragraph personality overview",
-  "detailed_analysis": {
-    "core_psychological_assessment": {
-      "core_motivation": "What drives this person - provide specific visual evidence (posture, expression, clothing) and quotes if available",
-      "confidence_level": "How confident are they - analyze body language, eye contact, posture, facial expression with specific details",
-      "self_acceptance": "Do they genuinely like themselves - evidence from facial expression, grooming care, posture, self-referential speech",
-      "intelligence_level": "How smart are they - assess through facial alertness, eye engagement, speech complexity, background objects",
-      "creativity_assessment": "How creative are they - evidence from clothing choices, environment, unique expressions, original speech",
-      "stress_handling": "How they handle stress - body tension, facial strain, defensive postures, stress-related speech patterns",
-      "trustworthiness": "Are they trustworthy - eye contact quality, facial openness, genuine vs forced expressions, speech consistency",
-      "authenticity": "Do they exaggerate or fake things - performative vs natural expressions, posed vs candid appearance",
-      "ambition_level": "How ambitious are they - assertive posture, determined expression, professional presentation, goal-oriented speech",
-      "insecurities": "What are they insecure about - defensive body language, self-conscious expressions, covering behaviors, hesitant speech",
-      "social_validation": "How much do they care what others think - posed vs natural appearance, grooming attention, performative expressions",
-      "independence": "Are they independent-minded or followers - unique vs conventional appearance, original expressions, unconventional speech",
-      "communication_style": "Do they dominate or listen more - assertive vs receptive body language, eye contact patterns, speech volume",
-      "criticism_response": "How do they deal with criticism - defensive postures, facial reactions, openness vs closed-off body language",
-      "outlook": "Are they optimistic or pessimistic - facial expression positivity, upward vs downward body language, speech tone",
-      "humor_sense": "Do they have strong sense of humor - eye crinkles, smile genuineness, playful expressions, humorous speech",
-      "treatment_of_others": "How do they treat people beneath them - facial warmth vs coldness, respectful vs dismissive posture",
-      "consistency": "Are they consistent or contradictory - expression authenticity, body language alignment, speech consistency",
-      "hidden_strengths": "What hidden strengths do they have - subtle confident details, understated competence signals, quiet strength",
-      "hidden_weaknesses": "What hidden weaknesses do they have - subtle tension signs, compensatory behaviors, masked insecurities"
+  "summary": "Start with detailed visual description (male/female, age, body type, clothes, posture, hand positions, background, etc.) then provide comprehensive 2-3 paragraph personality overview based on all assessment results",
+  "assessments": {
+    "trait_type_assessments": {
+      "mbti": "Specific MBTI type (e.g., INTJ, ENFP) with 2-3 sentences of visual evidence justification",
+      "big_five_ocean": "Specific Big Five scores (e.g., High Openness, Low Neuroticism, Moderate Extraversion, High Conscientiousness, Moderate Agreeableness) with visual evidence",
+      "hexaco": "HEXACO personality profile with specific scores and visual evidence",
+      "enneagram": "Enneagram type (e.g., Type 5, Type 8) with wing and visual evidence",
+      "disc": "DISC profile (D/I/S/C scores) with visual evidence",
+      "16pf": "16 Personality Factors profile with key factors and visual evidence",
+      "keirsey_temperament": "Keirsey temperament classification with visual evidence",
+      "socionics": "Socionics type with visual evidence",
+      "hogan_personality": "Hogan Personality Inventory results with visual evidence"
     },
-    "speech_analysis": {
-      "key_quotes": ["meaningful quotes from speech that reveal personality traits", "quote showing intelligence", "quote revealing values", "quote demonstrating communication style"],
-      "vocabulary_analysis": "analysis of word choice, linguistic sophistication, communication style with specific examples",
-      "personality_revealed": "detailed insights into character traits revealed through specific speech patterns and word choices"
+    "clinical_mental_health": {
+      "mmpi": "MMPI clinical scales assessment with visual evidence",
+      "mcmi": "Millon Clinical Multiaxial Inventory results with visual evidence",
+      "dsm5": "DSM-5 personality patterns observed with visual evidence",
+      "beck_depression": "Beck Depression Inventory assessment with visual evidence",
+      "hamilton_depression": "Hamilton Depression Rating Scale with visual evidence",
+      "beck_anxiety": "Beck Anxiety Inventory results with visual evidence",
+      "gad7": "GAD-7 anxiety assessment with visual evidence",
+      "phq9": "PHQ-9 depression screening with visual evidence"
     },
-    "visual_evidence": {
-      "facial_analysis": "detailed analysis of facial expressions, microexpressions, eye contact, smile authenticity with specific observations",
-      "body_language": "comprehensive analysis of posture, gestures, defensive vs open positioning with specific details", 
-      "appearance_details": "clothing choices, grooming, weight/build, background objects and what they reveal about personality",
-      "microexpressions": "specific micro-expressions observed and their psychological significance"
+    "cognitive_intelligence": {
+      "wais": "WAIS intelligence assessment with estimated IQ range and visual evidence",
+      "wisc": "WISC cognitive profile with visual evidence",
+      "stanford_binet": "Stanford-Binet intelligence results with visual evidence",
+      "ravens_progressive": "Raven's Progressive Matrices assessment with visual evidence",
+      "woodcock_johnson": "Woodcock-Johnson cognitive abilities with visual evidence"
     },
-    "professional_insights": "comprehensive analysis of career inclinations, work style preferences, leadership qualities based on visual and audio evidence",
-    "growth_areas": {
-      "strengths": ["strength 1 with detailed visual/audio evidence", "strength 2 with evidence", "strength 3 with evidence"],
-      "development_path": "detailed recommendations for personal and professional growth based on observed patterns and evidence"
+    "projective_tests": {
+      "rorschach": "Rorschach Inkblot Test interpretation with visual evidence",
+      "tat": "Thematic Apperception Test results with visual evidence",
+      "draw_a_person": "Draw-a-Person Test assessment with visual evidence",
+      "sentence_completion": "Sentence Completion Tests results with visual evidence"
+    },
+    "emotional_social": {
+      "eqi": "Emotional Quotient Inventory results with visual evidence",
+      "msceit": "Mayer-Salovey-Caruso Emotional Intelligence Test with visual evidence",
+      "baron_emotional": "Bar-On Emotional Intelligence Scale with visual evidence",
+      "social_responsiveness": "Social Responsiveness Scale assessment with visual evidence"
+    },
+    "behavioral_attention": {
+      "adhd_rating": "ADHD Rating Scale assessment with visual evidence",
+      "conners": "Conners' Rating Scales results with visual evidence",
+      "brief": "BRIEF executive function assessment with visual evidence"
+    },
+    "vocational_motivation": {
+      "strong_interest": "Strong Interest Inventory results with visual evidence",
+      "riasec_holland": "RIASEC/Holland Codes classification with visual evidence",
+      "via_character": "VIA Character Strengths profile with visual evidence",
+      "schwartz_values": "Schwartz Value Survey results with visual evidence"
+    },
+    "personality_pathology": {
+      "pclr": "PCL-R Psychopathy Checklist assessment with visual evidence",
+      "dark_triad": "Dark Triad scores (Machiavellianism, Narcissism, Psychopathy) with visual evidence",
+      "pid5": "PID-5 DSM-5 personality traits with visual evidence"
     }
   }
 }
