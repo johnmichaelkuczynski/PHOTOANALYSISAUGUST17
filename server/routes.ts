@@ -4463,54 +4463,64 @@ compatibilities or conflicts, and how these different personalities might comple
     const questionCount = questions.length;
     const mediaType = (videoAnalysis || audioTranscription) ? "VIDEO" : "PHOTO";
     
-    // PHOTO ANALYSIS PROTOCOL: Answer 30 questions with explicit evidence, THEN construct profile
+    // PHOTO ANALYSIS PROTOCOL: OBSERVATION-ONLY answers to 30 questions, then ONE short summary
     const analysisPrompt = `
-You are analyzing a ${mediaType}. You must follow this MANDATORY two-step protocol:
+CRITICAL INSTRUCTIONS: STOP generating personality summaries. STOP inferring traits like "confidence," "intelligence," "trustworthiness," or "emotional stability." This is FORBIDDEN.
 
 DATA AVAILABLE FOR ANALYSIS:
 ${JSON.stringify(analysisInput, null, 2)}
 
 ═══════════════════════════════════════════════════════════════════════════════
-STEP 1: ANSWER ALL 30 QUESTIONS - EACH ANSWER MUST BE EXPLICIT AND WELL-ARGUED
+MANDATORY PROTOCOL: ANSWER 30 OBSERVATION QUESTIONS (VISIBLE EVIDENCE ONLY)
 ═══════════════════════════════════════════════════════════════════════════════
 
-You MUST answer each of the following ${questionCount} questions individually. For EACH question:
-- Provide an EXPLICIT, WELL-ARGUED answer with 2-4 sentences
-- Support your answer with SPECIFIC OBSERVABLE EVIDENCE from the image data
-- Use concrete details: facial features, body positioning, clothing, background objects, colors, lighting
-- Do NOT skip any question
-- Do NOT give generic or vague answers
-- Do NOT use markdown formatting (no # or ### or **)
+You MUST answer the following ${questionCount} questions in order, one-by-one.
+
+RULES FOR EACH ANSWER:
+1. Base answers ONLY on VISIBLE EVIDENCE: face tension, eye direction, posture, hand position, jaw, eyebrows, clothing, background objects
+2. DO NOT make psychological conclusions (NO personality traits, NO character assessments)
+3. If something is not visible in the image, write: "Not visible in frame"
+4. DO NOT invent, assume, or generalize
+5. DO NOT skip, merge, or reorder questions
+6. DO NOT use markdown formatting (no # or ### or **)
+
+BANNED WORDS (unless tied to specific visible cue): confident, intelligent, trustworthy, mature, analytical, stable, calm, ambitious, creative, professional, reliable
+
+EXACT FORMAT REQUIRED:
+
+Question 1: What is the person's facial expression (neutral, strained smile, genuine smile, tense, withdrawn, etc.)?
+[Your answer based ONLY on visible facial features]
+
+Question 2: What are the eyebrows doing (raised, furrowed, asymmetrical)?
+[Your answer based ONLY on visible eyebrow position]
+
+Question 3: What is the direction of gaze (direct eye contact, downward, sideways, unfocused)?
+[Your answer based ONLY on visible eye direction]
+
+...continue this exact format for ALL 30 questions below...
 
 THE 30 QUESTIONS YOU MUST ANSWER:
 
 ${questions.map((q, i) => `Question ${i + 1}: ${q}`).join('\n\n')}
 
-FORMAT FOR STEP 1:
-Answer each question like this:
-Question 1: [Copy the question]
-Answer: [Your explicit, well-argued answer with observable evidence]
-
-Question 2: [Copy the question]
-Answer: [Your explicit, well-argued answer with observable evidence]
-
-...continue for all 30 questions...
-
 ═══════════════════════════════════════════════════════════════════════════════
-STEP 2: PSYCHOLOGICAL PROFILE (ONLY AFTER ANSWERING ALL 30 QUESTIONS)
+AFTER ALL 30 QUESTIONS: ONE SHORT PSYCHOANALYTIC SUMMARY
 ═══════════════════════════════════════════════════════════════════════════════
 
-Only after you have answered all 30 questions above, provide a brief psychological profile based SOLELY on your answers. Include:
+Only after answering all 30 observation questions above, provide ONE short psychoanalytic summary paragraph.
 
-- Core defense mechanisms
-- Attachment pattern
-- Narcissistic/self-effacing tendencies
-- Anxiety strategies (avoidant/hypervigilant/etc.)
-- Relation to others/self/world
+RULES FOR SUMMARY:
+- Use ONLY information already stated in the 30 answers above
+- NO new claims, NO new observations
+- NO abstract labels like "confident," "mature," "reliable" unless already tied to visible cues in your answers
+- Keep it to one paragraph (4-6 sentences)
+- Focus on: core defense mechanisms, attachment pattern, relation to others/self/world
 
-Your profile MUST be based only on your answers to the 30 questions—no new observations.
+Format: "Psychoanalytic Summary (based strictly on the 30 answers above): [your one paragraph summary]"
 
-CRITICAL: You MUST complete STEP 1 (all 30 questions with explicit, well-argued answers) BEFORE writing STEP 2.`;
+═══════════════════════════════════════════════════════════════════════════════
+CRITICAL: Any output that does not follow this format is INVALID and WRONG.
+═══════════════════════════════════════════════════════════════════════════════`;
 
     // Try to get analysis from all three services in parallel for maximum depth
     try {
