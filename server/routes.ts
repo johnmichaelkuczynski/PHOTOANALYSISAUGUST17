@@ -2265,29 +2265,33 @@ You can ask follow-up questions about this analysis.
       const questions = TEXT_ANALYSIS_QUESTIONS;
       const questionCount = questions.length;
       
-      // Get personality insights based on text content
+      // TWO-STEP METHODOLOGY: Answer questions first, THEN construct profile
       const textAnalysisPrompt = `
-Please analyze the following text to provide comprehensive personality insights about the author.
+You are analyzing a writing sample. DO NOT immediately psychoanalyze or summarize. Instead, follow this strict two-step process:
 
-YOU MUST ANSWER ALL ${questionCount} QUESTIONS BELOW:
+STEP 1: Answer each of these ${questionCount} questions individually with direct evidence from the text:
 
-TEXT:
+TEXT TO ANALYZE:
 ${content}
 
-Based on this text, answer these ${questionCount} psychological questions about the author. For each question, provide specific evidence from the text including 8-12 direct quotations that support your assessment. Do not use markdown formatting - use plain text only.
-
-PSYCHOLOGICAL QUESTIONS TO ANSWER:
+QUESTIONS (answer each one separately with direct quotes as evidence):
 ${questions.map((q, i) => `${i + 1}. ${q}`).join('\n')}
 
-ANALYSIS REQUIREMENTS:
-- Extract 8-12 direct quotations from the text as supporting evidence
-- Analyze writing style, tone, word choice, and content themes
-- Provide detailed psychological assessment for each question
-- Include specific textual evidence for every psychological conclusion
-- Focus on observable patterns in language and communication style
-- Address cognitive processing style, emotional expression, and personality traits
+REQUIREMENTS FOR STEP 1:
+- Answer EVERY question individually
+- Provide direct quotes from the text as evidence for each answer
+- Be specific and grounded in observable textual evidence
+- Do NOT generalize or skip questions
+- Do NOT use markdown formatting (no # or ### or **)
 
-FORMAT: Answer each question thoroughly with specific evidence. Include direct quotes in quotation marks. Use plain text formatting without markdown headers or special characters.
+STEP 2: Only after answering all ${questionCount} questions above, provide a concise psychoanalytic profile of the writer based on your answers. This profile should include:
+- Core defense mechanisms
+- Attachment pattern
+- Narcissistic/self-effacing tendencies  
+- Anxiety strategies (avoidant/hypervigilant/etc.)
+- Relation to others/self/world
+
+Your profile MUST be based only on your answers to the questions above—no new observations.
 `;
 
       // Get personality analysis from selected AI model
@@ -2398,24 +2402,30 @@ FORMAT: Answer each question thoroughly with specific evidence. Include direct q
       const tempDocPath = path.join(tempDir, `doc_${Date.now()}_${fileName}`);
       await writeFileAsync(tempDocPath, fileBuffer);
       
-      // Document analysis prompt with depth-based questions
+      // TWO-STEP METHODOLOGY: Answer questions first, THEN construct profile
       const documentAnalysisPrompt = `
-Analyze this document: ${fileName} (${fileType}) to provide comprehensive psychological insights about the author.
+You are analyzing a document: ${fileName} (${fileType}). DO NOT immediately psychoanalyze or summarize. Instead, follow this strict two-step process:
 
-Answer these ${questionCount} psychological questions about the author based on their writing. For each question, provide specific evidence from the document including 8-12 direct quotations that support your assessment. Do not use markdown formatting - use plain text only.
+STEP 1: Answer each of these ${questionCount} questions individually with direct evidence from the document:
 
-PSYCHOLOGICAL QUESTIONS TO ANSWER:
+QUESTIONS (answer each one separately with direct quotes as evidence):
 ${questions.map((q, i) => `${i + 1}. ${q}`).join('\n')}
 
-ANALYSIS REQUIREMENTS:
-- Extract 8-12 direct quotations from the document as supporting evidence
-- Analyze writing style, tone, word choice, and content themes
-- Provide detailed psychological assessment for each question
-- Include specific textual evidence for every psychological conclusion
-- Focus on observable patterns in language and communication style
-- Address cognitive processing style, emotional expression, and personality traits
+REQUIREMENTS FOR STEP 1:
+- Answer EVERY question individually
+- Provide direct quotes from the document as evidence for each answer
+- Be specific and grounded in observable textual evidence
+- Do NOT generalize or skip questions
+- Do NOT use markdown formatting (no # or ### or **)
 
-FORMAT: Answer each question thoroughly with specific evidence. Include direct quotes in quotation marks. Use plain text formatting without markdown headers or special characters.
+STEP 2: Only after answering all ${questionCount} questions above, provide a concise psychoanalytic profile of the writer based on your answers. This profile should include:
+- Core defense mechanisms
+- Attachment pattern
+- Narcissistic/self-effacing tendencies  
+- Anxiety strategies (avoidant/hypervigilant/etc.)
+- Relation to others/self/world
+
+Your profile MUST be based only on your answers to the questions above—no new observations.
 `;
 
       // Get document analysis from selected AI model
@@ -4453,143 +4463,38 @@ compatibilities or conflicts, and how these different personalities might comple
     const questionCount = questions.length;
     const mediaType = (videoAnalysis || audioTranscription) ? "VIDEO" : "PHOTO";
     
+    // TWO-STEP METHODOLOGY: Answer questions first, THEN construct profile
     const analysisPrompt = `
-You are the world's most elite psychological profiler conducting a comprehensive forensic-level ${mediaType} personality assessment. You must answer ALL ${questionCount} QUESTIONS with specific visual and/or audio evidence.
+You are analyzing a ${mediaType}. DO NOT immediately psychoanalyze or summarize. Instead, follow this strict two-step process:
 
-CRITICAL REQUIREMENT: YOU MUST START WITH DETAILED VISUAL DESCRIPTION. Begin your analysis by describing what you actually see in the image/video:
-- Gender (male/female)
-- Approximate age range
-- Physical appearance (body type, posture, height estimate, weight)
-- Clothing style, colors, and formality level
-- Facial expression and specific details (touching forehead, smiling, frowning, hand positions, etc.)
-- Background/scenery details (office, home, outdoor, furniture, objects)
-- Any objects, technology, or personal items visible
-- Body language and positioning
-- Any actions or gestures being performed
-- Grooming and styling choices
+STEP 1: Answer each of these ${questionCount} questions individually with direct observable evidence:
 
-Only after providing these specific visual details should you proceed to psychological assessment, and ALL psychological conclusions must be supported by the visual evidence you described.
+DATA AVAILABLE FOR ANALYSIS:
+${JSON.stringify(analysisInput, null, 2)}
 
-CRITICAL REQUIREMENTS:
-- NO MARKDOWN FORMATTING: Do not use # ### ** or any markdown
-- PROVIDE SPECIFIC EVIDENCE for each answer:
-  * VISUAL EVIDENCE: appearance details, body language, posture, facial expressions, clothing, grooming, background objects, weight/build, microexpressions
-  * AUDIO EVIDENCE: direct quotations from speech (if available), tone of voice, speaking patterns
-- Answer each question with 2-3 sentences of detailed analysis and supporting evidence
+QUESTIONS (answer each one separately with specific visual/audio evidence):
+${questions.map((q, i) => `${i + 1}. ${q}`).join('\n')}
 
-MANDATORY ${questionCount} PSYCHOLOGICAL QUESTIONS - ANSWER ALL WITH SPECIFIC EVIDENCE:
+REQUIREMENTS FOR STEP 1:
+- Answer EVERY question individually
+- Provide specific observable evidence for each answer:
+  * For PHOTO: facial expressions, body language, posture, clothing, grooming, background objects, microexpressions
+  * For VIDEO: all of the above PLUS movement patterns, changes over time, voice/speech patterns if available
+- Include direct quotes from speech/audio if available
+- Be specific and grounded in observable evidence
+- Do NOT generalize or skip questions  
+- Do NOT use markdown formatting (no # or ### or **)
 
-${questions.map((q, i) => `${i + 1}. ${q} - Provide specific visual/audio evidence for your assessment`).join('\n')}
+STEP 2: Only after answering all ${questionCount} questions above, provide a concise psychological/psychoanalytic profile based on your answers. This profile should include:
+- Core defense mechanisms
+- Attachment pattern
+- Narcissistic/self-effacing tendencies
+- Anxiety strategies (avoidant/hypervigilant/etc.)
+- Relation to others/self/world
 
+Your profile MUST be based only on your answers to the questions above—no new observations.
 
-
-V. SELF & EGO STRUCTURE
-- How integrated or fragmented does the self appear?
-- Are there defenses (denial, projection, reaction formation, intellectualization)? Identify with examples.
-- Is the ego brittle, grandiose, or well-regulated?
-- How does the subject relate to authority or ideals? Quote if available.
-- Where are points of narcissistic injury or vulnerability visible?
-
-VI. INTERPERSONAL STYLE
-- How does the subject implicitly treat the viewer/listener? Quote if available.
-- Is there a manipulative undertone — flattery, intimidation, seduction, deflection?
-- What role would they likely assume in a group (leader, scapegoat, clown, father)?
-- Do they show capacity for empathy or only self-reference? Quote if available.
-- Are intimacy and distance well-calibrated or distorted?
-
-VII. CULTURAL & SYMBOLIC POSITION
-- What class, cultural, or ideological identity is signaled?
-- Are there signs of ressentiment, envy, or superiority?
-- Does the subject echo stock phrases or clichés? Quote if available.
-- Are there unconscious cultural archetypes being embodied (hero, victim, trickster)?
-- What symbolic resonance does the subject's presentation carry (mythic, banal, tragic)?
-
-VIII. PROGNOSIS & DYNAMICS
-- What long-term psychological trajectory does this person's style suggest?
-- What specific pathologies or neuroses are hinted at (obsessional, hysteric, narcissistic)?
-- What are latent strengths — creativity, resilience, discipline, insight?
-- What situational stressors would break down this persona?
-- How might this individual evolve if confronted with loss, failure, or aging?
-
-CRITICAL ANALYSIS REQUIREMENTS - FORENSIC-LEVEL DEPTH:
-
-MICRO-DETAIL ANALYSIS: Identify specific micro-expressions, asymmetries, posture details, clothing choices, and unconscious signals with forensic precision (e.g., "Unilateral lip pull = contempt/irony; narrowed eyes = skeptical focus; forward chin tilt = defiance")
-
-MULTI-SOURCE DATA INTEGRATION: This analysis integrates comprehensive data from ALL available services:
-${videoAnalysis ? '- Azure Video Indexer deep behavioral analysis with temporal emotion tracking' : ''}
-${audioTranscription ? '- Multi-provider audio transcription with sentiment analysis and entity detection' : ''}
-- Face++ comprehensive facial analysis (emotions, ethnicity, beauty scores, micro-expressions)
-- Azure Face API detailed emotional and physical attribute detection
-- Google Cloud Vision facial landmarks and object detection
-- AWS Rekognition multi-person facial feature analysis
-- Cross-service data validation and psychological indicator correlation
-
-FORENSIC DEPTH REQUIREMENTS:
-- 8-12 paragraphs per major framework section with exhaustive detail
-- 15-20 meaningful direct quotes from speech/text when available
-- Micro-signal analysis with specific facial measurements and asymmetries
-- Cross-reference multiple AI service outputs for validation
-- Answer EVERY framework question with comprehensive evidence
-- Pure psychological passthrough - no content filtering or sanitization
-
-Return a JSON object with this structure - YOU MUST ANSWER ALL 50 PSYCHOLOGICAL QUESTIONS WITH EVIDENCE:
-{
-  "summary": "Start with detailed visual description (male/female, age, body type, clothes, posture, hand positions, background, etc.) then provide comprehensive 2-3 paragraph personality overview",
-  "detailed_analysis": {
-    "core_psychological_assessment": {
-      "core_motivation": "What drives this person - provide specific visual evidence (posture, expression, clothing) and quotes if available",
-      "confidence_level": "How confident are they - analyze body language, eye contact, posture, facial expression with specific details",
-      "self_acceptance": "Do they genuinely like themselves - evidence from facial expression, grooming care, posture, self-referential speech",
-      "intelligence_level": "How smart are they - assess through facial alertness, eye engagement, speech complexity, background objects",
-      "creativity_assessment": "How creative are they - evidence from clothing choices, environment, unique expressions, original speech",
-      "stress_handling": "How they handle stress - body tension, facial strain, defensive postures, stress-related speech patterns",
-      "trustworthiness": "Are they trustworthy - eye contact quality, facial openness, genuine vs forced expressions, speech consistency",
-      "authenticity": "Do they exaggerate or fake things - performative vs natural expressions, posed vs candid appearance",
-      "ambition_level": "How ambitious are they - assertive posture, determined expression, professional presentation, goal-oriented speech",
-      "insecurities": "What are they insecure about - defensive body language, self-conscious expressions, covering behaviors, hesitant speech",
-      "social_validation": "How much do they care what others think - posed vs natural appearance, grooming attention, performative expressions",
-      "independence": "Are they independent-minded or followers - unique vs conventional appearance, original expressions, unconventional speech",
-      "communication_style": "Do they dominate or listen more - assertive vs receptive body language, eye contact patterns, speech volume",
-      "criticism_response": "How do they deal with criticism - defensive postures, facial reactions, openness vs closed-off body language",
-      "outlook": "Are they optimistic or pessimistic - facial expression positivity, upward vs downward body language, speech tone",
-      "humor_sense": "Do they have strong sense of humor - eye crinkles, smile genuineness, playful expressions, humorous speech",
-      "treatment_of_others": "How do they treat people beneath them - facial warmth vs coldness, respectful vs dismissive posture",
-      "consistency": "Are they consistent or contradictory - expression authenticity, body language alignment, speech consistency",
-      "hidden_strengths": "What hidden strengths do they have - subtle confident details, understated competence signals, quiet strength",
-      "hidden_weaknesses": "What hidden weaknesses do they have - subtle tension signs, compensatory behaviors, masked insecurities"
-    },
-    "speech_analysis": {
-      "key_quotes": ["meaningful quotes from speech that reveal personality traits", "quote showing intelligence", "quote revealing values", "quote demonstrating communication style"],
-      "vocabulary_analysis": "analysis of word choice, linguistic sophistication, communication style with specific examples",
-      "personality_revealed": "detailed insights into character traits revealed through specific speech patterns and word choices"
-    },
-    "visual_evidence": {
-      "facial_analysis": "detailed analysis of facial expressions, microexpressions, eye contact, smile authenticity with specific observations",
-      "body_language": "comprehensive analysis of posture, gestures, defensive vs open positioning with specific details", 
-      "appearance_details": "clothing choices, grooming, weight/build, background objects and what they reveal about personality",
-      "microexpressions": "specific micro-expressions observed and their psychological significance"
-    },
-    "professional_insights": "comprehensive analysis of career inclinations, work style preferences, leadership qualities based on visual and audio evidence",
-    "growth_areas": {
-      "strengths": ["strength 1 with detailed visual/audio evidence", "strength 2 with evidence", "strength 3 with evidence"],
-      "development_path": "detailed recommendations for personal and professional growth based on observed patterns and evidence"
-    }
-  }
-}
-
-Be EXTRAORDINARILY thorough and insightful. Each section must be 8-12 paragraphs long with EXTENSIVE detail, PROFOUND insights, and COMPREHENSIVE evidence. This is a $10,000 premium analysis - it must be exceptionally detailed and extensive.
-
-ABSOLUTE REQUIREMENTS FOR EXTREME DEPTH - FAILURE TO MEET THESE STANDARDS IS UNACCEPTABLE:
-1. EXTENSIVE SPEECH-FIRST ANALYSIS: When transcription/text is available, conduct EXHAUSTIVE analysis of every nuance, word choice, speech pattern, emotional tone, cognitive sophistication, and psychological revelation
-2. COMPREHENSIVE CONTENT INTEGRATION: Provide EXTENSIVE discussion of what the person talks about, their interests, concerns, opinions, values, beliefs, fears, aspirations, and how they express themselves with EXTRAORDINARY detail
-3. MASSIVE DIRECT QUOTES INTEGRATION: Include 15-20 meaningful quotes that showcase personality, intelligence, values, communication style, thought processes, emotional patterns, and psychological depth
-4. PROFOUND COGNITIVE EVIDENCE: Conduct EXTENSIVE analysis of intelligence through vocabulary, reasoning patterns, problem-solving approaches, mental agility, cognitive style, and intellectual sophistication
-5. EXTRAORDINARY CHARACTER INSIGHTS: Provide DEEP analysis of what their choice of topics, perspectives, expressions, concerns, and interests reveal about their deeper character, values, worldview, psychological makeup, and life philosophy
-6. COMPREHENSIVE VISUAL ANALYSIS: Reference specific facial expressions, micro-expressions, body language, posture, gestures, and visual cues with THOROUGH psychological interpretation
-7. PREMIUM PROFESSIONAL EXCELLENCE: Maintain scientific objectivity while providing EXTRAORDINARILY detailed, actionable insights that demonstrate exceptional psychological expertise
-8. MAXIMUM PSYCHOLOGICAL DEPTH: Provide EXTENSIVE insights into emotional patterns, defense mechanisms, attachment styles, communication strategies, relationship dynamics, psychological vulnerabilities, strengths, and personal growth potential
-9. EXTENSIVE EVIDENCE INTEGRATION: Every single assessment must be supported by MULTIPLE specific examples, quotes, observations, and behavioral indicators
-10. COMPREHENSIVE LIFE ANALYSIS: Analyze career potential, relationship compatibility, parenting style, leadership qualities, emotional intelligence, social dynamics, and personal development needs in EXTRAORDINARY detail`;
+RETURN FORMAT: Plain text with clear sections. NO markdown formatting. NO JSON structure.`;
 
     // Try to get analysis from all three services in parallel for maximum depth
     try {
@@ -4611,7 +4516,6 @@ ABSOLUTE REQUIREMENTS FOR EXTREME DEPTH - FAILURE TO MEET THESE STANDARDS IS UNA
                 content: JSON.stringify(analysisInput),
               },
             ],
-            response_format: { type: "json_object" },
           })
         );
       } else {
@@ -4652,111 +4556,62 @@ ABSOLUTE REQUIREMENTS FOR EXTREME DEPTH - FAILURE TO MEET THESE STANDARDS IS UNA
       // Run all API calls in parallel
       const [openaiResult, anthropicResult, perplexityResult] = await Promise.allSettled(apiPromises);
       
-      // Process results from each service
-      let finalInsights: any = {};
+      // Process results from each service - now handling plain text responses
+      let analysisText: string = "";
       
       // Try each service result in order of preference (Anthropic first as specified in requirements)
       if (anthropicResult.status === 'fulfilled') {
         try {
-          // Handle Anthropic API response structure
           const anthropicResponse = anthropicResult.value as any;
           if (anthropicResponse.content && Array.isArray(anthropicResponse.content) && anthropicResponse.content.length > 0) {
             const content = anthropicResponse.content[0];
-            const anthropicData = JSON.parse(content.text || "{}");
-            finalInsights = anthropicData;
+            analysisText = content.text || "";
             console.log("Anthropic Claude analysis used as primary source");
           }
         } catch (e) {
-          console.error("Error parsing Anthropic response:", e);
+          console.error("Error extracting Anthropic response:", e);
         }
-      } else if (openaiResult.status === 'fulfilled') {
+      }
+      
+      if (!analysisText && openaiResult.status === 'fulfilled') {
         try {
-          // Handle OpenAI response
           const openaiResponse = openaiResult.value as any;
-          const openaiData = JSON.parse(openaiResponse.choices[0]?.message.content || "{}");
-          finalInsights = openaiData;
+          analysisText = openaiResponse.choices[0]?.message.content || "";
           console.log("OpenAI analysis used as secondary source");
         } catch (e) {
-          console.error("Error parsing OpenAI response:", e);
+          console.error("Error extracting OpenAI response:", e);
         }
-      } else if (perplexityResult.status === 'fulfilled') {
+      }
+      
+      if (!analysisText && perplexityResult.status === 'fulfilled') {
         try {
-          // Handle Anthropic API response structure
-          const anthropicResponse = anthropicResult.value as any;
-          if (anthropicResponse.content && Array.isArray(anthropicResponse.content) && anthropicResponse.content.length > 0) {
-            const content = anthropicResponse.content[0];
-            // Check if it's a text content type
-            if (content && content.type === 'text') {
-              const anthropicText = content.text;
-              // Extract JSON from Anthropic response (which might include markdown formatting)
-              const jsonMatch = anthropicText.match(/```json\n([\s\S]*?)\n```/) || 
-                                anthropicText.match(/{[\s\S]*}/);
-                                
-              if (jsonMatch) {
-                const jsonStr = jsonMatch[1] || jsonMatch[0];
-                finalInsights = JSON.parse(jsonStr);
-                console.log("Anthropic analysis used as backup");
-              }
-            }
-          }
-        } catch (e) {
-          console.error("Error parsing Anthropic response:", e);
-        }
-      } else if (perplexityResult.status === 'fulfilled') {
-        try {
-          // Extract JSON from Perplexity response
           const perplexityResponse = perplexityResult.value as any;
-          const perplexityText = perplexityResponse.text || "";
-          const jsonMatch = perplexityText.match(/```json\n([\s\S]*?)\n```/) || 
-                           perplexityText.match(/{[\s\S]*}/);
-                           
-          if (jsonMatch) {
-            const jsonStr = jsonMatch[1] || jsonMatch[0];
-            finalInsights = JSON.parse(jsonStr);
-            console.log("Perplexity analysis used as backup");
-          }
+          analysisText = perplexityResponse.text || "";
+          console.log("Perplexity analysis used as tertiary source");
         } catch (e) {
-          console.error("Error parsing Perplexity response:", e);
+          console.error("Error extracting Perplexity response:", e);
         }
       }
       
-      // If we couldn't get analysis from any service, fall back to a basic structure
-      if (!finalInsights || Object.keys(finalInsights).length === 0) {
+      // If we couldn't get analysis from any service, use fallback
+      if (!analysisText) {
         console.error("All personality analysis services failed, using basic fallback");
-        finalInsights = {
-          summary: "Analysis could not be completed fully.",
-          detailed_analysis: {
-            personality_core: "The analysis could not be completed at this time. Please try again with a clearer image or video.",
-            thought_patterns: "Analysis unavailable.",
-            cognitive_style: "Analysis unavailable.",
-            professional_insights: "Analysis unavailable.",
-            relationships: {
-              current_status: "Analysis unavailable.",
-              parental_status: "Analysis unavailable.",
-              ideal_partner: "Analysis unavailable."
-            },
-            growth_areas: {
-              strengths: ["Determination"],
-              challenges: ["Technical issues"],
-              development_path: "Try again with a clearer image or video."
-            }
-          }
-        };
+        analysisText = "Analysis could not be completed at this time. Please try again with a clearer image or video.";
       }
       
-      // VALIDATE: Ensure analysis contains substantive psychological content
-      validateCoreAssessment(finalInsights, "Subject");
-      
-      // Enhance with combined insights if we have multiple services working
-      if (openaiResult.status === 'fulfilled' && (anthropicResult.status === 'fulfilled' || perplexityResult.status === 'fulfilled')) {
-        finalInsights.provider_info = "This analysis used multiple AI providers for maximum depth and accuracy.";
-      }
+      // Wrap plain text analysis in simple structure for compatibility
+      const finalInsights = {
+        summary: analysisText,
+        detailed_analysis: {
+          full_analysis: analysisText
+        }
+      };
       
       // For single person case, wrap in object with peopleCount=1 for consistency
       return {
         peopleCount: 1,
         individualProfiles: [finalInsights],
-        detailed_analysis: finalInsights.detailed_analysis || {} // For backward compatibility
+        detailed_analysis: finalInsights.detailed_analysis
       };
     } catch (error) {
       console.error("Error in getPersonalityInsights:", error);
