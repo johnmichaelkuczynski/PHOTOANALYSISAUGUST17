@@ -24,31 +24,18 @@ An advanced AI-powered personality insights platform that combines cutting-edge 
 
 ## Recent Changes
 
-### NEW TWO-STEP METHODOLOGY IMPLEMENTATION (October 25, 2025)
-✓ COMPLETELY OVERHAULED ANALYSIS LOGIC WITH TWO-STEP QUESTION-FIRST APPROACH
-✓ Implemented new 30-question psychoanalytic frameworks for all analysis types:
-  - **Photo Analysis**: 30 questions across 4 categories (Raw Observation, Emotional Microstructure, Relational/Object Relations Cues, Symbolic/Psychoanalytic Material)
-  - **Video Analysis**: 30 questions across 4 categories (Face/Body/Movement Over Time, Voice/Speech, Emotional/Relational Signals, Psychological Defense/Self-Presentation)
-  - **Text/Document Analysis**: 30 questions across 6 categories (Surface Features, Emotional Content & Avoidance, Control/Conflict/Defensiveness, Self & Other, Desire/Fear/Repression, Style as Symptom)
-
-✓ TWO-STEP ANALYSIS METHODOLOGY:
-  - **STEP 1**: LLM must answer all 30 questions individually with direct evidence (quotes, visual observations, behavioral details)
-  - **STEP 2**: ONLY AFTER answering all questions, LLM constructs psychological profile based on those answers
-  - NO IMMEDIATE "GIVE ME A PROFILE" OR "PSYCHOANALYZE" INSTRUCTIONS
-  - Forces slow, methodical observation before interpretation
-
-✓ TECHNICAL CHANGES:
-  - Completely rewrote all analysis prompts (text, document, photo, video)
-  - Removed JSON output format requirement - now uses plain text responses
-  - Simplified response parsing logic to handle narrative text instead of structured JSON
-  - Removed complex validation that expected specific JSON field names
-  - Updated all three question arrays (PHOTO_ANALYSIS_QUESTIONS, VIDEO_ANALYSIS_QUESTIONS, TEXT_ANALYSIS_QUESTIONS)
-
-✓ METHODOLOGY BENEFITS:
-  - Prevents AI from making premature psychological judgments
-  - Forces grounding in observable evidence before interpretation
-  - Ensures comprehensive coverage of all psychoanalytic dimensions
-  - Produces more rigorous, evidence-based personality assessments
+### Fixed Question Framework Implementation (October 15, 2025)
+✓ COMPLETELY REPLACED DEFUNCT 20/40/60 QUESTION SYSTEM WITH DEDICATED QUESTION FRAMEWORKS
+✓ Implemented specialized question frameworks for each analysis type:
+  - **Photo Analysis**: 50 questions covering Physical Cues, Expression & Emotion, Composition & Context, Personality & Psychological Inference, Symbolic & Metapsychological Analysis
+  - **Video Analysis**: 50 questions covering Physical & Behavioral Cues, Expression & Emotion Over Time, Speech/Voice/Timing, Context/Environment/Interaction, Personality & Psychological Inference
+  - **Text/Document Analysis**: 100 questions covering Information Processing Style, Emotional Processing Style, Agency & Activity Level, Focus: Interpersonal vs. Ideational, Motivation & Value System, Intelligence & Conceptual Control, Honesty & Sincerity of Mind, Structure & Organization, Psychological Profile in Style, Substance & Cognitive Flexibility
+✓ Removed analysisDepth parameter from all backend routes, schemas, and frontend components
+✓ Removed Analysis Depth Selector UI component, updated step numbering (Step 3 → Step 2)
+✓ Updated validation system to check for substantive content rather than specific field names
+✓ All analyses now use fixed question frameworks - no depth selection required
+✓ Prompts dynamically select photo vs video questions based on media type
+✓ Build successful with no errors, system fully operational with new framework
 
 ### Visual Description System Implementation - Complete Success (August 20, 2025)
 ✓ ELIMINATED PLACEHOLDER TEXT ISSUE by requiring detailed visual descriptions first

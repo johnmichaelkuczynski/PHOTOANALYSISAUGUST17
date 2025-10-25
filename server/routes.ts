@@ -171,130 +171,252 @@ const tempDir = os.tmpdir();
 const writeFileAsync = promisify(fs.writeFile);
 const unlinkAsync = promisify(fs.unlink);
 
-// 30-QUESTION PSYCHOANALYTIC FRAMEWORKS FOR EACH ANALYSIS TYPE
+// 50-QUESTION FRAMEWORKS FOR EACH ANALYSIS TYPE
 
 const PHOTO_ANALYSIS_QUESTIONS = [
-  // I. Raw Observation (No Interpretation Yet) - 15 questions
-  "What is the person's facial expression (neutral, strained smile, genuine smile, tense, withdrawn, etc.)?",
-  "What are the eyebrows doing (raised, furrowed, asymmetrical)?",
-  "What is the direction of gaze (direct eye contact, downward, sideways, unfocused)?",
-  "What is the state of the eyes (wide, narrowed, tired, guarded, glossy, dry)?",
-  "What is the mouth doing (pressed lips, open, smiling fully, smiling only with lips, slightly open)?",
-  "Is the jaw relaxed or tense?",
-  "Is the head tilted? If so: toward or away from camera/person?",
-  "What is the posture (upright, slouched, defensive, open, rigid)?",
-  "Are the shoulders raised, dropped, or tensed?",
-  "What are the hands doing (visible tension, gripping, hidden, open, fidgeting)?",
-  "What is the distance from the camera—close (intrusive) or distant (withdrawn)?",
-  "Is the photo posed or candid? How do you know?",
-  "What clothing is worn (formal, casual, highly styled, revealing, defensive layering)?",
-  "What colors dominate (dark, muted, vivid, chaotic, minimalist)?",
-  "Does the setting look controlled (studio, staged) or personal and unstaged (bedroom, messy room, car, etc.)?",
+  // I. Physical Cues (10)
+  "What is the person's approximate age range, and what visual evidence supports this?",
+  "What is their likely dominant hand, based on body posture or hand use?",
+  "What kind of lighting was used (natural, fluorescent, LED), and how does it shape facial tone or mood?",
+  "How symmetrical is the person's face, and what asymmetries are visible?",
+  "Describe the color and apparent texture of the person's skin in objective terms.",
+  "Identify one visible physical trait (scar, mole, wrinkle pattern) and infer its probable significance (age, stress, lifestyle).",
+  "What can be inferred about the person's sleep habits from the eyes and skin tone?",
+  "Describe the person's hair (color, grooming, direction, style) and what it indicates about self-presentation.",
+  "What kind of lighting shadow falls across the eyes or nose, and what mood does that lighting convey?",
+  "Is there evidence of cosmetic enhancement (makeup, filters, retouching), and how does it alter authenticity?",
   
-  // II. Emotional Microstructure (Still No Interpretation of Personality) - 5 questions
-  "What primary emotion appears present (calm, anxious, angry, sad, amused, detached)?",
-  "What secondary/subtle emotion appears present (embarrassment, defiance, contempt, fear, longing)?",
-  "Are the displayed emotions congruent (face, posture, setting align) or incongruent (smile but clenched jaw, relaxed pose but tense eyes)?",
-  "Is there evidence of masking or suppression of emotion (fake smile, controlled expression)?",
-  "Is the person inviting connection or establishing distance (based on eye contact, posture, framing)?",
+  // II. Expression & Emotion (10)
+  "Describe the dominant facial expression in granular terms (eyebrow position, lip tension, gaze angle).",
+  "Does the expression look posed or spontaneous? Why?",
+  "Identify micro-expressions suggesting secondary emotions (e.g., contempt, anxiety, curiosity).",
+  "Does the smile (if any) engage the eyes? What does that reveal psychologically?",
+  "Compare upper-face emotion vs. lower-face emotion; do they match?",
+  "What emotional tone is conveyed by the person's gaze direction (camera, away, downward)?",
+  "Does the person appear guarded, open, or performative? Cite visible evidence.",
+  "Are there tension points in the jaw or neck suggesting repressed emotion?",
+  "Estimate how long the expression was held for the photo.",
+  "Does the emotion appear congruent with the setting or mismatched? What does that mismatch suggest?",
   
-  // III. Relational / Object Relations Cues - 5 questions
-  "Does this person appear to want to be perceived as strong, harmless, desirable, superior, invisible, etc.?",
-  "Is the body/face protecting anything (crossed arms, turned away torso, hidden hands)?",
-  "Does the person relate to the camera as a friend, intruder, audience, or threat?",
-  "Is there implicit submission or dominance in the pose?",
-  "Does the person seem to be performing a role? If so: what role (professional, seductive, intellectual, rebel, martyr, etc.)?",
+  // III. Composition & Context (10)
+  "Describe the setting (indoor/outdoor, professional/personal) and how it relates to self-presentation.",
+  "What objects or background details signal aspects of lifestyle or occupation?",
+  "How does clothing color palette interact with lighting to create an emotional tone?",
+  "What focal length or camera distance was likely used, and how does it affect psychological intimacy?",
+  "Is there visible clutter or minimalism, and what does that suggest about personality?",
+  "Are there reflections, windows, or mirrors in frame? What might they symbolize?",
+  "How does body posture interact with spatial framing (e.g., leaning toward/away from camera)?",
+  "What portion of the frame the subject occupies, and what does that say about ego strength or humility?",
+  "Is there visible symmetry or imbalance in composition, and what does it communicate?",
+  "Identify one hidden or easily overlooked element that subtly changes the psychological reading.",
   
-  // IV. Symbolic / Psychoanalytic Material - 5 questions
-  "What objects in the background signal values, identity, or defenses (books, emptiness, luxury branding, religious symbols, chaos)?",
-  "Is there evidence of self-curation or control (filters, symmetry, perfect staging)?",
-  "Is there evidence of self-exposure or vulnerability (no makeup, messy setting, unposed)?",
-  "Does the image suggest avoidance (distance, obscured face, shadow, turned body) or demand for attention (close-up, piercing eye contact)?",
-  "If this image were a dream still-frame, what unconscious wish or fear might it be expressing?"
+  // IV. Personality & Psychological Inference (10)
+  "Based on facial micro-cues, what is the person's baseline affect (calm, anxious, irritable, contemplative)?",
+  "What defense mechanism seems most active (projection, reaction formation, displacement, denial)?",
+  "Describe the likely self-image being projected—how do posture, expression, and clothing support it?",
+  "What aspects of the photo seem unconsciously revealing versus deliberately controlled?",
+  "How would the person handle confrontation, judging by visible muscular tension or gaze stability?",
+  "Does the person exhibit signs of narcissism or self-doubt? Identify visible indicators.",
+  "What cognitive style is implied (systematic, intuitive, chaotic)?",
+  "What is the person's apparent relationship to vulnerability? Cite visual evidence.",
+  "Does the photo suggest recent emotional hardship or resilience?",
+  "How does the person seem to want to be seen—and what discrepancy exists between that and how they actually appear?",
+  
+  // V. Symbolic & Metapsychological Analysis (10)
+  "What emotional temperature (warm/cool) dominates the photo's color space, and what archetype does it evoke?",
+  "If the photo were a dream image, what would each major element (pose, setting, color) symbolize?",
+  "What mythic or cinematic archetype does the person most resemble, and why?",
+  "Which aspect of the psyche (persona, shadow, anima/animus, self) is most visible?",
+  "What unconscious conflict seems dramatized in the composition?",
+  "How does the person's clothing or accessories function as psychological armor?",
+  "What is the implied relationship between the photographer and subject (trust, tension, dominance)?",
+  "If this image were part of a sequence, what emotional narrative would it tell?",
+  "What single object or feature in the photo best symbolizes the person's life stance?",
+  "What inner contradiction or paradox defines the subject, as revealed through visible cues?"
 ];
 
 const VIDEO_ANALYSIS_QUESTIONS = [
-  // I. Face, Body, and Movement Over Time (Not Just a Single Frame) - 10 questions
-  "What is the person's baseline facial expression before speaking or reacting?",
-  "Do expressions shift suddenly or gradually? Describe the transitions.",
-  "Are any micro-expressions (fleeting fear, contempt, disgust, amusement) visible? When and where?",
-  "Does the person make direct eye contact with the camera? Avoid it? Break it quickly?",
-  "What is the blink rate and pattern (normal, rapid, inhibited)?",
-  "Is head movement relaxed, rigid, nodding, tilted, withdrawn?",
-  "How does posture change over time—straightening, collapsing, tightening, leaning in or away?",
-  "Are shoulders rising (anxiety), dropping (resignation), squared (control), or slumped (defeat)?",
-  "What are the hands doing—visible, hidden, fidgeting, self-soothing (neck/face touching), clenched, gesturing?",
-  "Any repetitive behaviors (foot tapping, nail touching, hair twisting, throat swallowing)?",
+  // I. Physical & Behavioral Cues (10)
+  "How does the person's gait or movement rhythm change across the clip?",
+  "Which recurring gesture seems habitual rather than situational?",
+  "Describe one moment where muscle tension releases or spikes — what triggers it?",
+  "How does posture vary when the person speaks vs. listens?",
+  "Identify one micro-adjustment (e.g., hair touch, collar fix) and explain its likely emotional cause.",
+  "What is the person doing with their hands during silent intervals?",
+  "How consistent is eye-contact across frames? Give timestamps showing breaks or sustained gazes.",
+  "At which point does breathing rate visibly change, and what precedes it?",
+  "Describe the physical energy level throughout — rising, falling, or cyclical?",
+  "What body part seems most expressive (eyes, shoulders, mouth), and how is that used?",
   
-  // II. Voice and Speech (Skip Q11–17 if no audio) - 7 questions
-  "Is the voice steady, trembling, flat, dramatic, or overly controlled?",
-  "Describe the rhythm—rushed, halting, overly slow, performative cadence, monotone?",
-  "How does pitch vary? (Narrow range = suppression; wide range = expressiveness or instability)",
-  "Is breathing shallow, chest-based, diaphragm-based, interrupted?",
-  "Any verbal hesitations—\"um,\" \"like,\" throat clears, lip smacks?",
-  "Does tone match content (laughing while saying something sad, smiling while sounding detached)?",
-  "Does the person correct themselves mid-sentence or retract thoughts?",
-  "Does the speaker seek validation (rising tone at sentence ends, \"you know?\"), or speak as if unquestionable?",
+  // II. Expression & Emotion Over Time (10)
+  "Track micro-expressions that flicker and vanish. At what timestamps do they appear?",
+  "When does the dominant emotion shift, and how abruptly?",
+  "Does the person's smile fade naturally or snap off?",
+  "Which emotion seems performed vs. spontaneous? Cite frames.",
+  "How does blink rate change when discussing specific topics?",
+  "Identify one involuntary facial tic and interpret its significance.",
+  "Are there moments of incongruence between facial expression and vocal tone?",
+  "When does the person's face 'freeze' — i.e., hold still unnaturally — and what triggers that?",
+  "What subtle expression signals discomfort before any verbal cue?",
+  "How does lighting or camera angle amplify or mute visible emotions?",
   
-  // III. Emotional and Relational Signals - 6 questions
-  "What primary emotion is consistently present (fear, anger, detachment, calm, pride)?",
-  "What secondary/submerged emotion leaks through (shame, defiance, sadness, contempt)?",
-  "Are emotions congruent across face, body, and voice—or mismatched? Example?",
-  "Does the person seem to be performing or genuinely expressing? Evidence?",
-  "Are they inviting connection or defending against it (leaning forward vs pulling back, soft voice vs monotone)?",
-  "Is there a moment where emotion breaks through control? When, and what triggered it?",
+  // III. Speech, Voice & Timing (10)
+  "Describe baseline vocal timbre — breathy, clipped, resonant — and what personality trait it implies.",
+  "At which timestamp does pitch spike or flatten dramatically? Why?",
+  "How does speaking rate change when emotionally charged content arises?",
+  "Identify one pause longer than 1.5 seconds and interpret it psychologically.",
+  "What filler words or vocal tics recur, and what function do they serve?",
+  "How synchronized are gestures with speech rhythm?",
+  "Does the voice carry underlying fatigue, tension, or confidence? Provide audible markers.",
+  "Compare early vs. late segments: does articulation become more or less precise?",
+  "What is the emotional contour of the voice across the clip (anxious → calm, etc.)?",
+  "When does volume drop below baseline, and what coincides with it visually?",
   
-  // IV. Psychological Defense and Self-Presentation - 6 questions
-  "What role does the person appear to be playing (expert, victim, hero, rebel, ghost, seducer, judge)?",
-  "Are there signs of repression, dissociation, or emotional numbing (blank face, delayed reactions, forced calm)?",
-  "Are there narcissistic cues (excessive certainty, crafted image, dramatization), or self-effacing cues (shrinking, apologetic tone)?",
-  "What do they seem desperate not to show (fear, neediness, aggression, vulnerability)?",
-  "What nonverbal moment—if screenshotted—most reveals the unconscious stance toward the viewer (trusting, hostile, testing, seducing, hiding)?",
-  "If this 10-second clip were a dream image—what wish, anxiety, or internal conflict would it express?"
+  // IV. Context, Environment & Interaction (10)
+  "What environmental cues (background noise, lighting shifts) change mid-video?",
+  "How does the camera distance or angle influence perceived dominance or submission?",
+  "Are there off-screen sounds or glances suggesting another presence?",
+  "When the person looks away, where do they look, and what might they be avoiding?",
+  "How do objects in the frame get used or ignored (cup, pen, phone)?",
+  "Does the person adapt posture or tone in response to environmental change (light flicker, sound)?",
+  "What part of the environment most reflects personality (book titles, wall art, tidiness)?",
+  "How does background color palette influence mood perception?",
+  "Is there evidence of editing cuts or jump transitions that alter authenticity?",
+  "What temporal pacing (camera motion, cut frequency) matches or mismatches the emotional tempo?",
+  
+  // V. Personality & Psychological Inference (10)
+  "Based on kinetic patterns, what baseline temperament (introvert/extrovert, restrained/expressive) emerges?",
+  "What defense mechanism manifests dynamically (e.g., laughter after stress cue)?",
+  "When does self-presentation collapse momentarily into candor?",
+  "What behavioral marker suggests anxiety management (fidgeting, throat clearing, leg bounce)?",
+  "How does the person handle silence — restless, composed, avoidant?",
+  "Identify one moment that feels genuinely unguarded; what detail proves it?",
+  "What relational stance is enacted toward the viewer (teacher, confessor, performer)?",
+  "Does the body ever contradict the words? Provide timestamps.",
+  "What sustained pattern (voice-tone loop, repeated motion) indicates underlying psychological theme?",
+  "What overall transformation occurs from first to last frame — and what emotional or existential story does that evolution tell?"
 ];
 
 const TEXT_ANALYSIS_QUESTIONS = [
-  // I. Surface Features (Before Interpretation) - 6 questions
-  "What is the tone of the writing (confident, anxious, detached, theatrical, pleading, cynical, analytical, etc.)? Quote an example.",
-  "What is the emotional temperature — warm, cold, aggressive, ironic, numb, intense? Quote where it shows.",
-  "Does the writing feel controlled or impulsive? Structured or chaotic? Provide textual evidence.",
-  "What narrative or grammatical perspective is used (1st-person, 2nd-person, 3rd-person)? Does it ever shift? Quote where.",
-  "Is the language abstract or concrete? Does the author use vivid specifics or generalities? Give an example.",
-  "Are sentences long and winding, or short and clipped? Quote both extremes if present.",
+  // I. Information Processing Style (10)
+  "Does the text show an active mind organizing information, or a passive mind reciting it?",
+  "Is information digested and restructured, or merely repeated?",
+  "Does the writer analyze causes, or just describe effects?",
+  "Are distinctions drawn sharply or blurred lazily?",
+  "Is the reasoning linear, branching, or circular?",
+  "Does the writer generalize prematurely or hold data until patterns emerge?",
+  "Are claims proportioned to evidence?",
+  "Does the mind shown seem inductive (pattern-seeking) or deductive (rule-enforcing)?",
+  "Does the prose reveal curiosity, or intellectual fatigue?",
+  "When the text confronts complexity, does it simplify or engage it?",
   
-  // II. Emotional Content & Avoidance - 5 questions
-  "What emotion is most directly expressed? Quote it.",
-  "What emotion is most indirectly or unconsciously expressed (resentment, shame, fear, superiority, etc.)? Provide evidence.",
-  "Is the author emotionally vulnerable or defended? Quote where vulnerability appears or where it is blocked.",
-  "Does the author openly express needs, doubts, guilt, or desire? Or avoid them entirely? Provide an example.",
-  "Does the writing ever contradict its own emotional stance (e.g., angry content in calm tone, humor masking bitterness)? Quote it.",
+  // II. Emotional Processing Style (10)
+  "Are emotions named, implied, or avoided altogether?",
+  "When emotion appears, is it integrated or intrusive?",
+  "Does the author intellectualize feelings or experience them?",
+  "Does the tone show restraint, volatility, or emotional flatness?",
+  "Are emotional reactions linked to meaning, or detached from it?",
+  "Does the text show empathy, contempt, or indifference toward others?",
+  "Does emotion drive understanding or distort it?",
+  "When faced with threat or contradiction, does the writer show defensiveness or reflection?",
+  "Does the writing reveal warmth anywhere, or only analysis?",
+  "Is there emotional growth within the text, or the same affect from start to finish?",
   
-  // III. Control, Conflict, and Defensiveness - 6 questions
-  "Does the writer over-explain or justify themselves, as if anticipating criticism? Quote it.",
-  "Do they present certainty or hesitation? Confidence or self-doubt? Quote the clearest example.",
-  "Is there perfectionism or hyper-clarity (overly polished, armored prose)? Or fragmentation and leakage? Quote it.",
-  "Are there sudden shifts in style, tone, or pace that signal internal conflict? Identify and quote.",
-  "Does the writing contain sarcasm, passive-aggression, or contempt? Where?",
-  "Does it contain idealization or reverence toward someone (mentor, lover, God, ideology)? Quote.",
+  // III. Agency & Activity Level (10)
+  "Does the prose suggest a person who acts on the world or merely comments on it?",
+  "Are verbs mostly active or passive?",
+  "Does the writer assume control of argument flow or let it meander?",
+  "Does the voice take responsibility for claims (\"I think,\" \"I argue\") or hide behind impersonal phrasing?",
+  "Does the argument attempt to change the reader's mind or simply display intellect?",
+  "Is there initiative — new frameworks, redefinitions — or only reaction?",
+  "When obstacles appear, does the author adapt or stall?",
+  "Does the text reveal willpower or resignation?",
+  "Is the overall energy rising, steady, or depleted?",
+  "Does the mind seem confident in shaping reality or resentful of being shaped by it?",
   
-  // IV. Self & Other - 5 questions
-  "How does the writer talk about themselves — as victim, hero, observer, critic, ghost, fraud, machine, animal, god? Quote.",
-  "Are they harsh or gentle toward themselves? Provide an example.",
-  "How do they describe other people — as threats, judges, idiots, gods, tools, ghosts, background objects? Quote.",
-  "Is there empathy or emotional deadness toward others? Evidence?",
-  "Does the author imagine how others see them? Quote those passages.",
+  // IV. Focus: Interpersonal vs. Ideational (10)
+  "Is attention directed toward people or toward abstractions?",
+  "When others are mentioned, are they treated as minds or as examples?",
+  "Does the prose imply social awareness or social detachment?",
+  "Is there sensitivity to audience, or indifference to communication?",
+  "Does persuasion matter, or only demonstration?",
+  "Does the text reveal an interest in relationships, systems, or self-display?",
+  "When using \"we,\" is it inclusive or manipulative?",
+  "Does the writer ever show vulnerability to others' judgment?",
+  "Are ideas personified (showing emotional engagement) or sterilized?",
+  "Does the author seek understanding or dominance over interlocutors?",
   
-  // V. Desire, Fear, and Repression - 5 questions
-  "What does the writer seem to want (even if not admitted)? Quote signs of longing, ambition, peace, dominance, escape.",
-  "What do they fear — failure, humiliation, intimacy, insignificance, chaos? Quote.",
-  "What emotions or topics are noticeably absent or suppressed (love, guilt, mortality, anger)?",
-  "Are there contradictions between what the writer claims to believe and what their language implies? Quote both sides.",
-  "Is there evidence of fantasy, projection, or dissociation (grandiosity, paranoid subtext, unreal metaphors)? Quote.",
+  // V. Motivation, Value System, and Reality Testing (10)
+  "What is the writer trying to achieve — truth, recognition, safety, superiority?",
+  "Is success defined internally (clarity) or externally (approval)?",
+  "Does the writer trust reason, intuition, authority, or instinct most?",
+  "When evidence contradicts belief, does belief bend or resist?",
+  "Is the worldview optimistic, tragic, cynical, or dispassionate?",
+  "Does the author see the self as agent or as spectator?",
+  "Does the text treat reality as negotiable (conceptualist) or binding (realist)?",
+  "Does the writer seek understanding or vindication?",
+  "Are problems treated as puzzles to solve or evils to condemn?",
+  "Is there any visible hunger for truth — or only hunger for being right?",
   
-  // VI. Style as Symptom (Freud/Lacan Level) - 3 questions
-  "Does the writing seek control (logic, formalism), or release (poetic flooding, confession)? Quote.",
-  "Is language used as a shield (jargon, abstraction) or as exposure (rawness, simplicity)? Quote.",
-  "If this writing were a dream, what unconscious wish or conflict would it reveal?"
+  // VI. Intelligence & Conceptual Control (10)
+  "Does the writing show genuine intelligence — deep structure, inference, precision — or rote mimicry?",
+  "Does the argument actually advance, or does it spin in circles?",
+  "Does the author handle abstraction cleanly, or get lost in vagueness?",
+  "Does reasoning depend on concrete evidence or empty jargon?",
+  "When the author defines something, is it sharp and economical or padded and evasive?",
+  "Are terms used consistently, or redefined to dodge difficulty?",
+  "Is the prose intellectually ambitious in a disciplined way, or pretentious for show?",
+  "Does the text reveal mastery of the material, or merely second-hand familiarity?",
+  "Does the writer tolerate internal tension, or hide contradictions with style?",
+  "Does the argument show genuine insight — a new relation between ideas — or rehearse clichés?",
+  
+  // VII. Honesty & Sincerity of Mind (10)
+  "Is the writer being straightforward, or manipulating phrasing to sound profound?",
+  "Does the text ever admit uncertainty or limitation?",
+  "When challenged (implicitly or explicitly), does the writer concede or double down?",
+  "Is there visible willingness to change one's mind if the reasoning fails?",
+  "Does the author ever say \"I don't know,\" or is omniscience performed throughout?",
+  "Are doubts faced or buried under abstraction?",
+  "Does confidence come from understanding or bluster?",
+  "Are counterarguments represented fairly, or caricatured for easy defeat?",
+  "Does the writer seem to care about truth, or about appearing intelligent?",
+  "Is there moral or intellectual humility anywhere in the text?",
+  
+  // VIII. Structure, Organization, and Focus (10)
+  "Is the argument linearly constructed or chaotic?",
+  "Does every paragraph push the reasoning forward?",
+  "Are transitions real or cosmetic?",
+  "Does the conclusion actually follow from the premises?",
+  "Are examples used to clarify or to disguise weakness?",
+  "Does the text maintain topic discipline or wander aimlessly?",
+  "Is there redundancy that signals insecurity?",
+  "How coherent is paragraph sequencing — cumulative or random?",
+  "Does the text have a visible beginning, middle, and end?",
+  "Does the closing section resolve something or merely stop?",
+  
+  // IX. Psychological Profile in Style (10)
+  "Does the tone suggest calm confidence or anxious control?",
+  "Is the style dry, combative, ingratiating, or sermonizing?",
+  "Does the writer hide behind abstraction to avoid personal exposure?",
+  "Is there contempt for opposing views or curiosity about them?",
+  "What emotion drives the prose — irritation, pride, fear, wonder?",
+  "Is the rhythm clenched (defensive) or open (exploratory)?",
+  "Does the diction reveal class anxiety, moral superiority, or insecurity?",
+  "Is humor used to clarify or to deflect?",
+  "Does the writer need to dominate the reader intellectually?",
+  "Does the language show obsession with control, symmetry, or perfection?",
+  
+  // X. Substance, Depth, and Cognitive Flexibility (10)
+  "Does the writer ever integrate a new idea mid-stream?",
+  "Is there evidence of learning in motion — development within the text?",
+  "Are insights layered, or all at the same conceptual level?",
+  "When describing others' ideas, does the writer paraphrase accurately?",
+  "Does the prose reveal real curiosity, or mere performance of curiosity?",
+  "Does the author show capacity for self-correction?",
+  "Is there flexibility of perspective, or rigid monologue?",
+  "Does the argument invite dialogue, or shut it down?",
+  "Is there intellectual empathy — ability to inhabit another view sincerely?",
+  "After reading, do we feel we've encountered a mind in motion or a mask of erudition?"
 ];
 
 // Helper function to clean markdown formatting from analysis text
@@ -2265,33 +2387,29 @@ You can ask follow-up questions about this analysis.
       const questions = TEXT_ANALYSIS_QUESTIONS;
       const questionCount = questions.length;
       
-      // TWO-STEP METHODOLOGY: Answer questions first, THEN construct profile
+      // Get personality insights based on text content
       const textAnalysisPrompt = `
-You are analyzing a writing sample. DO NOT immediately psychoanalyze or summarize. Instead, follow this strict two-step process:
+Please analyze the following text to provide comprehensive personality insights about the author.
 
-STEP 1: Answer each of these ${questionCount} questions individually with direct evidence from the text:
+YOU MUST ANSWER ALL ${questionCount} QUESTIONS BELOW:
 
-TEXT TO ANALYZE:
+TEXT:
 ${content}
 
-QUESTIONS (answer each one separately with direct quotes as evidence):
+Based on this text, answer these ${questionCount} psychological questions about the author. For each question, provide specific evidence from the text including 8-12 direct quotations that support your assessment. Do not use markdown formatting - use plain text only.
+
+PSYCHOLOGICAL QUESTIONS TO ANSWER:
 ${questions.map((q, i) => `${i + 1}. ${q}`).join('\n')}
 
-REQUIREMENTS FOR STEP 1:
-- Answer EVERY question individually
-- Provide direct quotes from the text as evidence for each answer
-- Be specific and grounded in observable textual evidence
-- Do NOT generalize or skip questions
-- Do NOT use markdown formatting (no # or ### or **)
+ANALYSIS REQUIREMENTS:
+- Extract 8-12 direct quotations from the text as supporting evidence
+- Analyze writing style, tone, word choice, and content themes
+- Provide detailed psychological assessment for each question
+- Include specific textual evidence for every psychological conclusion
+- Focus on observable patterns in language and communication style
+- Address cognitive processing style, emotional expression, and personality traits
 
-STEP 2: Only after answering all ${questionCount} questions above, provide a concise psychoanalytic profile of the writer based on your answers. This profile should include:
-- Core defense mechanisms
-- Attachment pattern
-- Narcissistic/self-effacing tendencies  
-- Anxiety strategies (avoidant/hypervigilant/etc.)
-- Relation to others/self/world
-
-Your profile MUST be based only on your answers to the questions above—no new observations.
+FORMAT: Answer each question thoroughly with specific evidence. Include direct quotes in quotation marks. Use plain text formatting without markdown headers or special characters.
 `;
 
       // Get personality analysis from selected AI model
@@ -2402,30 +2520,24 @@ Your profile MUST be based only on your answers to the questions above—no new 
       const tempDocPath = path.join(tempDir, `doc_${Date.now()}_${fileName}`);
       await writeFileAsync(tempDocPath, fileBuffer);
       
-      // TWO-STEP METHODOLOGY: Answer questions first, THEN construct profile
+      // Document analysis prompt with depth-based questions
       const documentAnalysisPrompt = `
-You are analyzing a document: ${fileName} (${fileType}). DO NOT immediately psychoanalyze or summarize. Instead, follow this strict two-step process:
+Analyze this document: ${fileName} (${fileType}) to provide comprehensive psychological insights about the author.
 
-STEP 1: Answer each of these ${questionCount} questions individually with direct evidence from the document:
+Answer these ${questionCount} psychological questions about the author based on their writing. For each question, provide specific evidence from the document including 8-12 direct quotations that support your assessment. Do not use markdown formatting - use plain text only.
 
-QUESTIONS (answer each one separately with direct quotes as evidence):
+PSYCHOLOGICAL QUESTIONS TO ANSWER:
 ${questions.map((q, i) => `${i + 1}. ${q}`).join('\n')}
 
-REQUIREMENTS FOR STEP 1:
-- Answer EVERY question individually
-- Provide direct quotes from the document as evidence for each answer
-- Be specific and grounded in observable textual evidence
-- Do NOT generalize or skip questions
-- Do NOT use markdown formatting (no # or ### or **)
+ANALYSIS REQUIREMENTS:
+- Extract 8-12 direct quotations from the document as supporting evidence
+- Analyze writing style, tone, word choice, and content themes
+- Provide detailed psychological assessment for each question
+- Include specific textual evidence for every psychological conclusion
+- Focus on observable patterns in language and communication style
+- Address cognitive processing style, emotional expression, and personality traits
 
-STEP 2: Only after answering all ${questionCount} questions above, provide a concise psychoanalytic profile of the writer based on your answers. This profile should include:
-- Core defense mechanisms
-- Attachment pattern
-- Narcissistic/self-effacing tendencies  
-- Anxiety strategies (avoidant/hypervigilant/etc.)
-- Relation to others/self/world
-
-Your profile MUST be based only on your answers to the questions above—no new observations.
+FORMAT: Answer each question thoroughly with specific evidence. Include direct quotes in quotation marks. Use plain text formatting without markdown headers or special characters.
 `;
 
       // Get document analysis from selected AI model
@@ -2824,15 +2936,11 @@ Provide detailed, comprehensive psychological insights based on the analysis. Al
         personalityInsights,
       });
 
-      // Use the RAW AI response directly - DO NOT reformat into old personality report structure
+      // Format initial message content for the chat
       let formattedContent = "";
       
-      // Check if we have a raw analysis response (30-question format)
-      if (personalityInsights.rawAnalysisText) {
-        // NEW FORMAT: Use the raw AI response with 30 questions
-        formattedContent = personalityInsights.rawAnalysisText;
-      } else if (personalityInsights.individualProfiles?.length > 1) {
-        // OLD FORMAT (multi-person): Keep for backwards compatibility
+      if (personalityInsights.individualProfiles?.length > 1) {
+        // Multi-person message format with improved visual structure
         const peopleCount = personalityInsights.individualProfiles.length;
         formattedContent = `AI-Powered Psychological Profile Report\n`;
         formattedContent += `Subjects Detected: ${peopleCount} Individuals\n`;
@@ -4052,10 +4160,9 @@ async function getEnhancedPersonalityInsights(faceAnalysis: any, videoAnalysis: 
   }
   
   // Check if faceAnalysis is an array (multiple people) or single object
-  // CRITICAL: Even if it's an array, if it only has 1 person, use single-person analysis path
-  const isMultiplePeople = Array.isArray(faceAnalysis) && faceAnalysis.length > 1;
+  const isMultiplePeople = Array.isArray(faceAnalysis);
   
-  // If we have multiple people (2+), analyze each one separately
+  // If we have multiple people, analyze each one separately
   if (isMultiplePeople) {
     console.log(`Analyzing ${faceAnalysis.length} people...`);
     
@@ -4468,64 +4575,143 @@ compatibilities or conflicts, and how these different personalities might comple
     const questionCount = questions.length;
     const mediaType = (videoAnalysis || audioTranscription) ? "VIDEO" : "PHOTO";
     
-    // PHOTO ANALYSIS PROTOCOL: OBSERVATION-ONLY answers to 30 questions, then ONE short summary
     const analysisPrompt = `
-CRITICAL INSTRUCTIONS: STOP generating personality summaries. STOP inferring traits like "confidence," "intelligence," "trustworthiness," or "emotional stability." This is FORBIDDEN.
+You are the world's most elite psychological profiler conducting a comprehensive forensic-level ${mediaType} personality assessment. You must answer ALL ${questionCount} QUESTIONS with specific visual and/or audio evidence.
 
-DATA AVAILABLE FOR ANALYSIS:
-${JSON.stringify(analysisInput, null, 2)}
+CRITICAL REQUIREMENT: YOU MUST START WITH DETAILED VISUAL DESCRIPTION. Begin your analysis by describing what you actually see in the image/video:
+- Gender (male/female)
+- Approximate age range
+- Physical appearance (body type, posture, height estimate, weight)
+- Clothing style, colors, and formality level
+- Facial expression and specific details (touching forehead, smiling, frowning, hand positions, etc.)
+- Background/scenery details (office, home, outdoor, furniture, objects)
+- Any objects, technology, or personal items visible
+- Body language and positioning
+- Any actions or gestures being performed
+- Grooming and styling choices
 
-═══════════════════════════════════════════════════════════════════════════════
-MANDATORY PROTOCOL: ANSWER 30 OBSERVATION QUESTIONS (VISIBLE EVIDENCE ONLY)
-═══════════════════════════════════════════════════════════════════════════════
+Only after providing these specific visual details should you proceed to psychological assessment, and ALL psychological conclusions must be supported by the visual evidence you described.
 
-You MUST answer the following ${questionCount} questions in order, one-by-one.
+CRITICAL REQUIREMENTS:
+- NO MARKDOWN FORMATTING: Do not use # ### ** or any markdown
+- PROVIDE SPECIFIC EVIDENCE for each answer:
+  * VISUAL EVIDENCE: appearance details, body language, posture, facial expressions, clothing, grooming, background objects, weight/build, microexpressions
+  * AUDIO EVIDENCE: direct quotations from speech (if available), tone of voice, speaking patterns
+- Answer each question with 2-3 sentences of detailed analysis and supporting evidence
 
-RULES FOR EACH ANSWER:
-1. Base answers ONLY on VISIBLE EVIDENCE: face tension, eye direction, posture, hand position, jaw, eyebrows, clothing, background objects
-2. DO NOT make psychological conclusions (NO personality traits, NO character assessments)
-3. If something is not visible in the image, write: "Not visible in frame"
-4. DO NOT invent, assume, or generalize
-5. DO NOT skip, merge, or reorder questions
-6. DO NOT use markdown formatting (no # or ### or **)
+MANDATORY ${questionCount} PSYCHOLOGICAL QUESTIONS - ANSWER ALL WITH SPECIFIC EVIDENCE:
 
-BANNED WORDS (unless tied to specific visible cue): confident, intelligent, trustworthy, mature, analytical, stable, calm, ambitious, creative, professional, reliable
+${questions.map((q, i) => `${i + 1}. ${q} - Provide specific visual/audio evidence for your assessment`).join('\n')}
 
-EXACT FORMAT REQUIRED:
 
-Question 1: What is the person's facial expression (neutral, strained smile, genuine smile, tense, withdrawn, etc.)?
-[Your answer based ONLY on visible facial features]
 
-Question 2: What are the eyebrows doing (raised, furrowed, asymmetrical)?
-[Your answer based ONLY on visible eyebrow position]
+V. SELF & EGO STRUCTURE
+- How integrated or fragmented does the self appear?
+- Are there defenses (denial, projection, reaction formation, intellectualization)? Identify with examples.
+- Is the ego brittle, grandiose, or well-regulated?
+- How does the subject relate to authority or ideals? Quote if available.
+- Where are points of narcissistic injury or vulnerability visible?
 
-Question 3: What is the direction of gaze (direct eye contact, downward, sideways, unfocused)?
-[Your answer based ONLY on visible eye direction]
+VI. INTERPERSONAL STYLE
+- How does the subject implicitly treat the viewer/listener? Quote if available.
+- Is there a manipulative undertone — flattery, intimidation, seduction, deflection?
+- What role would they likely assume in a group (leader, scapegoat, clown, father)?
+- Do they show capacity for empathy or only self-reference? Quote if available.
+- Are intimacy and distance well-calibrated or distorted?
 
-...continue this exact format for ALL 30 questions below...
+VII. CULTURAL & SYMBOLIC POSITION
+- What class, cultural, or ideological identity is signaled?
+- Are there signs of ressentiment, envy, or superiority?
+- Does the subject echo stock phrases or clichés? Quote if available.
+- Are there unconscious cultural archetypes being embodied (hero, victim, trickster)?
+- What symbolic resonance does the subject's presentation carry (mythic, banal, tragic)?
 
-THE 30 QUESTIONS YOU MUST ANSWER:
+VIII. PROGNOSIS & DYNAMICS
+- What long-term psychological trajectory does this person's style suggest?
+- What specific pathologies or neuroses are hinted at (obsessional, hysteric, narcissistic)?
+- What are latent strengths — creativity, resilience, discipline, insight?
+- What situational stressors would break down this persona?
+- How might this individual evolve if confronted with loss, failure, or aging?
 
-${questions.map((q, i) => `Question ${i + 1}: ${q}`).join('\n\n')}
+CRITICAL ANALYSIS REQUIREMENTS - FORENSIC-LEVEL DEPTH:
 
-═══════════════════════════════════════════════════════════════════════════════
-AFTER ALL 30 QUESTIONS: ONE SHORT PSYCHOANALYTIC SUMMARY
-═══════════════════════════════════════════════════════════════════════════════
+MICRO-DETAIL ANALYSIS: Identify specific micro-expressions, asymmetries, posture details, clothing choices, and unconscious signals with forensic precision (e.g., "Unilateral lip pull = contempt/irony; narrowed eyes = skeptical focus; forward chin tilt = defiance")
 
-Only after answering all 30 observation questions above, provide ONE short psychoanalytic summary paragraph.
+MULTI-SOURCE DATA INTEGRATION: This analysis integrates comprehensive data from ALL available services:
+${videoAnalysis ? '- Azure Video Indexer deep behavioral analysis with temporal emotion tracking' : ''}
+${audioTranscription ? '- Multi-provider audio transcription with sentiment analysis and entity detection' : ''}
+- Face++ comprehensive facial analysis (emotions, ethnicity, beauty scores, micro-expressions)
+- Azure Face API detailed emotional and physical attribute detection
+- Google Cloud Vision facial landmarks and object detection
+- AWS Rekognition multi-person facial feature analysis
+- Cross-service data validation and psychological indicator correlation
 
-RULES FOR SUMMARY:
-- Use ONLY information already stated in the 30 answers above
-- NO new claims, NO new observations
-- NO abstract labels like "confident," "mature," "reliable" unless already tied to visible cues in your answers
-- Keep it to one paragraph (4-6 sentences)
-- Focus on: core defense mechanisms, attachment pattern, relation to others/self/world
+FORENSIC DEPTH REQUIREMENTS:
+- 8-12 paragraphs per major framework section with exhaustive detail
+- 15-20 meaningful direct quotes from speech/text when available
+- Micro-signal analysis with specific facial measurements and asymmetries
+- Cross-reference multiple AI service outputs for validation
+- Answer EVERY framework question with comprehensive evidence
+- Pure psychological passthrough - no content filtering or sanitization
 
-Format: "Psychoanalytic Summary (based strictly on the 30 answers above): [your one paragraph summary]"
+Return a JSON object with this structure - YOU MUST ANSWER ALL 50 PSYCHOLOGICAL QUESTIONS WITH EVIDENCE:
+{
+  "summary": "Start with detailed visual description (male/female, age, body type, clothes, posture, hand positions, background, etc.) then provide comprehensive 2-3 paragraph personality overview",
+  "detailed_analysis": {
+    "core_psychological_assessment": {
+      "core_motivation": "What drives this person - provide specific visual evidence (posture, expression, clothing) and quotes if available",
+      "confidence_level": "How confident are they - analyze body language, eye contact, posture, facial expression with specific details",
+      "self_acceptance": "Do they genuinely like themselves - evidence from facial expression, grooming care, posture, self-referential speech",
+      "intelligence_level": "How smart are they - assess through facial alertness, eye engagement, speech complexity, background objects",
+      "creativity_assessment": "How creative are they - evidence from clothing choices, environment, unique expressions, original speech",
+      "stress_handling": "How they handle stress - body tension, facial strain, defensive postures, stress-related speech patterns",
+      "trustworthiness": "Are they trustworthy - eye contact quality, facial openness, genuine vs forced expressions, speech consistency",
+      "authenticity": "Do they exaggerate or fake things - performative vs natural expressions, posed vs candid appearance",
+      "ambition_level": "How ambitious are they - assertive posture, determined expression, professional presentation, goal-oriented speech",
+      "insecurities": "What are they insecure about - defensive body language, self-conscious expressions, covering behaviors, hesitant speech",
+      "social_validation": "How much do they care what others think - posed vs natural appearance, grooming attention, performative expressions",
+      "independence": "Are they independent-minded or followers - unique vs conventional appearance, original expressions, unconventional speech",
+      "communication_style": "Do they dominate or listen more - assertive vs receptive body language, eye contact patterns, speech volume",
+      "criticism_response": "How do they deal with criticism - defensive postures, facial reactions, openness vs closed-off body language",
+      "outlook": "Are they optimistic or pessimistic - facial expression positivity, upward vs downward body language, speech tone",
+      "humor_sense": "Do they have strong sense of humor - eye crinkles, smile genuineness, playful expressions, humorous speech",
+      "treatment_of_others": "How do they treat people beneath them - facial warmth vs coldness, respectful vs dismissive posture",
+      "consistency": "Are they consistent or contradictory - expression authenticity, body language alignment, speech consistency",
+      "hidden_strengths": "What hidden strengths do they have - subtle confident details, understated competence signals, quiet strength",
+      "hidden_weaknesses": "What hidden weaknesses do they have - subtle tension signs, compensatory behaviors, masked insecurities"
+    },
+    "speech_analysis": {
+      "key_quotes": ["meaningful quotes from speech that reveal personality traits", "quote showing intelligence", "quote revealing values", "quote demonstrating communication style"],
+      "vocabulary_analysis": "analysis of word choice, linguistic sophistication, communication style with specific examples",
+      "personality_revealed": "detailed insights into character traits revealed through specific speech patterns and word choices"
+    },
+    "visual_evidence": {
+      "facial_analysis": "detailed analysis of facial expressions, microexpressions, eye contact, smile authenticity with specific observations",
+      "body_language": "comprehensive analysis of posture, gestures, defensive vs open positioning with specific details", 
+      "appearance_details": "clothing choices, grooming, weight/build, background objects and what they reveal about personality",
+      "microexpressions": "specific micro-expressions observed and their psychological significance"
+    },
+    "professional_insights": "comprehensive analysis of career inclinations, work style preferences, leadership qualities based on visual and audio evidence",
+    "growth_areas": {
+      "strengths": ["strength 1 with detailed visual/audio evidence", "strength 2 with evidence", "strength 3 with evidence"],
+      "development_path": "detailed recommendations for personal and professional growth based on observed patterns and evidence"
+    }
+  }
+}
 
-═══════════════════════════════════════════════════════════════════════════════
-CRITICAL: Any output that does not follow this format is INVALID and WRONG.
-═══════════════════════════════════════════════════════════════════════════════`;
+Be EXTRAORDINARILY thorough and insightful. Each section must be 8-12 paragraphs long with EXTENSIVE detail, PROFOUND insights, and COMPREHENSIVE evidence. This is a $10,000 premium analysis - it must be exceptionally detailed and extensive.
+
+ABSOLUTE REQUIREMENTS FOR EXTREME DEPTH - FAILURE TO MEET THESE STANDARDS IS UNACCEPTABLE:
+1. EXTENSIVE SPEECH-FIRST ANALYSIS: When transcription/text is available, conduct EXHAUSTIVE analysis of every nuance, word choice, speech pattern, emotional tone, cognitive sophistication, and psychological revelation
+2. COMPREHENSIVE CONTENT INTEGRATION: Provide EXTENSIVE discussion of what the person talks about, their interests, concerns, opinions, values, beliefs, fears, aspirations, and how they express themselves with EXTRAORDINARY detail
+3. MASSIVE DIRECT QUOTES INTEGRATION: Include 15-20 meaningful quotes that showcase personality, intelligence, values, communication style, thought processes, emotional patterns, and psychological depth
+4. PROFOUND COGNITIVE EVIDENCE: Conduct EXTENSIVE analysis of intelligence through vocabulary, reasoning patterns, problem-solving approaches, mental agility, cognitive style, and intellectual sophistication
+5. EXTRAORDINARY CHARACTER INSIGHTS: Provide DEEP analysis of what their choice of topics, perspectives, expressions, concerns, and interests reveal about their deeper character, values, worldview, psychological makeup, and life philosophy
+6. COMPREHENSIVE VISUAL ANALYSIS: Reference specific facial expressions, micro-expressions, body language, posture, gestures, and visual cues with THOROUGH psychological interpretation
+7. PREMIUM PROFESSIONAL EXCELLENCE: Maintain scientific objectivity while providing EXTRAORDINARILY detailed, actionable insights that demonstrate exceptional psychological expertise
+8. MAXIMUM PSYCHOLOGICAL DEPTH: Provide EXTENSIVE insights into emotional patterns, defense mechanisms, attachment styles, communication strategies, relationship dynamics, psychological vulnerabilities, strengths, and personal growth potential
+9. EXTENSIVE EVIDENCE INTEGRATION: Every single assessment must be supported by MULTIPLE specific examples, quotes, observations, and behavioral indicators
+10. COMPREHENSIVE LIFE ANALYSIS: Analyze career potential, relationship compatibility, parenting style, leadership qualities, emotional intelligence, social dynamics, and personal development needs in EXTRAORDINARY detail`;
 
     // Try to get analysis from all three services in parallel for maximum depth
     try {
@@ -4547,6 +4733,7 @@ CRITICAL: Any output that does not follow this format is INVALID and WRONG.
                 content: JSON.stringify(analysisInput),
               },
             ],
+            response_format: { type: "json_object" },
           })
         );
       } else {
@@ -4587,59 +4774,111 @@ CRITICAL: Any output that does not follow this format is INVALID and WRONG.
       // Run all API calls in parallel
       const [openaiResult, anthropicResult, perplexityResult] = await Promise.allSettled(apiPromises);
       
-      // Process results from each service - now handling plain text responses
-      let analysisText: string = "";
+      // Process results from each service
+      let finalInsights: any = {};
       
       // Try each service result in order of preference (Anthropic first as specified in requirements)
       if (anthropicResult.status === 'fulfilled') {
         try {
+          // Handle Anthropic API response structure
           const anthropicResponse = anthropicResult.value as any;
           if (anthropicResponse.content && Array.isArray(anthropicResponse.content) && anthropicResponse.content.length > 0) {
             const content = anthropicResponse.content[0];
-            analysisText = content.text || "";
+            const anthropicData = JSON.parse(content.text || "{}");
+            finalInsights = anthropicData;
             console.log("Anthropic Claude analysis used as primary source");
           }
         } catch (e) {
-          console.error("Error extracting Anthropic response:", e);
+          console.error("Error parsing Anthropic response:", e);
         }
-      }
-      
-      if (!analysisText && openaiResult.status === 'fulfilled') {
+      } else if (openaiResult.status === 'fulfilled') {
         try {
+          // Handle OpenAI response
           const openaiResponse = openaiResult.value as any;
-          analysisText = openaiResponse.choices[0]?.message.content || "";
+          const openaiData = JSON.parse(openaiResponse.choices[0]?.message.content || "{}");
+          finalInsights = openaiData;
           console.log("OpenAI analysis used as secondary source");
         } catch (e) {
-          console.error("Error extracting OpenAI response:", e);
+          console.error("Error parsing OpenAI response:", e);
         }
-      }
-      
-      if (!analysisText && perplexityResult.status === 'fulfilled') {
+      } else if (perplexityResult.status === 'fulfilled') {
         try {
-          const perplexityResponse = perplexityResult.value as any;
-          analysisText = perplexityResponse.text || "";
-          console.log("Perplexity analysis used as tertiary source");
+          // Handle Anthropic API response structure
+          const anthropicResponse = anthropicResult.value as any;
+          if (anthropicResponse.content && Array.isArray(anthropicResponse.content) && anthropicResponse.content.length > 0) {
+            const content = anthropicResponse.content[0];
+            // Check if it's a text content type
+            if (content && content.type === 'text') {
+              const anthropicText = content.text;
+              // Extract JSON from Anthropic response (which might include markdown formatting)
+              const jsonMatch = anthropicText.match(/```json\n([\s\S]*?)\n```/) || 
+                                anthropicText.match(/{[\s\S]*}/);
+                                
+              if (jsonMatch) {
+                const jsonStr = jsonMatch[1] || jsonMatch[0];
+                finalInsights = JSON.parse(jsonStr);
+                console.log("Anthropic analysis used as backup");
+              }
+            }
+          }
         } catch (e) {
-          console.error("Error extracting Perplexity response:", e);
+          console.error("Error parsing Anthropic response:", e);
+        }
+      } else if (perplexityResult.status === 'fulfilled') {
+        try {
+          // Extract JSON from Perplexity response
+          const perplexityResponse = perplexityResult.value as any;
+          const perplexityText = perplexityResponse.text || "";
+          const jsonMatch = perplexityText.match(/```json\n([\s\S]*?)\n```/) || 
+                           perplexityText.match(/{[\s\S]*}/);
+                           
+          if (jsonMatch) {
+            const jsonStr = jsonMatch[1] || jsonMatch[0];
+            finalInsights = JSON.parse(jsonStr);
+            console.log("Perplexity analysis used as backup");
+          }
+        } catch (e) {
+          console.error("Error parsing Perplexity response:", e);
         }
       }
       
-      // If we couldn't get analysis from any service, use fallback
-      if (!analysisText) {
+      // If we couldn't get analysis from any service, fall back to a basic structure
+      if (!finalInsights || Object.keys(finalInsights).length === 0) {
         console.error("All personality analysis services failed, using basic fallback");
-        analysisText = "Analysis could not be completed at this time. Please try again with a clearer image or video.";
+        finalInsights = {
+          summary: "Analysis could not be completed fully.",
+          detailed_analysis: {
+            personality_core: "The analysis could not be completed at this time. Please try again with a clearer image or video.",
+            thought_patterns: "Analysis unavailable.",
+            cognitive_style: "Analysis unavailable.",
+            professional_insights: "Analysis unavailable.",
+            relationships: {
+              current_status: "Analysis unavailable.",
+              parental_status: "Analysis unavailable.",
+              ideal_partner: "Analysis unavailable."
+            },
+            growth_areas: {
+              strengths: ["Determination"],
+              challenges: ["Technical issues"],
+              development_path: "Try again with a clearer image or video."
+            }
+          }
+        };
       }
       
-      // Return the RAW analysis text directly - this preserves the 30-question format
+      // VALIDATE: Ensure analysis contains substantive psychological content
+      validateCoreAssessment(finalInsights, "Subject");
+      
+      // Enhance with combined insights if we have multiple services working
+      if (openaiResult.status === 'fulfilled' && (anthropicResult.status === 'fulfilled' || perplexityResult.status === 'fulfilled')) {
+        finalInsights.provider_info = "This analysis used multiple AI providers for maximum depth and accuracy.";
+      }
+      
+      // For single person case, wrap in object with peopleCount=1 for consistency
       return {
         peopleCount: 1,
-        rawAnalysisText: analysisText,  // NEW: Raw AI response with 30 questions
-        individualProfiles: [{          // OLD: Keep for backwards compatibility
-          summary: analysisText,
-          detailed_analysis: {
-            full_analysis: analysisText
-          }
-        }]
+        individualProfiles: [finalInsights],
+        detailed_analysis: finalInsights.detailed_analysis || {} // For backward compatibility
       };
     } catch (error) {
       console.error("Error in getPersonalityInsights:", error);

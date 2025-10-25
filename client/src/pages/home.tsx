@@ -1418,68 +1418,7 @@ export default function Home({ isShareMode = false, shareId }: { isShareMode?: b
               ) : (
                 <ScrollArea className="flex-1 pr-4 mb-4">
                   <div className="space-y-4">
-                    {/* Action Bar: Copy and Delete buttons above analysis */}
-                    <div className="flex justify-between items-center border-b border-gray-200 pb-3 mb-4">
-                      <div className="text-sm font-medium text-gray-600">
-                        Analysis Results
-                      </div>
-                      <div className="flex gap-3">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="flex items-center gap-2"
-                          onClick={() => {
-                            const analysisText = messages
-                              .filter(m => m.role === "assistant")
-                              .map(m => m.content)
-                              .join('\n\n');
-                            
-                            navigator.clipboard.writeText(analysisText).then(() => {
-                              toast({
-                                title: "Copied to Clipboard",
-                                description: "Analysis text has been copied successfully"
-                              });
-                            }).catch(() => {
-                              toast({
-                                variant: "destructive",
-                                title: "Copy Failed",
-                                description: "Failed to copy to clipboard"
-                              });
-                            });
-                          }}
-                          data-testid="button-copy-analysis"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                          </svg>
-                          Copy Analysis
-                        </Button>
-                        
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="flex items-center gap-2 text-red-600 hover:text-red-700 hover:bg-red-50"
-                          onClick={() => {
-                            setMessages([]);
-                            setAnalysisId(null);
-                            setUploadedMedia(null);
-                            setMediaData(null);
-                            setDocumentName("");
-                            setAnalysisProgress(0);
-                            toast({
-                              title: "Analysis Deleted",
-                              description: "Analysis results have been cleared"
-                            });
-                          }}
-                          data-testid="button-delete-analysis"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                          </svg>
-                          Delete
-                        </Button>
-                      </div>
-                    </div>
+
                     
                     {/* Download info message */}
                     {analysisId && (
