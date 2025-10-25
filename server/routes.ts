@@ -171,252 +171,130 @@ const tempDir = os.tmpdir();
 const writeFileAsync = promisify(fs.writeFile);
 const unlinkAsync = promisify(fs.unlink);
 
-// 50-QUESTION FRAMEWORKS FOR EACH ANALYSIS TYPE
+// 30-QUESTION PSYCHOANALYTIC FRAMEWORKS FOR EACH ANALYSIS TYPE
 
 const PHOTO_ANALYSIS_QUESTIONS = [
-  // I. Physical Cues (10)
-  "What is the person's approximate age range, and what visual evidence supports this?",
-  "What is their likely dominant hand, based on body posture or hand use?",
-  "What kind of lighting was used (natural, fluorescent, LED), and how does it shape facial tone or mood?",
-  "How symmetrical is the person's face, and what asymmetries are visible?",
-  "Describe the color and apparent texture of the person's skin in objective terms.",
-  "Identify one visible physical trait (scar, mole, wrinkle pattern) and infer its probable significance (age, stress, lifestyle).",
-  "What can be inferred about the person's sleep habits from the eyes and skin tone?",
-  "Describe the person's hair (color, grooming, direction, style) and what it indicates about self-presentation.",
-  "What kind of lighting shadow falls across the eyes or nose, and what mood does that lighting convey?",
-  "Is there evidence of cosmetic enhancement (makeup, filters, retouching), and how does it alter authenticity?",
+  // I. Raw Observation (No Interpretation Yet) - 15 questions
+  "What is the person's facial expression (neutral, strained smile, genuine smile, tense, withdrawn, etc.)?",
+  "What are the eyebrows doing (raised, furrowed, asymmetrical)?",
+  "What is the direction of gaze (direct eye contact, downward, sideways, unfocused)?",
+  "What is the state of the eyes (wide, narrowed, tired, guarded, glossy, dry)?",
+  "What is the mouth doing (pressed lips, open, smiling fully, smiling only with lips, slightly open)?",
+  "Is the jaw relaxed or tense?",
+  "Is the head tilted? If so: toward or away from camera/person?",
+  "What is the posture (upright, slouched, defensive, open, rigid)?",
+  "Are the shoulders raised, dropped, or tensed?",
+  "What are the hands doing (visible tension, gripping, hidden, open, fidgeting)?",
+  "What is the distance from the camera—close (intrusive) or distant (withdrawn)?",
+  "Is the photo posed or candid? How do you know?",
+  "What clothing is worn (formal, casual, highly styled, revealing, defensive layering)?",
+  "What colors dominate (dark, muted, vivid, chaotic, minimalist)?",
+  "Does the setting look controlled (studio, staged) or personal and unstaged (bedroom, messy room, car, etc.)?",
   
-  // II. Expression & Emotion (10)
-  "Describe the dominant facial expression in granular terms (eyebrow position, lip tension, gaze angle).",
-  "Does the expression look posed or spontaneous? Why?",
-  "Identify micro-expressions suggesting secondary emotions (e.g., contempt, anxiety, curiosity).",
-  "Does the smile (if any) engage the eyes? What does that reveal psychologically?",
-  "Compare upper-face emotion vs. lower-face emotion; do they match?",
-  "What emotional tone is conveyed by the person's gaze direction (camera, away, downward)?",
-  "Does the person appear guarded, open, or performative? Cite visible evidence.",
-  "Are there tension points in the jaw or neck suggesting repressed emotion?",
-  "Estimate how long the expression was held for the photo.",
-  "Does the emotion appear congruent with the setting or mismatched? What does that mismatch suggest?",
+  // II. Emotional Microstructure (Still No Interpretation of Personality) - 5 questions
+  "What primary emotion appears present (calm, anxious, angry, sad, amused, detached)?",
+  "What secondary/subtle emotion appears present (embarrassment, defiance, contempt, fear, longing)?",
+  "Are the displayed emotions congruent (face, posture, setting align) or incongruent (smile but clenched jaw, relaxed pose but tense eyes)?",
+  "Is there evidence of masking or suppression of emotion (fake smile, controlled expression)?",
+  "Is the person inviting connection or establishing distance (based on eye contact, posture, framing)?",
   
-  // III. Composition & Context (10)
-  "Describe the setting (indoor/outdoor, professional/personal) and how it relates to self-presentation.",
-  "What objects or background details signal aspects of lifestyle or occupation?",
-  "How does clothing color palette interact with lighting to create an emotional tone?",
-  "What focal length or camera distance was likely used, and how does it affect psychological intimacy?",
-  "Is there visible clutter or minimalism, and what does that suggest about personality?",
-  "Are there reflections, windows, or mirrors in frame? What might they symbolize?",
-  "How does body posture interact with spatial framing (e.g., leaning toward/away from camera)?",
-  "What portion of the frame the subject occupies, and what does that say about ego strength or humility?",
-  "Is there visible symmetry or imbalance in composition, and what does it communicate?",
-  "Identify one hidden or easily overlooked element that subtly changes the psychological reading.",
+  // III. Relational / Object Relations Cues - 5 questions
+  "Does this person appear to want to be perceived as strong, harmless, desirable, superior, invisible, etc.?",
+  "Is the body/face protecting anything (crossed arms, turned away torso, hidden hands)?",
+  "Does the person relate to the camera as a friend, intruder, audience, or threat?",
+  "Is there implicit submission or dominance in the pose?",
+  "Does the person seem to be performing a role? If so: what role (professional, seductive, intellectual, rebel, martyr, etc.)?",
   
-  // IV. Personality & Psychological Inference (10)
-  "Based on facial micro-cues, what is the person's baseline affect (calm, anxious, irritable, contemplative)?",
-  "What defense mechanism seems most active (projection, reaction formation, displacement, denial)?",
-  "Describe the likely self-image being projected—how do posture, expression, and clothing support it?",
-  "What aspects of the photo seem unconsciously revealing versus deliberately controlled?",
-  "How would the person handle confrontation, judging by visible muscular tension or gaze stability?",
-  "Does the person exhibit signs of narcissism or self-doubt? Identify visible indicators.",
-  "What cognitive style is implied (systematic, intuitive, chaotic)?",
-  "What is the person's apparent relationship to vulnerability? Cite visual evidence.",
-  "Does the photo suggest recent emotional hardship or resilience?",
-  "How does the person seem to want to be seen—and what discrepancy exists between that and how they actually appear?",
-  
-  // V. Symbolic & Metapsychological Analysis (10)
-  "What emotional temperature (warm/cool) dominates the photo's color space, and what archetype does it evoke?",
-  "If the photo were a dream image, what would each major element (pose, setting, color) symbolize?",
-  "What mythic or cinematic archetype does the person most resemble, and why?",
-  "Which aspect of the psyche (persona, shadow, anima/animus, self) is most visible?",
-  "What unconscious conflict seems dramatized in the composition?",
-  "How does the person's clothing or accessories function as psychological armor?",
-  "What is the implied relationship between the photographer and subject (trust, tension, dominance)?",
-  "If this image were part of a sequence, what emotional narrative would it tell?",
-  "What single object or feature in the photo best symbolizes the person's life stance?",
-  "What inner contradiction or paradox defines the subject, as revealed through visible cues?"
+  // IV. Symbolic / Psychoanalytic Material - 5 questions
+  "What objects in the background signal values, identity, or defenses (books, emptiness, luxury branding, religious symbols, chaos)?",
+  "Is there evidence of self-curation or control (filters, symmetry, perfect staging)?",
+  "Is there evidence of self-exposure or vulnerability (no makeup, messy setting, unposed)?",
+  "Does the image suggest avoidance (distance, obscured face, shadow, turned body) or demand for attention (close-up, piercing eye contact)?",
+  "If this image were a dream still-frame, what unconscious wish or fear might it be expressing?"
 ];
 
 const VIDEO_ANALYSIS_QUESTIONS = [
-  // I. Physical & Behavioral Cues (10)
-  "How does the person's gait or movement rhythm change across the clip?",
-  "Which recurring gesture seems habitual rather than situational?",
-  "Describe one moment where muscle tension releases or spikes — what triggers it?",
-  "How does posture vary when the person speaks vs. listens?",
-  "Identify one micro-adjustment (e.g., hair touch, collar fix) and explain its likely emotional cause.",
-  "What is the person doing with their hands during silent intervals?",
-  "How consistent is eye-contact across frames? Give timestamps showing breaks or sustained gazes.",
-  "At which point does breathing rate visibly change, and what precedes it?",
-  "Describe the physical energy level throughout — rising, falling, or cyclical?",
-  "What body part seems most expressive (eyes, shoulders, mouth), and how is that used?",
+  // I. Face, Body, and Movement Over Time (Not Just a Single Frame) - 10 questions
+  "What is the person's baseline facial expression before speaking or reacting?",
+  "Do expressions shift suddenly or gradually? Describe the transitions.",
+  "Are any micro-expressions (fleeting fear, contempt, disgust, amusement) visible? When and where?",
+  "Does the person make direct eye contact with the camera? Avoid it? Break it quickly?",
+  "What is the blink rate and pattern (normal, rapid, inhibited)?",
+  "Is head movement relaxed, rigid, nodding, tilted, withdrawn?",
+  "How does posture change over time—straightening, collapsing, tightening, leaning in or away?",
+  "Are shoulders rising (anxiety), dropping (resignation), squared (control), or slumped (defeat)?",
+  "What are the hands doing—visible, hidden, fidgeting, self-soothing (neck/face touching), clenched, gesturing?",
+  "Any repetitive behaviors (foot tapping, nail touching, hair twisting, throat swallowing)?",
   
-  // II. Expression & Emotion Over Time (10)
-  "Track micro-expressions that flicker and vanish. At what timestamps do they appear?",
-  "When does the dominant emotion shift, and how abruptly?",
-  "Does the person's smile fade naturally or snap off?",
-  "Which emotion seems performed vs. spontaneous? Cite frames.",
-  "How does blink rate change when discussing specific topics?",
-  "Identify one involuntary facial tic and interpret its significance.",
-  "Are there moments of incongruence between facial expression and vocal tone?",
-  "When does the person's face 'freeze' — i.e., hold still unnaturally — and what triggers that?",
-  "What subtle expression signals discomfort before any verbal cue?",
-  "How does lighting or camera angle amplify or mute visible emotions?",
+  // II. Voice and Speech (Skip Q11–17 if no audio) - 7 questions
+  "Is the voice steady, trembling, flat, dramatic, or overly controlled?",
+  "Describe the rhythm—rushed, halting, overly slow, performative cadence, monotone?",
+  "How does pitch vary? (Narrow range = suppression; wide range = expressiveness or instability)",
+  "Is breathing shallow, chest-based, diaphragm-based, interrupted?",
+  "Any verbal hesitations—\"um,\" \"like,\" throat clears, lip smacks?",
+  "Does tone match content (laughing while saying something sad, smiling while sounding detached)?",
+  "Does the person correct themselves mid-sentence or retract thoughts?",
+  "Does the speaker seek validation (rising tone at sentence ends, \"you know?\"), or speak as if unquestionable?",
   
-  // III. Speech, Voice & Timing (10)
-  "Describe baseline vocal timbre — breathy, clipped, resonant — and what personality trait it implies.",
-  "At which timestamp does pitch spike or flatten dramatically? Why?",
-  "How does speaking rate change when emotionally charged content arises?",
-  "Identify one pause longer than 1.5 seconds and interpret it psychologically.",
-  "What filler words or vocal tics recur, and what function do they serve?",
-  "How synchronized are gestures with speech rhythm?",
-  "Does the voice carry underlying fatigue, tension, or confidence? Provide audible markers.",
-  "Compare early vs. late segments: does articulation become more or less precise?",
-  "What is the emotional contour of the voice across the clip (anxious → calm, etc.)?",
-  "When does volume drop below baseline, and what coincides with it visually?",
+  // III. Emotional and Relational Signals - 6 questions
+  "What primary emotion is consistently present (fear, anger, detachment, calm, pride)?",
+  "What secondary/submerged emotion leaks through (shame, defiance, sadness, contempt)?",
+  "Are emotions congruent across face, body, and voice—or mismatched? Example?",
+  "Does the person seem to be performing or genuinely expressing? Evidence?",
+  "Are they inviting connection or defending against it (leaning forward vs pulling back, soft voice vs monotone)?",
+  "Is there a moment where emotion breaks through control? When, and what triggered it?",
   
-  // IV. Context, Environment & Interaction (10)
-  "What environmental cues (background noise, lighting shifts) change mid-video?",
-  "How does the camera distance or angle influence perceived dominance or submission?",
-  "Are there off-screen sounds or glances suggesting another presence?",
-  "When the person looks away, where do they look, and what might they be avoiding?",
-  "How do objects in the frame get used or ignored (cup, pen, phone)?",
-  "Does the person adapt posture or tone in response to environmental change (light flicker, sound)?",
-  "What part of the environment most reflects personality (book titles, wall art, tidiness)?",
-  "How does background color palette influence mood perception?",
-  "Is there evidence of editing cuts or jump transitions that alter authenticity?",
-  "What temporal pacing (camera motion, cut frequency) matches or mismatches the emotional tempo?",
-  
-  // V. Personality & Psychological Inference (10)
-  "Based on kinetic patterns, what baseline temperament (introvert/extrovert, restrained/expressive) emerges?",
-  "What defense mechanism manifests dynamically (e.g., laughter after stress cue)?",
-  "When does self-presentation collapse momentarily into candor?",
-  "What behavioral marker suggests anxiety management (fidgeting, throat clearing, leg bounce)?",
-  "How does the person handle silence — restless, composed, avoidant?",
-  "Identify one moment that feels genuinely unguarded; what detail proves it?",
-  "What relational stance is enacted toward the viewer (teacher, confessor, performer)?",
-  "Does the body ever contradict the words? Provide timestamps.",
-  "What sustained pattern (voice-tone loop, repeated motion) indicates underlying psychological theme?",
-  "What overall transformation occurs from first to last frame — and what emotional or existential story does that evolution tell?"
+  // IV. Psychological Defense and Self-Presentation - 6 questions
+  "What role does the person appear to be playing (expert, victim, hero, rebel, ghost, seducer, judge)?",
+  "Are there signs of repression, dissociation, or emotional numbing (blank face, delayed reactions, forced calm)?",
+  "Are there narcissistic cues (excessive certainty, crafted image, dramatization), or self-effacing cues (shrinking, apologetic tone)?",
+  "What do they seem desperate not to show (fear, neediness, aggression, vulnerability)?",
+  "What nonverbal moment—if screenshotted—most reveals the unconscious stance toward the viewer (trusting, hostile, testing, seducing, hiding)?",
+  "If this 10-second clip were a dream image—what wish, anxiety, or internal conflict would it express?"
 ];
 
 const TEXT_ANALYSIS_QUESTIONS = [
-  // I. Information Processing Style (10)
-  "Does the text show an active mind organizing information, or a passive mind reciting it?",
-  "Is information digested and restructured, or merely repeated?",
-  "Does the writer analyze causes, or just describe effects?",
-  "Are distinctions drawn sharply or blurred lazily?",
-  "Is the reasoning linear, branching, or circular?",
-  "Does the writer generalize prematurely or hold data until patterns emerge?",
-  "Are claims proportioned to evidence?",
-  "Does the mind shown seem inductive (pattern-seeking) or deductive (rule-enforcing)?",
-  "Does the prose reveal curiosity, or intellectual fatigue?",
-  "When the text confronts complexity, does it simplify or engage it?",
+  // I. Surface Features (Before Interpretation) - 6 questions
+  "What is the tone of the writing (confident, anxious, detached, theatrical, pleading, cynical, analytical, etc.)? Quote an example.",
+  "What is the emotional temperature — warm, cold, aggressive, ironic, numb, intense? Quote where it shows.",
+  "Does the writing feel controlled or impulsive? Structured or chaotic? Provide textual evidence.",
+  "What narrative or grammatical perspective is used (1st-person, 2nd-person, 3rd-person)? Does it ever shift? Quote where.",
+  "Is the language abstract or concrete? Does the author use vivid specifics or generalities? Give an example.",
+  "Are sentences long and winding, or short and clipped? Quote both extremes if present.",
   
-  // II. Emotional Processing Style (10)
-  "Are emotions named, implied, or avoided altogether?",
-  "When emotion appears, is it integrated or intrusive?",
-  "Does the author intellectualize feelings or experience them?",
-  "Does the tone show restraint, volatility, or emotional flatness?",
-  "Are emotional reactions linked to meaning, or detached from it?",
-  "Does the text show empathy, contempt, or indifference toward others?",
-  "Does emotion drive understanding or distort it?",
-  "When faced with threat or contradiction, does the writer show defensiveness or reflection?",
-  "Does the writing reveal warmth anywhere, or only analysis?",
-  "Is there emotional growth within the text, or the same affect from start to finish?",
+  // II. Emotional Content & Avoidance - 5 questions
+  "What emotion is most directly expressed? Quote it.",
+  "What emotion is most indirectly or unconsciously expressed (resentment, shame, fear, superiority, etc.)? Provide evidence.",
+  "Is the author emotionally vulnerable or defended? Quote where vulnerability appears or where it is blocked.",
+  "Does the author openly express needs, doubts, guilt, or desire? Or avoid them entirely? Provide an example.",
+  "Does the writing ever contradict its own emotional stance (e.g., angry content in calm tone, humor masking bitterness)? Quote it.",
   
-  // III. Agency & Activity Level (10)
-  "Does the prose suggest a person who acts on the world or merely comments on it?",
-  "Are verbs mostly active or passive?",
-  "Does the writer assume control of argument flow or let it meander?",
-  "Does the voice take responsibility for claims (\"I think,\" \"I argue\") or hide behind impersonal phrasing?",
-  "Does the argument attempt to change the reader's mind or simply display intellect?",
-  "Is there initiative — new frameworks, redefinitions — or only reaction?",
-  "When obstacles appear, does the author adapt or stall?",
-  "Does the text reveal willpower or resignation?",
-  "Is the overall energy rising, steady, or depleted?",
-  "Does the mind seem confident in shaping reality or resentful of being shaped by it?",
+  // III. Control, Conflict, and Defensiveness - 6 questions
+  "Does the writer over-explain or justify themselves, as if anticipating criticism? Quote it.",
+  "Do they present certainty or hesitation? Confidence or self-doubt? Quote the clearest example.",
+  "Is there perfectionism or hyper-clarity (overly polished, armored prose)? Or fragmentation and leakage? Quote it.",
+  "Are there sudden shifts in style, tone, or pace that signal internal conflict? Identify and quote.",
+  "Does the writing contain sarcasm, passive-aggression, or contempt? Where?",
+  "Does it contain idealization or reverence toward someone (mentor, lover, God, ideology)? Quote.",
   
-  // IV. Focus: Interpersonal vs. Ideational (10)
-  "Is attention directed toward people or toward abstractions?",
-  "When others are mentioned, are they treated as minds or as examples?",
-  "Does the prose imply social awareness or social detachment?",
-  "Is there sensitivity to audience, or indifference to communication?",
-  "Does persuasion matter, or only demonstration?",
-  "Does the text reveal an interest in relationships, systems, or self-display?",
-  "When using \"we,\" is it inclusive or manipulative?",
-  "Does the writer ever show vulnerability to others' judgment?",
-  "Are ideas personified (showing emotional engagement) or sterilized?",
-  "Does the author seek understanding or dominance over interlocutors?",
+  // IV. Self & Other - 5 questions
+  "How does the writer talk about themselves — as victim, hero, observer, critic, ghost, fraud, machine, animal, god? Quote.",
+  "Are they harsh or gentle toward themselves? Provide an example.",
+  "How do they describe other people — as threats, judges, idiots, gods, tools, ghosts, background objects? Quote.",
+  "Is there empathy or emotional deadness toward others? Evidence?",
+  "Does the author imagine how others see them? Quote those passages.",
   
-  // V. Motivation, Value System, and Reality Testing (10)
-  "What is the writer trying to achieve — truth, recognition, safety, superiority?",
-  "Is success defined internally (clarity) or externally (approval)?",
-  "Does the writer trust reason, intuition, authority, or instinct most?",
-  "When evidence contradicts belief, does belief bend or resist?",
-  "Is the worldview optimistic, tragic, cynical, or dispassionate?",
-  "Does the author see the self as agent or as spectator?",
-  "Does the text treat reality as negotiable (conceptualist) or binding (realist)?",
-  "Does the writer seek understanding or vindication?",
-  "Are problems treated as puzzles to solve or evils to condemn?",
-  "Is there any visible hunger for truth — or only hunger for being right?",
+  // V. Desire, Fear, and Repression - 5 questions
+  "What does the writer seem to want (even if not admitted)? Quote signs of longing, ambition, peace, dominance, escape.",
+  "What do they fear — failure, humiliation, intimacy, insignificance, chaos? Quote.",
+  "What emotions or topics are noticeably absent or suppressed (love, guilt, mortality, anger)?",
+  "Are there contradictions between what the writer claims to believe and what their language implies? Quote both sides.",
+  "Is there evidence of fantasy, projection, or dissociation (grandiosity, paranoid subtext, unreal metaphors)? Quote.",
   
-  // VI. Intelligence & Conceptual Control (10)
-  "Does the writing show genuine intelligence — deep structure, inference, precision — or rote mimicry?",
-  "Does the argument actually advance, or does it spin in circles?",
-  "Does the author handle abstraction cleanly, or get lost in vagueness?",
-  "Does reasoning depend on concrete evidence or empty jargon?",
-  "When the author defines something, is it sharp and economical or padded and evasive?",
-  "Are terms used consistently, or redefined to dodge difficulty?",
-  "Is the prose intellectually ambitious in a disciplined way, or pretentious for show?",
-  "Does the text reveal mastery of the material, or merely second-hand familiarity?",
-  "Does the writer tolerate internal tension, or hide contradictions with style?",
-  "Does the argument show genuine insight — a new relation between ideas — or rehearse clichés?",
-  
-  // VII. Honesty & Sincerity of Mind (10)
-  "Is the writer being straightforward, or manipulating phrasing to sound profound?",
-  "Does the text ever admit uncertainty or limitation?",
-  "When challenged (implicitly or explicitly), does the writer concede or double down?",
-  "Is there visible willingness to change one's mind if the reasoning fails?",
-  "Does the author ever say \"I don't know,\" or is omniscience performed throughout?",
-  "Are doubts faced or buried under abstraction?",
-  "Does confidence come from understanding or bluster?",
-  "Are counterarguments represented fairly, or caricatured for easy defeat?",
-  "Does the writer seem to care about truth, or about appearing intelligent?",
-  "Is there moral or intellectual humility anywhere in the text?",
-  
-  // VIII. Structure, Organization, and Focus (10)
-  "Is the argument linearly constructed or chaotic?",
-  "Does every paragraph push the reasoning forward?",
-  "Are transitions real or cosmetic?",
-  "Does the conclusion actually follow from the premises?",
-  "Are examples used to clarify or to disguise weakness?",
-  "Does the text maintain topic discipline or wander aimlessly?",
-  "Is there redundancy that signals insecurity?",
-  "How coherent is paragraph sequencing — cumulative or random?",
-  "Does the text have a visible beginning, middle, and end?",
-  "Does the closing section resolve something or merely stop?",
-  
-  // IX. Psychological Profile in Style (10)
-  "Does the tone suggest calm confidence or anxious control?",
-  "Is the style dry, combative, ingratiating, or sermonizing?",
-  "Does the writer hide behind abstraction to avoid personal exposure?",
-  "Is there contempt for opposing views or curiosity about them?",
-  "What emotion drives the prose — irritation, pride, fear, wonder?",
-  "Is the rhythm clenched (defensive) or open (exploratory)?",
-  "Does the diction reveal class anxiety, moral superiority, or insecurity?",
-  "Is humor used to clarify or to deflect?",
-  "Does the writer need to dominate the reader intellectually?",
-  "Does the language show obsession with control, symmetry, or perfection?",
-  
-  // X. Substance, Depth, and Cognitive Flexibility (10)
-  "Does the writer ever integrate a new idea mid-stream?",
-  "Is there evidence of learning in motion — development within the text?",
-  "Are insights layered, or all at the same conceptual level?",
-  "When describing others' ideas, does the writer paraphrase accurately?",
-  "Does the prose reveal real curiosity, or mere performance of curiosity?",
-  "Does the author show capacity for self-correction?",
-  "Is there flexibility of perspective, or rigid monologue?",
-  "Does the argument invite dialogue, or shut it down?",
-  "Is there intellectual empathy — ability to inhabit another view sincerely?",
-  "After reading, do we feel we've encountered a mind in motion or a mask of erudition?"
+  // VI. Style as Symptom (Freud/Lacan Level) - 3 questions
+  "Does the writing seek control (logic, formalism), or release (poetic flooding, confession)? Quote.",
+  "Is language used as a shield (jargon, abstraction) or as exposure (rawness, simplicity)? Quote.",
+  "If this writing were a dream, what unconscious wish or conflict would it reveal?"
 ];
 
 // Helper function to clean markdown formatting from analysis text

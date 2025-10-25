@@ -1,0 +1,260 @@
+FOR PHOTO: 
+DO NOT TELL THE LLM 'GIVE ME A PROFILE OF THIS PERSON' OR 'PSYCHOANALYZE THIS PERSON' OR ANYTHING OF THE SORT. 
+INSTEAD, YOU GIVE IT THE FOLLOWING QUESTIONS; AND YOU TELL IT TO ANSWER EACH QUESTION INDIVIDUALLY AND THEN, ON THAT BASIS, TO CONSTRUCT A PROFILE OF THE
+PERSON IN THE PHOTO. 
+
+
+30 Structured Psychoanalytic Questions for IMAGE-ONLY (PHOTO) INPUT
+I. Raw Observation (No Interpretation Yet)
+
+What is the person’s facial expression (neutral, strained smile, genuine smile, tense, withdrawn, etc.)?
+
+What are the eyebrows doing (raised, furrowed, asymmetrical)?
+
+What is the direction of gaze (direct eye contact, downward, sideways, unfocused)?
+
+What is the state of the eyes (wide, narrowed, tired, guarded, glossy, dry)?
+
+What is the mouth doing (pressed lips, open, smiling fully, smiling only with lips, slightly open)?
+
+Is the jaw relaxed or tense?
+
+Is the head tilted? If so: toward or away from camera/person?
+
+What is the posture (upright, slouched, defensive, open, rigid)?
+
+Are the shoulders raised, dropped, or tensed?
+
+What are the hands doing (visible tension, gripping, hidden, open, fidgeting)?
+
+What is the distance from the camera—close (intrusive) or distant (withdrawn)?
+
+Is the photo posed or candid? How do you know?
+
+What clothing is worn (formal, casual, highly styled, revealing, defensive layering)?
+
+What colors dominate (dark, muted, vivid, chaotic, minimalist)?
+
+Does the setting look controlled (studio, staged) or personal and unstaged (bedroom, messy room, car, etc.)?
+
+II. Emotional Microstructure (Still No Interpretation of Personality)
+
+What primary emotion appears present (calm, anxious, angry, sad, amused, detached)?
+
+What secondary/subtle emotion appears present (embarrassment, defiance, contempt, fear, longing)?
+
+Are the displayed emotions congruent (face, posture, setting align) or incongruent (smile but clenched jaw, relaxed pose but tense eyes)?
+
+Is there evidence of masking or suppression of emotion (fake smile, controlled expression)?
+
+Is the person inviting connection or establishing distance (based on eye contact, posture, framing)?
+
+III. Relational / Object Relations Cues
+
+Does this person appear to want to be perceived as strong, harmless, desirable, superior, invisible, etc.?
+
+Is the body/face protecting anything (crossed arms, turned away torso, hidden hands)?
+
+Does the person relate to the camera as a friend, intruder, audience, or threat?
+
+Is there implicit submission or dominance in the pose?
+
+Does the person seem to be performing a role? If so: what role (professional, seductive, intellectual, rebel, martyr, etc.)?
+
+IV. Symbolic / Psychoanalytic Material
+
+What objects in the background signal values, identity, or defenses (books, emptiness, luxury branding, religious symbols, chaos)?
+
+Is there evidence of self-curation or control (filters, symmetry, perfect staging)?
+
+Is there evidence of self-exposure or vulnerability (no makeup, messy setting, unposed)?
+
+Does the image suggest avoidance (distance, obscured face, shadow, turned body) or demand for attention (close-up, piercing eye contact)?
+
+If this image were a dream still-frame, what unconscious wish or fear might it be expressing?
+
+How This Will Work in the App
+
+The app sends the image + these 30 specific questions.
+
+The LLM must answer them one-by-one with observable evidence first → micro-emotions → psychodynamics.
+
+Only after answering all 30, it can then generate a short psychological profile like:
+
+Core defense mechanisms
+
+Attachment pattern
+
+Narcissistic/self-effacing tendencies
+
+Anxiety strategies (avoidant/hypervigilant/etc.)
+
+Relation to others/self/world
+
+FOR VIDEO: 
+
+Here are the 30 questions your app should force the LLM to answer for VIDEO ANALYSIS (with or without speech) before it is allowed to psychoanalyze or summarize. These questions make the model slow down, observe frame-by-frame behavior, voice tone, micro-expressions, timing—not just read vibes.
+
+✅ 30 Structured Psychoanalytic Questions for VIDEO (With or Without Speech)
+I. Face, Body, and Movement Over Time (Not Just a Single Frame)
+
+What is the person’s baseline facial expression before speaking or reacting?
+
+Do expressions shift suddenly or gradually? Describe the transitions.
+
+Are any micro-expressions (fleeting fear, contempt, disgust, amusement) visible? When and where?
+
+Does the person make direct eye contact with the camera? Avoid it? Break it quickly?
+
+What is the blink rate and pattern (normal, rapid, inhibited)?
+
+Is head movement relaxed, rigid, nodding, tilted, withdrawn?
+
+How does posture change over time—straightening, collapsing, tightening, leaning in or away?
+
+Are shoulders rising (anxiety), dropping (resignation), squared (control), or slumped (defeat)?
+
+What are the hands doing—visible, hidden, fidgeting, self-soothing (neck/face touching), clenched, gesturing?
+
+Any repetitive behaviors (foot tapping, nail touching, hair twisting, throat swallowing)?
+
+II. Voice and Speech (Skip Q12–18 if no audio)
+
+Is the voice steady, trembling, flat, dramatic, or overly controlled?
+
+Describe the rhythm—rushed, halting, overly slow, performative cadence, monotone?
+
+How does pitch vary? (Narrow range = suppression; wide range = expressiveness or instability)
+
+Is breathing shallow, chest-based, diaphragm-based, interrupted?
+
+Any verbal hesitations—“um,” “like,” throat clears, lip smacks?
+
+Does tone match content (laughing while saying something sad, smiling while sounding detached)?
+
+Does the person correct themselves mid-sentence or retract thoughts?
+
+Does the speaker seek validation (rising tone at sentence ends, “you know?”), or speak as if unquestionable?
+
+III. Emotional and Relational Signals
+
+What primary emotion is consistently present (fear, anger, detachment, calm, pride)?
+
+What secondary/submerged emotion leaks through (shame, defiance, sadness, contempt)?
+
+Are emotions congruent across face, body, and voice—or mismatched? Example?
+
+Does the person seem to be performing or genuinely expressing? Evidence?
+
+Are they inviting connection or defending against it (leaning forward vs pulling back, soft voice vs monotone)?
+
+Is there a moment where emotion breaks through control? When, and what triggered it?
+
+IV. Psychological Defense and Self-Presentation
+
+What role does the person appear to be playing (expert, victim, hero, rebel, ghost, seducer, judge)?
+
+Are there signs of repression, dissociation, or emotional numbing (blank face, delayed reactions, forced calm)?
+
+Are there narcissistic cues (excessive certainty, crafted image, dramatization), or self-effacing cues (shrinking, apologetic tone)?
+
+What do they seem desperate not to show (fear, neediness, aggression, vulnerability)?
+
+What nonverbal moment—if screenshotted—most reveals the unconscious stance toward the viewer (trusting, hostile, testing, seducing, hiding)?
+
+If this 10-second clip were a dream image—what wish, anxiety, or internal conflict would it express?
+
+✅ How This Is Used in Your App
+
+Step 1: The app sends video + these 30 questions to the LLM.
+
+Step 2: The LLM must answer them in order, grounded in observation, not speculation.
+
+Step 3: Only after finishing all 30, the app asks:
+“Given your answers to those questions, provide a concise psychological/psychoanalytic profile of this person—without adding new observations.”
+
+FOR TEXT: 
+
+Here are the 30 questions your app should force the LLM to answer when psychoanalyzing a person based on a WRITING SAMPLE (text) — before it gives any psychological summary. These questions force analysis of tone, structure, emotional dynamics, linguistic patterns, contradiction, and unconscious content — not lazy “he/she seems smart and confident” AI filler.
+
+✅ 30 Structured Psychoanalytic Questions for TEXT (Writing Sample)
+I. Surface Features (Before Interpretation)
+
+What is the tone of the writing (confident, anxious, detached, theatrical, pleading, cynical, analytical, etc.)? Quote an example.
+
+What is the emotional temperature — warm, cold, aggressive, ironic, numb, intense? Quote where it shows.
+
+Does the writing feel controlled or impulsive? Structured or chaotic? Provide textual evidence.
+
+What narrative or grammatical perspective is used (1st-person, 2nd-person, 3rd-person)? Does it ever shift? Quote where.
+
+Is the language abstract or concrete? Does the author use vivid specifics or generalities? Give an example.
+
+Are sentences long and winding, or short and clipped? Quote both extremes if present.
+
+II. Emotional Content & Avoidance
+
+What emotion is most directly expressed? Quote it.
+
+What emotion is most indirectly or unconsciously expressed (resentment, shame, fear, superiority, etc.)? Provide evidence.
+
+Is the author emotionally vulnerable or defended? Quote where vulnerability appears or where it is blocked.
+
+Does the author openly express needs, doubts, guilt, or desire? Or avoid them entirely? Provide an example.
+
+Does the writing ever contradict its own emotional stance (e.g., angry content in calm tone, humor masking bitterness)? Quote it.
+
+III. Control, Conflict, and Defensiveness
+
+Does the writer over-explain or justify themselves, as if anticipating criticism? Quote it.
+
+Do they present certainty or hesitation? Confidence or self-doubt? Quote the clearest example.
+
+Is there perfectionism or hyper-clarity (overly polished, armored prose)? Or fragmentation and leakage? Quote it.
+
+Are there sudden shifts in style, tone, or pace that signal internal conflict? Identify and quote.
+
+Does the writing contain sarcasm, passive-aggression, or contempt? Where?
+
+Does it contain idealization or reverence toward someone (mentor, lover, God, ideology)? Quote.
+
+IV. Self & Other
+
+How does the writer talk about themselves — as victim, hero, observer, critic, ghost, fraud, machine, animal, god? Quote.
+
+Are they harsh or gentle toward themselves? Provide an example.
+
+How do they describe other people — as threats, judges, idiots, gods, tools, ghosts, background objects? Quote.
+
+Is there empathy or emotional deadness toward others? Evidence?
+
+Does the author imagine how others see them? Quote those passages.
+
+V. Desire, Fear, and Repression
+
+What does the writer seem to want (even if not admitted)? Quote signs of longing, ambition, peace, dominance, escape.
+
+What do they fear — failure, humiliation, intimacy, insignificance, chaos? Quote.
+
+What emotions or topics are noticeably absent or suppressed (love, guilt, mortality, anger)?
+
+Are there contradictions between what the writer claims to believe and what their language implies? Quote both sides.
+
+Is there evidence of fantasy, projection, or dissociation (grandiosity, paranoid subtext, unreal metaphors)? Quote.
+
+VI. Style as Symptom (Freud/Lacan Level)
+
+Does the writing seek control (logic, formalism), or release (poetic flooding, confession)? Quote.
+
+Is language used as a shield (jargon, abstraction) or as exposure (rawness, simplicity)? Quote.
+
+If this writing were a dream, what unconscious wish or conflict would it reveal?
+
+✅ How Your App Should Use This
+
+The app sends text + these 30 questions.
+
+The LLM must answer each question with direct quotes from the text — no speculation.
+
+Only after all 30 are answered, the app asks:
+“Based only on your answers above, provide a concise psychoanalytic profile of the writer — no new observations.”
