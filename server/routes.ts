@@ -4463,38 +4463,54 @@ compatibilities or conflicts, and how these different personalities might comple
     const questionCount = questions.length;
     const mediaType = (videoAnalysis || audioTranscription) ? "VIDEO" : "PHOTO";
     
-    // TWO-STEP METHODOLOGY: Answer questions first, THEN construct profile
+    // PHOTO ANALYSIS PROTOCOL: Answer 30 questions with explicit evidence, THEN construct profile
     const analysisPrompt = `
-You are analyzing a ${mediaType}. DO NOT immediately psychoanalyze or summarize. Instead, follow this strict two-step process:
-
-STEP 1: Answer each of these ${questionCount} questions individually with direct observable evidence:
+You are analyzing a ${mediaType}. You must follow this MANDATORY two-step protocol:
 
 DATA AVAILABLE FOR ANALYSIS:
 ${JSON.stringify(analysisInput, null, 2)}
 
-QUESTIONS (answer each one separately with specific visual/audio evidence):
-${questions.map((q, i) => `${i + 1}. ${q}`).join('\n')}
+═══════════════════════════════════════════════════════════════════════════════
+STEP 1: ANSWER ALL 30 QUESTIONS - EACH ANSWER MUST BE EXPLICIT AND WELL-ARGUED
+═══════════════════════════════════════════════════════════════════════════════
 
-REQUIREMENTS FOR STEP 1:
-- Answer EVERY question individually
-- Provide specific observable evidence for each answer:
-  * For PHOTO: facial expressions, body language, posture, clothing, grooming, background objects, microexpressions
-  * For VIDEO: all of the above PLUS movement patterns, changes over time, voice/speech patterns if available
-- Include direct quotes from speech/audio if available
-- Be specific and grounded in observable evidence
-- Do NOT generalize or skip questions  
+You MUST answer each of the following ${questionCount} questions individually. For EACH question:
+- Provide an EXPLICIT, WELL-ARGUED answer with 2-4 sentences
+- Support your answer with SPECIFIC OBSERVABLE EVIDENCE from the image data
+- Use concrete details: facial features, body positioning, clothing, background objects, colors, lighting
+- Do NOT skip any question
+- Do NOT give generic or vague answers
 - Do NOT use markdown formatting (no # or ### or **)
 
-STEP 2: Only after answering all ${questionCount} questions above, provide a concise psychological/psychoanalytic profile based on your answers. This profile should include:
+THE 30 QUESTIONS YOU MUST ANSWER:
+
+${questions.map((q, i) => `Question ${i + 1}: ${q}`).join('\n\n')}
+
+FORMAT FOR STEP 1:
+Answer each question like this:
+Question 1: [Copy the question]
+Answer: [Your explicit, well-argued answer with observable evidence]
+
+Question 2: [Copy the question]
+Answer: [Your explicit, well-argued answer with observable evidence]
+
+...continue for all 30 questions...
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 2: PSYCHOLOGICAL PROFILE (ONLY AFTER ANSWERING ALL 30 QUESTIONS)
+═══════════════════════════════════════════════════════════════════════════════
+
+Only after you have answered all 30 questions above, provide a brief psychological profile based SOLELY on your answers. Include:
+
 - Core defense mechanisms
 - Attachment pattern
 - Narcissistic/self-effacing tendencies
 - Anxiety strategies (avoidant/hypervigilant/etc.)
 - Relation to others/self/world
 
-Your profile MUST be based only on your answers to the questions above—no new observations.
+Your profile MUST be based only on your answers to the 30 questions—no new observations.
 
-RETURN FORMAT: Plain text with clear sections. NO markdown formatting. NO JSON structure.`;
+CRITICAL: You MUST complete STEP 1 (all 30 questions with explicit, well-argued answers) BEFORE writing STEP 2.`;
 
     // Try to get analysis from all three services in parallel for maximum depth
     try {
