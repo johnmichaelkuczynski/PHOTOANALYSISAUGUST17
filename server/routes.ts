@@ -2824,11 +2824,15 @@ Provide detailed, comprehensive psychological insights based on the analysis. Al
         personalityInsights,
       });
 
-      // Format initial message content for the chat
+      // Use the RAW AI response directly - DO NOT reformat into old personality report structure
       let formattedContent = "";
       
-      if (personalityInsights.individualProfiles?.length > 1) {
-        // Multi-person message format with improved visual structure
+      // Check if we have a raw analysis response (30-question format)
+      if (personalityInsights.rawAnalysisText) {
+        // NEW FORMAT: Use the raw AI response with 30 questions
+        formattedContent = personalityInsights.rawAnalysisText;
+      } else if (personalityInsights.individualProfiles?.length > 1) {
+        // OLD FORMAT (multi-person): Keep for backwards compatibility
         const peopleCount = personalityInsights.individualProfiles.length;
         formattedContent = `AI-Powered Psychological Profile Report\n`;
         formattedContent += `Subjects Detected: ${peopleCount} Individuals\n`;
@@ -4625,19 +4629,16 @@ CRITICAL: Any output that does not follow this format is INVALID and WRONG.
         analysisText = "Analysis could not be completed at this time. Please try again with a clearer image or video.";
       }
       
-      // Wrap plain text analysis in simple structure for compatibility
-      const finalInsights = {
-        summary: analysisText,
-        detailed_analysis: {
-          full_analysis: analysisText
-        }
-      };
-      
-      // For single person case, wrap in object with peopleCount=1 for consistency
+      // Return the RAW analysis text directly - this preserves the 30-question format
       return {
         peopleCount: 1,
-        individualProfiles: [finalInsights],
-        detailed_analysis: finalInsights.detailed_analysis
+        rawAnalysisText: analysisText,  // NEW: Raw AI response with 30 questions
+        individualProfiles: [{          // OLD: Keep for backwards compatibility
+          summary: analysisText,
+          detailed_analysis: {
+            full_analysis: analysisText
+          }
+        }]
       };
     } catch (error) {
       console.error("Error in getPersonalityInsights:", error);
